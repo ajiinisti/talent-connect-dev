@@ -12,7 +12,7 @@ const ProgramList = () => {
             <h1 className="mt-5">Hello, Alwin!</h1>
             <SearchBar/>
             <div className="mt-4">
-                <Button title={"Add Program"} navigate={() => navigate('/home/activity-list')}/>
+                <Button title={"Add Program"} navigate={() => navigate('/home/program-form')}/>
             </div>
             <Card title={"ITDP SMM Batch 3"} isActivity={false}/> 
             <Card title={"ITDP SMM Batch 2"} isActivity={false}/>
