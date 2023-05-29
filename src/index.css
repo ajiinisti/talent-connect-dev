@@ -119,3 +119,21 @@ a {
 .dropdown-menu button:hover {
   background-color: #f0f0f0;
 }
+
+/* Program List */
+
+.mirror-icon {
+  display: inline-block;
+  transform: scaleX(-1);
+}
+
+/* Button Component */
+
+.custom-button {
+  width: 23%;
+  background-color: #A684F2;
+  border-radius: 20px;
+  border: none;
+  height: 40px;
+  display: inline-block;
+}
