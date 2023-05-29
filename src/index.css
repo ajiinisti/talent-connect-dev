@@ -11,3 +11,60 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Layout - Sidebar*/
+
+.custom-navbar {
+  background-color: #F1FAFB;
+}
+
+a[class=active] div{
+  color: white;
+  background-color: #a684f2;
+}
+
+a {
+  text-decoration:none;
+  color: gray;
+}
+
+.nav-item img {
+  fill: white;
+}
+
+.text-with-horizontal-line {
+  position: relative;
+  text-align: center;
+}
+
+.text-with-horizontal-line::before,
+.text-with-horizontal-line::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 110%;
+  height: 1px;
+  background-color: gray;
+}
+
+.text-with-horizontal-line::before {
+  right: 100%;
+  transform: translateX(50%);
+  margin-right: 7vh;
+}
+
+.text-with-horizontal-line::after {
+  left: 100%;
+  transform: translateX(-50%); 
+  margin-left: 7vh;
+}
+
+.icon-navbar {
+  margin-right: 1.5em
+}
+
+.navbar-div-item {
+  width: 17em;
+  padding: 1em 1em 1em 1em;
+  border-radius: 10px;
+}
