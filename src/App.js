@@ -1,17 +1,18 @@
 import './App.css';
 import Layout from './components/layout/Layout';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Login from './pages/login/Login';
 
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Layout/>}/>
-        <Route path='/management' element={<Layout/>}/>
-        <Route path='/evaluation-scoring' element={<Layout/>}/>
-        <Route path='/settings' element={<Layout/>}/>
-        <Route path='login' element={<Layout/>}/>
+        <Route path='/' element={<Login/>}/>
+        <Route path='/management' element={<Login/>}/>
+        <Route path='/evaluation-scoring' element={<Login/>}/>
+        <Route path='/settings' element={<Login/>}/>
+        <Route path='login' element={<Login/>}/>
       </Routes>
     </BrowserRouter>
     
