@@ -14,8 +14,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="d-flex flex-column gap-4 mt-5">
-      <h1>Hello, Alwin!</h1>
+    <div className="d-flex flex-column gap-4 mt-4">
       <form className="input-group" onSubmit={handleSubmit}>
         <input
           className="form-control border-end-0 border"

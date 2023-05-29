@@ -25,34 +25,34 @@ const Sidebar = () => {
             <img src={TalentConnectLogo} alt="Logo" />
         </div>
         <ul className="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start font-bold" id="menu">
-            <NavLink to="/" exact activeClassName="active" >
+            <NavLink to="/home" exact activeclassname="active" >
                 <div className="mt-5 navbar-div-item" >
                     <li className="nav-item">
-                        <img src={activeNavLink === '/' ? WhiteProgramIcon : ProgramIcon}
+                        <img src={activeNavLink.includes('/home') ? WhiteProgramIcon : ProgramIcon}
                             className="icon-navbar" alt="Program Icon" /> Programs
                     </li>
                 </div>
             </NavLink>
-            <NavLink to="/management" activeClassName="active" >
+            <NavLink to="/management" activeclassname="active" >
                 <div className="mt-2 navbar-div-item" >
                     <li className="nav-item">
-                        <img src={activeNavLink === '/management' ? WhiteUserManagementIcon : UserManagementIcon}
+                        <img src={activeNavLink.includes('/management') ? WhiteUserManagementIcon : UserManagementIcon}
                         className="icon-navbar" alt="User Management Icon" /> User Management
                     </li>
                 </div>
             </NavLink>
-            <NavLink to="/evaluation-scoring" activeClassName="active">
+            <NavLink to="/evaluation-scoring" activeclassname="active">
                 <div className="mt-2 navbar-div-item" >
                     <li className="nav-item">
-                        <img src={activeNavLink === '/evaluation-scoring' ? WhiteEvaluationScoringIcon : EvaluationScoringIcon}
+                        <img src={activeNavLink.includes('/evaluation-scoring') ? WhiteEvaluationScoringIcon : EvaluationScoringIcon}
                         className="icon-navbar" alt="Evaluation Scoring Icon" /> Evaluation Scoring
                     </li>
                 </div> 
             </NavLink>
-            <NavLink to="/settings" activeClassName="active">
+            <NavLink to="/settings" activeclassname="active">
                 <div className="mt-2 navbar-div-item" >
                     <li className="nav-item">
-                        <img src={activeNavLink === '/settings' ? WhiteSettingsIcon : SettingsIcon}
+                        <img src={activeNavLink.includes('/settings') ? WhiteSettingsIcon : SettingsIcon}
                         className="icon-navbar" alt="Settings Icon" /> Settings
                     </li>
                 </div>
