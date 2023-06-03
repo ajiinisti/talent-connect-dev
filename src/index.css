@@ -40,21 +40,20 @@ a {
   content: "";
   position: absolute;
   top: 50%;
-  width: 110%;
+  width: 90%;
   height: 1px;
   background-color: gray;
+  transform: translateY(-50%);
 }
 
 .text-with-horizontal-line::before {
   right: 100%;
-  transform: translateX(50%);
-  margin-right: 7vh;
+  margin-right: 1vw;
 }
 
 .text-with-horizontal-line::after {
   left: 100%;
-  transform: translateX(-50%); 
-  margin-left: 7vh;
+  margin-left: 1vw;
 }
 
 .icon-navbar {
@@ -118,6 +117,11 @@ a {
   background-color: #f0f0f0;
 }
 
+.login-form {
+  height: 56px;
+  width: 520px;
+}
+
 /* Program List */
 
 .mirror-icon {
@@ -128,11 +132,11 @@ a {
 /* Button Component */
 
 .custom-button {
-  width: 23%;
+  width: 26%;
   background-color: #A684F2;
   border-radius: 20px;
   border: none;
-  height: 45px;
+  height: 7vh;
   display: inline-block;
 }
 

@@ -60,7 +60,7 @@ const Sidebar = () => {
         </ul>
         <hr />
         <div className="dropdown pb-4">
-                <img src={DefaultProfileIcon} alt="Profile Icon" /> AJIIIII
+            <img src={DefaultProfileIcon} alt="Profile Icon" /> AJIIIII
         </div>
         </div>
   );
