@@ -16,18 +16,9 @@ code {
   background-color: #F1FAFB;
 }
 
-a[class=active] div{
-  color: white;
-  background-color: #a684f2;
-}
-
 a {
   text-decoration:none;
-  color: gray;
-}
-
-.nav-item img {
-  fill: white;
+  color: black;
 }
 
 .text-with-horizontal-line {
@@ -57,12 +48,14 @@ a {
 }
 
 .icon-navbar {
-  margin-right: 1.5em
+  margin-right: 1.5em;
+  max-width: 100%;
+  height: auto;
 }
 
 .navbar-div-item {
   width: 17em;
-  padding: 1em 1em 1em 1em;
+  padding: 0.3em 0.3em 0.3em 0.3em;
   border-radius: 10px;
 }
 
