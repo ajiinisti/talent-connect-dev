@@ -5,7 +5,7 @@ import Layout from "../../components/layout/Layout"
 const ProgramForm = () => {
     const buttonStyle = {
         borderRadius : '5px',
-        height: '40px',
+        height: '40px'
     }
 
     const buttonCancelStyle = {
