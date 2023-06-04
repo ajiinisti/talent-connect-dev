@@ -31,7 +31,7 @@ const Login = () => {
                         <br></br>
                         <div className="d-flex flex-column justify-content-center align-items-center">
                             <button style={{backgroundColor: 'white', border:'white', outline: 'none', cursor:'pointer'}}>
-                                <img src={GoogleLoginLogo}/>
+                                <img src={GoogleLoginLogo} alt="Google Logo"/>
                             </button>
                         </div>
                     </div>
