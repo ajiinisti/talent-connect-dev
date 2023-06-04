@@ -14,13 +14,13 @@ const Card = ({title, isActivity ,styling}) => {
     console.log(id,isActivity,type)
     if (isActivity) {
       if (type === "update") {
-        navigate(`/home/activity-form/${id}`)
+        navigate(`/home/program/activity-form/${id}`)
       } else {
         toggleModal()
       }
     }else{
       if (type === "update") {
-        navigate(`/home/program-form/${id}`)
+        navigate(`/home/program/program-form/${id}`)
       } else if (type === "delete") {
         toggleDropdown()
         console.log(isModalDeleteOpen)
@@ -67,7 +67,7 @@ const Card = ({title, isActivity ,styling}) => {
               <div className="box-program-list" style={{marginRight: '1rem'}}>
                 S
               </div>
-              <Link to={'/home/activity-list'}>
+              <Link to={'/home/program/activity-list'}>
                 <h5 style={{ marginRight: 'auto', marginTop: '0.5rem' }}>{title}</h5>
               </Link>
             </div>:

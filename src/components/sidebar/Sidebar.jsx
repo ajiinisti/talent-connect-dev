@@ -22,7 +22,7 @@ const Sidebar = () => {
     }, [location]);
 
     return (
-        <div className="d-flex flex-column align-items-center align-items-sm-start px-5 pt-5 text-secondary min-vh-100">
+        <div className="sidebar d-flex flex-column align-items-center align-items-sm-start px-5 pt-5 text-secondary min-vh-100">
         <div>
             <img src={TalentConnectLogo} alt="Logo" />
         </div>
