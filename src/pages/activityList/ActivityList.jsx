@@ -2,21 +2,29 @@ import { DefaultProfileIcon } from "../../assets"
 import Button from "../../components/button/Button"
 import Card from "../../components/card/Card"
 import Layout from "../../components/layout/Layout"
-import { AiOutlinePlus } from 'react-icons/ai';
 
 const ActivityList = () => {
+    const buttonStyle = {
+        borderRadius : '5px'
+    }
+
+    const cardStyle = {
+        top : '1.5rem',
+        bot : '1.5rem'
+    }
+
     return(
-        <div className="container py-3">
-            <h1 className="mt-2">SMM ITDP Batch 3</h1>
+        <div className="container py-3 px-5">
+            <h1 className="mt-2"><b>SMM ITDP Batch 3</b></h1>
             <hr/>
             <div className="row">
                 <div className="col-md-9">      
                     <div className="mt-4">
-                        <Button title={"Add Activity"}/>
+                        <Button title={"+ Add Activity"} styling={buttonStyle}/>
                     </div>
                     <h4 className="mt-4">Thursday, 25 Mei 2023</h4>
-                    <div style={{ marginTop: "1.5rem" }}> {/* Tambahkan properti style pada Card yang ingin diberikan margin top */}
-                    <Card title={"Kickoff ITDP SMM Batch 3"} isActivity={true}/>
+                    <div style={{ marginTop: "1.5rem" }}>
+                        <Card title={"Kickoff ITDP SMM Batch 3"} isActivity={true} styling={cardStyle}/>
                     </div>
                 </div>
                 <div className="col-md-3">

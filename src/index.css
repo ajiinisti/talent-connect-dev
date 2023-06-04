@@ -1,8 +1,6 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -18,18 +16,9 @@ code {
   background-color: #F1FAFB;
 }
 
-a[class=active] div{
-  color: white;
-  background-color: #a684f2;
-}
-
 a {
   text-decoration:none;
-  color: gray;
-}
-
-.nav-item img {
-  fill: white;
+  color: black;
 }
 
 .text-with-horizontal-line {
@@ -42,30 +31,31 @@ a {
   content: "";
   position: absolute;
   top: 50%;
-  width: 110%;
+  width: 90%;
   height: 1px;
   background-color: gray;
+  transform: translateY(-50%);
 }
 
 .text-with-horizontal-line::before {
   right: 100%;
-  transform: translateX(50%);
-  margin-right: 7vh;
+  margin-right: 1vw;
 }
 
 .text-with-horizontal-line::after {
   left: 100%;
-  transform: translateX(-50%); 
-  margin-left: 7vh;
+  margin-left: 1vw;
 }
 
 .icon-navbar {
-  margin-right: 1.5em
+  margin-right: 1.5em;
+  max-width: 100%;
+  height: auto;
 }
 
 .navbar-div-item {
   width: 17em;
-  padding: 1em 1em 1em 1em;
+  padding: 0.3em 0.3em 0.3em 0.3em;
   border-radius: 10px;
 }
 
@@ -120,21 +110,22 @@ a {
   background-color: #f0f0f0;
 }
 
-/* Program List */
+.login-form {
+  height: 56px;
+  width: 520px;
+}
 
+/* Program List */
 .mirror-icon {
   display: inline-block;
   transform: scaleX(-1);
 }
 
 /* Button Component */
-
 .custom-button {
-  width: 23%;
   background-color: #A684F2;
   border-radius: 20px;
   border: none;
-  height: 45px;
   display: inline-block;
 }
 
@@ -144,4 +135,40 @@ a {
   background-color: white;
   border: none;
   color: #a684f2;
+}
+
+/* Form */
+
+.form-control{
+  border-radius: 7px;
+}
+
+.box-program-list{
+  width: 60px;
+  height: 60px;
+  background-color: #76A6EA;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  color: white;
+  border-radius: 7px;
+  font-size: 25px;
+}
+
+/* Card */
+.dropdown {
+  position: relative;
+  width: fit-content;
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  transform: translateX(-100%);
+  width: fit-content;
+}
+
+/* Program Form */
+.program-form {
+  height: 56px;
 }

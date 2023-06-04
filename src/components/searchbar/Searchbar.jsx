@@ -21,8 +21,8 @@ const SearchBar = () => {
           type="search"
           value={searchValue}
           onChange={handleInputChange}
-          placeholder="Search"
-          style={{ borderRadius: "10px 0 0 10px" }}
+          placeholder="Search Program"
+          style={{ borderRadius: "5px 0 0 5px" }}
         />
         <span className="input-group-append">
           <button

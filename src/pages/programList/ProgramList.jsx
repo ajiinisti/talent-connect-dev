@@ -7,16 +7,25 @@ import SearchBar from "../../components/searchbar/Searchbar"
 const ProgramList = () => {
     const navigate = useNavigate()
 
+    const buttonStyle = {
+        borderRadius : '5px'
+    }
+
+    const cardStyle = {
+        top : '0.5rem',
+        bot : '0.5rem'
+    }
+
     return(
-        <div className="container">
-            <h1 className="mt-5">Hello, Alwin!</h1>
+        <div className="container px-5">
+            <h1 className="mt-5"><b>Hello, Admin!</b></h1>
             <SearchBar/>
-            <div className="mt-4">
-                <Button title={"Add Program"} navigate={() => navigate('/home/activity-list')}/>
+            <div className="mt-4 mb-4">
+                <Button title={" + Add Program "} styling={buttonStyle} navigate={() => navigate('/home/program-form')}/>
             </div>
-            <Card title={"ITDP SMM Batch 3"} isActivity={false}/> 
-            <Card title={"ITDP SMM Batch 2"} isActivity={false}/>
-            <Card title={"ITDP SMM Batch 1"} isActivity={false}/>
+            <Card title={"ITDP SMM Batch 3"} isActivity={false} styling={cardStyle}/> 
+            <Card title={"ITDP SMM Batch 2"} isActivity={false} styling={cardStyle}/>
+            <Card title={"ITDP SMM Batch 1"} isActivity={false} styling={cardStyle}/>
         </div>
     )
 }
