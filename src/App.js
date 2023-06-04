@@ -10,6 +10,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path='/' element={<Login/>}/>
         <Route path='home' element={<ProgramList />} />
         <Route path='home/program-form' element={<ProgramForm />} />
         <Route path='home/activity-list' element={<ActivityList />} />
