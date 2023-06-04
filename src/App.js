@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from './pages/login/Login';
 import ProgramList from './pages/programList/ProgramList';
 import ActivityList from './pages/activityList/ActivityList';
+import ProgramForm from './pages/programForm/ProgramForm';
 
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='home' element={<ProgramList />} />
+        <Route path='home/program-form' element={<ProgramForm />} />
         <Route path='home/activity-list' element={<ActivityList />} />
         <Route path='management' element={<ProgramList/>}/>
         <Route path='evaluation-scoring' element={<ProgramList/>}/>

@@ -6,24 +6,21 @@ const Login = () => {
             <div className="row h-100">
                 <div className="col-6 d-flex flex-column justify-content-center align-items-center">
                     <div>
-                        <h1>Sign In</h1>
+                        <h1><b>Sign In</b></h1>
                     </div>
                     <br/>
                     <div style={{width:'70%'}}>
                         <form>
                             <div className="mb-3">
                                 <label htmlFor="exampleInputEmail1" className="form-label">Email</label>
-                                <input type="email" className="form-control" id="exampleInputEmail1" placeholder="Enter your email" />
+                                <input type="email" className="form-control login-form" id="exampleInputEmail1" placeholder="Enter your email" />
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-                                <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Enter your password" />
-                            </div>
-                            <div className="mb-3 d-flex flex-row-reverse">
-                                <div className="form-text">Forgot password?</div>
+                                <input type="password" className="form-control login-form" id="exampleInputPassword1" placeholder="Enter your password" />
                             </div>
                             <br/>
-                            <button type="submit" className="btn btn-primary login-button">Sign In</button>
+                            <button type="submit" className="btn btn-primary login-button login-form">Sign In</button>
                         </form>
                     </div>
                     <br/>
