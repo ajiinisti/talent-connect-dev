@@ -155,3 +155,30 @@ a {
   border-radius: 7px;
   font-size: 25px;
 }
+
+/* Card */
+.dropdown {
+  position: relative;
+  width: fit-content;
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  transform: translateX(-100%);
+  width: fit-content;
+}
+
+/* .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 10vw;
+  z-index: 9999;
+  overflow-y: auto;
+} */
+
+
+.card {
+  /* overflow: hidden; */
+}
