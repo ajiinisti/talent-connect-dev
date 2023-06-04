@@ -122,7 +122,6 @@ a {
 }
 
 /* Button Component */
-
 .custom-button {
   background-color: #A684F2;
   border-radius: 20px;
@@ -141,7 +140,7 @@ a {
 /* Form */
 
 .form-control{
-  border-radius: 10px;
+  border-radius: 7px;
 }
 
 .box-program-list{
@@ -169,16 +168,7 @@ a {
   width: fit-content;
 }
 
-/* .dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 10vw;
-  z-index: 9999;
-  overflow-y: auto;
-} */
-
-
-.card {
-  /* overflow: hidden; */
+/* Program Form */
+.program-form {
+  height: 56px;
 }
