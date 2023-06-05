@@ -48,10 +48,10 @@ const DropdownEval = ({id, isAspect}) => {
             { 
                 isDropdownOpen && isAspect ?
                 <div className="dropdown-menu">
-                    <button className="dropdown-item" onClick={() => handleItemClick('Item 2', false, "update")}>
+                    <button className="dropdown-item" onClick={() => handleItemClick('Item 2', true, "update")}>
                     Edit Evaluation Aspect
                     </button>
-                    <button className="dropdown-item" onClick={() => handleItemClick('Item 3', false, "delete")}>
+                    <button className="dropdown-item" onClick={() => handleItemClick('Item 3', true, "delete")}>
                     Delete Evaluation Aspect
                     </button>
                 </div>:

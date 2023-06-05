@@ -55,7 +55,7 @@ const EvaluationAspectForm = () => {
                 </div>
                 <div className="mb-4">
                     <label htmlFor="description" className="form-label">Description</label>
-                    <textarea name="Text1" rows="4" id="description" className="form-control">Description</textarea>
+                    <textarea name="Text1" rows="4" id="description" className="form-control" placeholder="Description"></textarea>
                 </div>
                 {
                     isUpdate ? 
