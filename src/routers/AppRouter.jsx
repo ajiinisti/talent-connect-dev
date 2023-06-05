@@ -9,6 +9,7 @@ import ActivityDetail from '../pages/activityDetail/ActivityDetail';
 import EvaluationScoring from '../pages/evaluationScoring/EvaluationScoring';
 import EvaluationAspectForm from '../pages/evaluationAspectForm/EvaluationAspectForm';
 import ProgramEvaluateParticipant from '../pages/programEvaluateParticipant/ProgramEvaluateParticipant';
+import ProgramEvaluateParticipantDetail from '../pages/programEvaluateParticipantDetail/ProgramEvaluateParticipantDetail';
 
 
 function AppRouter() {
@@ -24,6 +25,7 @@ function AppRouter() {
             <Route path='program/activity-form/:id' element={<ActivityForm />} />
             <Route path='program/activity-detail/:id' element={<ActivityDetail/>} />
             <Route path='program/evaluate-participant/:id' element={<ProgramEvaluateParticipant/>} />
+            <Route path='program/evaluate-participant/:id/:id' element={<ProgramEvaluateParticipantDetail/>} />
             <Route path='management' element={<ProgramList/>}/>
             <Route path='evaluation-scoring' element={<EvaluationScoring/>}/>
             <Route path='evaluation-scoring/evaluation-aspect-form' element={<EvaluationAspectForm/>}/>

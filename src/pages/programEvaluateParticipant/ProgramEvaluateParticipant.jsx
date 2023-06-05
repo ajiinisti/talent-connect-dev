@@ -44,29 +44,29 @@ const ProgramEvaluateParticipant = () => {
             <div>
                 <div className="mt-4">
                     <img src={DefaultProfileIcon} style={{ width: '5%' }} alt="Profile Icon" /> <span>Alwin Ihza</span>
-                    <Button title={"Evaluate"} styling={buttonStyling}/>
+                    <Button title={"Evaluate"} styling={buttonStyling} navigate={() => navigate("id")}/>
                 </div>
                 <hr/>
                 <div className="mt-4">
                     <img src={DefaultProfileIcon} style={{ width: '5%' }} alt="Profile Icon" /> <span>Alwin Ihza</span>
-                    <Button title={"Evaluate"} styling={buttonStyling}/>
+                    <Button title={"Evaluate"} styling={buttonStyling} navigate={() => navigate("id")}/>
                 </div>
                 <hr/>
                 <div className="mt-4">
                     <img src={DefaultProfileIcon} style={{ width: '5%' }} alt="Profile Icon" /> <span>Alwin Ihza</span>
-                    <Button title={"Evaluate"} styling={buttonStyling}/>
+                    <Button title={"Evaluate"} styling={buttonStyling} navigate={() => navigate("id")}/>
                 </div>
             </div>
             <h4 className="mt-5">Already Evaluated</h4>
             <div>
                 <div className="mt-4">
                     <img src={DefaultProfileIcon} style={{ width: '5%' }} alt="Profile Icon" /> <span>Alwin Ihza</span>
-                    <Button title={"Detail"} styling={buttonEvaluatedStyle}/>
+                    <Button title={"Detail"} styling={buttonEvaluatedStyle} navigate={() => navigate("id")}/>
                 </div>
                 <hr/>
                 <div className="mt-4">
                     <img src={DefaultProfileIcon} style={{ width: '5%' }} alt="Profile Icon" /> <span>Alwin Ihza</span>
-                    <Button title={"Detail"} styling={buttonEvaluatedStyle}/>
+                    <Button title={"Detail"} styling={buttonEvaluatedStyle} navigate={() => navigate("id")}/>
                 </div>
             </div>
         </div>
