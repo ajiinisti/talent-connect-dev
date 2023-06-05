@@ -2,13 +2,11 @@ import { FaEllipsisV, FaEllipsisH } from 'react-icons/fa';
 import { BsPeople } from 'react-icons/bs';
 import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import useProgramList from '../../pages/programList/ProgramFunction';
 import Button from '../button/Button';
 
 const Card = ({title, isActivity ,styling}) => {
   const navigate = useNavigate()
   const dropdownRef = useRef(null);
-  const {toggleModal, isModalDeleteOpen} = useProgramList()
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const isJudge = false
 
@@ -18,16 +16,12 @@ const Card = ({title, isActivity ,styling}) => {
       if (type === "update") {
         navigate(`/program/activity-form/${id}`)
       } else {
-        toggleModal()
       }
     }else{
       if (type === "update") {
         navigate(`/program/program-form/${id}`)
       } else if (type === "delete") {
         toggleDropdown()
-        console.log(isModalDeleteOpen)
-        toggleModal()
-        console.log(isModalDeleteOpen)
       }
     }
     setIsDropdownOpen(false);
@@ -49,12 +43,6 @@ const Card = ({title, isActivity ,styling}) => {
       document.removeEventListener('click', handleClickOutside);
     };
   }, []);
-
-  useEffect(() => {
-    if (!isModalDeleteOpen) {
-      setIsDropdownOpen(false);
-    }
-  }, [isModalDeleteOpen]);
   
   return (
     <div className="card d-flex flex-column gap-4 mt-3" style={{borderRadius: '10px', paddingBottom:styling.bot, paddingTop:styling.top }}>
