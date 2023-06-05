@@ -1,12 +1,10 @@
+import { useNavigate } from "react-router-dom"
 import { DefaultProfileIcon } from "../../assets"
 import Button from "../../components/button/Button"
 import Card from "../../components/card/Card"
-import Layout from "../../components/layout/Layout"
 
 const ActivityList = () => {
-    const buttonStyle = {
-        borderRadius : '5px'
-    }
+    const navigate = useNavigate()
 
     const cardStyle = {
         top : '1.5rem',
@@ -20,7 +18,7 @@ const ActivityList = () => {
             <div className="row">
                 <div className="col-md-9">      
                     <div className="mt-4">
-                        <Button title={"+ Add Activity"} styling={buttonStyle}/>
+                        <Button title={"+ Add Activity"} navigate={() => navigate('/program/activity-form')}/>
                     </div>
                     <h4 className="mt-4">Thursday, 25 Mei 2023</h4>
                     <div style={{ marginTop: "1.5rem" }}>
@@ -47,4 +45,4 @@ const ActivityList = () => {
     )
 }
 
-export default Layout(ActivityList)
+export default ActivityList

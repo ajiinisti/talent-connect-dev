@@ -22,15 +22,15 @@ const Sidebar = () => {
     }, [location]);
 
     return (
-        <div className="d-flex flex-column align-items-center align-items-sm-start px-5 pt-5 text-secondary min-vh-100">
+        <div className="sidebar d-flex flex-column align-items-center align-items-sm-start px-5 pt-5 text-secondary min-vh-100">
         <div>
             <img src={TalentConnectLogo} alt="Logo" />
         </div>
         <ul className="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start font-bold" id="menu">
-            <NavLink to="/home" exact activeclassname="active" >
+            <NavLink to="/program" activeclassname="active" >
                 <div className="mt-4 navbar-div-item" >
                     <li className="nav-item">
-                        <img src={activeNavLink.includes('/home') ? ProgramIconActive : ProgramIconNonActive}
+                        <img src={activeNavLink.includes('/program') ? ProgramIconActive : ProgramIconNonActive}
                             className="icon-navbar" alt="Program Icon" />
                     </li>
                 </div>
