@@ -231,3 +231,9 @@ a {
   width: 68%;
   border-top: 2px solid rgb(218, 214, 214);
 }
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+}

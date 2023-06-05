@@ -3,13 +3,14 @@ import { BsPeople } from 'react-icons/bs';
 import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import useProgramList from '../../pages/programList/ProgramFunction';
+import Button from '../button/Button';
 
 const Card = ({title, isActivity ,styling}) => {
   const navigate = useNavigate()
   const dropdownRef = useRef(null);
   const {toggleModal, isModalDeleteOpen} = useProgramList()
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const isJudge = true
+  const isJudge = false
 
   const handleItemClick = (id, isActivity, type) => {
     console.log(id,isActivity,type)
@@ -117,21 +118,31 @@ const Card = ({title, isActivity ,styling}) => {
                 )}
               </div>
             </div>:
-            <div className="dropdown" ref={dropdownRef}>
-              <label htmlFor="dropdown-toggle" className="dropdown-icon" onClick={toggleDropdown}>
-                <FaEllipsisH style={{ marginBottom: '0.2rem'}}/>
-              </label>
-              {isDropdownOpen && (
-                  <div className="dropdown-menu" style={{ position: 'absolute', top: '100%', left: 0 }}>
-                      <button className="dropdown-item" onClick={() => handleItemClick('Item 1', true, "update")}>
+            <div className="container" style={{ 
+                display: 'grid',
+                gridTemplateColumns: '1fr',
+                justifyItems: 'end',
+                alignItems: 'start'
+              }}>
+              <div className="dropdown" ref={dropdownRef} style={{ position: 'relative'}}>
+                <label htmlFor="dropdown-toggle" className="dropdown-icon" onClick={toggleDropdown}>
+                  <FaEllipsisH style={{ marginBottom: '0.2rem' }} />
+                </label>
+                {isDropdownOpen && (
+                  <div className="dropdown-menu">
+                    <button className="dropdown-item" onClick={() => handleItemClick('Item 1', true, "update")}>
                       Update Activity
-                      </button>
-                      <button className="dropdown-item" onClick={() => handleItemClick('Item 2', true, "delete")}>
+                    </button>
+                    <button className="dropdown-item" onClick={() => handleItemClick('Item 2', true, "delete")}>
                       Delete Activity
-                      </button>
+                    </button>
                   </div>
-              )}
-            </div>
+                )}
+              </div>
+              <div>
+                <Button title={"Write Feedback"} styling={{ marginRight: '0' }} />
+              </div>
+          </div>
           }
         </div>
       </ul>
