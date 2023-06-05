@@ -12,10 +12,6 @@ const ProgramList = () => {
         handleDelete
     } = useProgramList()
 
-    const buttonStyle = {
-        borderRadius : '5px'
-    }
-
     const cardStyle = {
         top : '0.5rem',
         bot : '0.5rem'
@@ -26,7 +22,7 @@ const ProgramList = () => {
             <h1 className="mt-5"><b>Hello, Admin!</b></h1>
             <SearchBar/>
             <div className="mt-4 mb-4">
-                <Button title={" + Add Program "} styling={buttonStyle} navigate={() => navigate('/home/program/program-form')}/>
+                <Button title={" + Add Program "} navigate={() => navigate('/home/program/program-form')}/>
             </div>
             <Card title={"ITDP SMM Batch 3"} isActivity={false} styling={cardStyle}/> 
             <Card title={"ITDP SMM Batch 2"} isActivity={false} styling={cardStyle}/>

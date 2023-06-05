@@ -9,7 +9,6 @@ const ProgramForm = () => {
     const [isUpdate, setUpdate] = useState(false)
 
     const buttonStyle = {
-        borderRadius : '5px',
         height: '40px'
     }
 

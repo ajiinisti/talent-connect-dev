@@ -5,9 +5,6 @@ import Card from "../../components/card/Card"
 
 const ActivityList = () => {
     const navigate = useNavigate()
-    const buttonStyle = {
-        borderRadius : '5px'
-    }
 
     const cardStyle = {
         top : '1.5rem',
@@ -21,7 +18,7 @@ const ActivityList = () => {
             <div className="row">
                 <div className="col-md-9">      
                     <div className="mt-4">
-                        <Button title={"+ Add Activity"} styling={buttonStyle} navigate={() => navigate('/home/program/activity-form')}/>
+                        <Button title={"+ Add Activity"} navigate={() => navigate('/home/program/activity-form')}/>
                     </div>
                     <h4 className="mt-4">Thursday, 25 Mei 2023</h4>
                     <div style={{ marginTop: "1.5rem" }}>

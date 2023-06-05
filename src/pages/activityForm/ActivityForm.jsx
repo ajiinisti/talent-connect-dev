@@ -1,10 +1,11 @@
 import { BsArrowLeft } from "react-icons/bs"
 import Button from "../../components/button/Button"
+import { useParams } from "react-router-dom"
+import { useEffect, useState } from "react"
 
 const ActivityForm = () => {
-    const buttonStyle = {
-        borderRadius : '5px'
-    }
+    const params = useParams()
+    const [isUpdate, setUpdate] = useState(false)
 
     const buttonCancelStyle = {
         borderRadius : '5px',
@@ -16,12 +17,22 @@ const ActivityForm = () => {
         marginLeft: '1rem'
     }
 
+    useEffect(()=> {
+        if(params.id) {
+            setUpdate(true)
+        }
+    })
+
     return(
         <div className="container py-3 px-5">
             <h1 className="mt-2"><b>SMM ITDP Batch 3</b></h1>
             <hr/>
             <div className="row mt-4 px-3">
-                <h4><BsArrowLeft/> Add Activity</h4>
+                <h4><BsArrowLeft/> 
+                {
+                    isUpdate ? " Edit Activity": " Add Activity"
+                }
+                </h4>
                 <form className="mt-4 px-4 py-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}}>
                     <div className="mb-4">
                         <label htmlFor="activityTitle" className="form-label">Title</label>
@@ -43,8 +54,17 @@ const ActivityForm = () => {
                         <label htmlFor="description" className="form-label">Description</label>
                         <textarea name="Text1" rows="5" id="description" className="form-control">Description</textarea>
                     </div>
-                    <Button title={"Add Activity"} navigate={() => (0)} styling={buttonStyle}/>
-                    <Button title={"Cancel"} navigate={() => (0)} styling={buttonCancelStyle}/>
+                    {
+                    isUpdate ? 
+                    <>
+                        <Button title={"Save Changes"} navigate={() => (0)}/>
+                        <Button title={"Cancel"} navigate={() => (0)} styling={buttonCancelStyle}/>
+                    </>: 
+                    <>
+                        <Button title={"Add Activity"} navigate={() => (0)}/>
+                        <Button title={"Cancel"} navigate={() => (0)} styling={buttonCancelStyle}/>
+                    </>
+                }
                 </form>
             </div>
         </div>

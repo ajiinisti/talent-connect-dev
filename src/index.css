@@ -124,7 +124,7 @@ a {
 /* Button Component */
 .custom-button {
   background-color: #A684F2;
-  border-radius: 20px;
+  border-radius: 5px;
   border: none;
   display: inline-block;
 }
@@ -205,4 +205,10 @@ a {
   position: sticky;
   top: 0;
   height: 100vh;
+}
+
+/* Evaluation Scoring */
+
+.aspect-title{
+  color: grey;
 }
