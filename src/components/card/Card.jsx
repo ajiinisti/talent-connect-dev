@@ -14,13 +14,13 @@ const Card = ({title, isActivity ,styling}) => {
     console.log(id,isActivity,type)
     if (isActivity) {
       if (type === "update") {
-        navigate(`/home/program/activity-form/${id}`)
+        navigate(`/program/activity-form/${id}`)
       } else {
         toggleModal()
       }
     }else{
       if (type === "update") {
-        navigate(`/home/program/program-form/${id}`)
+        navigate(`/program/program-form/${id}`)
       } else if (type === "delete") {
         toggleDropdown()
         console.log(isModalDeleteOpen)

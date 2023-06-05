@@ -22,7 +22,7 @@ const ProgramList = () => {
             <h1 className="mt-5"><b>Hello, Admin!</b></h1>
             <SearchBar/>
             <div className="mt-4 mb-4">
-                <Button title={" + Add Program "} navigate={() => navigate('/home/program/program-form')}/>
+                <Button title={" + Add Program "} navigate={() => navigate('/program/program-form')}/>
             </div>
             <Card title={"ITDP SMM Batch 3"} isActivity={false} styling={cardStyle}/> 
             <Card title={"ITDP SMM Batch 2"} isActivity={false} styling={cardStyle}/>

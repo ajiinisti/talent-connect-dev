@@ -10,7 +10,7 @@ const EvaluationScoring = () => {
             <hr/>
             <div className="mt-4">
                 <h2 className="mt-3 mb-3">Evaluation Aspects</h2>
-                <Button title={"+ Add Evaluation Aspect"} navigate={()=>navigate('/home/evaluation-scoring/evaluation-aspect-form')}/>
+                <Button title={"+ Add Evaluation Aspect"} navigate={()=>navigate('/evaluation-scoring/evaluation-aspect-form')}/>
                 <div className="mt-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}}>
                     <div className="container mt-4 pb-4">  
                         <div className="row">

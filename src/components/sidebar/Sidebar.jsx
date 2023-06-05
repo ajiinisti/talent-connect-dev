@@ -27,7 +27,7 @@ const Sidebar = () => {
             <img src={TalentConnectLogo} alt="Logo" />
         </div>
         <ul className="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start font-bold" id="menu">
-            <NavLink to="/home/program" activeclassname="active" >
+            <NavLink to="/program" activeclassname="active" >
                 <div className="mt-4 navbar-div-item" >
                     <li className="nav-item">
                         <img src={activeNavLink.includes('/program') ? ProgramIconActive : ProgramIconNonActive}
@@ -35,7 +35,7 @@ const Sidebar = () => {
                     </li>
                 </div>
             </NavLink>
-            <NavLink to="/home/management" activeclassname="active" >
+            <NavLink to="/management" activeclassname="active" >
                 <div className="mt-1 navbar-div-item" >
                     <li className="nav-item">
                         <img src={activeNavLink.includes('/management') ? UserManagementIconNonActive : UserManagementIconActive}
@@ -43,7 +43,7 @@ const Sidebar = () => {
                     </li>
                 </div>
             </NavLink>
-            <NavLink to="/home/evaluation-scoring" activeclassname="active">
+            <NavLink to="/evaluation-scoring" activeclassname="active">
                 <div className="mt-1 navbar-div-item" >
                     <li className="nav-item">
                         <img src={activeNavLink.includes('/evaluation-scoring') ? EvaluationScoringIconActive : EvaluationScoringIconNonActive}
@@ -51,7 +51,7 @@ const Sidebar = () => {
                     </li>
                 </div> 
             </NavLink>
-            <NavLink to="/home/settings" activeclassname="active">
+            <NavLink to="/settings" activeclassname="active">
                 <div className="mt-1 navbar-div-item" >
                     <li className="nav-item">
                         <img src={activeNavLink.includes('/settings') ? ProfileSettingsIconActive : ProfileSettingsIconNonActive}
