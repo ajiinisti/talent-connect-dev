@@ -13,7 +13,7 @@ import EvaluationAspectForm from '../pages/evaluationAspectForm/EvaluationAspect
 function AppRouter() {
   return (
     <Routes>
-        <Route path='/' element={<Login/>}/>
+        <Route path='/' index element={<Login/>}/>
         <Route path='/' element={<Layout/>}>
             <Route path='program' element={<ProgramList />}/>
             <Route path='program/program-form' element={<ProgramForm />} />
