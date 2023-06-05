@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { DefaultProfileIcon } from "../../assets"
 import Button from "../../components/button/Button"
-import Card from "../../components/card/Card"
+import ActivityCard from "./ActivityCard"
 
 const ActivityList = () => {
     const navigate = useNavigate()
@@ -22,7 +22,7 @@ const ActivityList = () => {
                     </div>
                     <h4 className="mt-4">Thursday, 25 Mei 2023</h4>
                     <div style={{ marginTop: "1.5rem" }}>
-                        <Card title={"Kickoff ITDP SMM Batch 3"} isActivity={true} styling={cardStyle}/>
+                        <ActivityCard title={"Kickoff ITDP SMM Batch 3"} styling={cardStyle}/>
                     </div>
                 </div>
                 <div className="col-md-3">

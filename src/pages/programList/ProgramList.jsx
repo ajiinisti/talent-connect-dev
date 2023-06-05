@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import Button from "../../components/button/Button"
-import Card from "../../components/card/Card"
 import SearchBar from "../../components/searchbar/Searchbar"
+import ProgramCard from "./ProgramCard"
 
 const ProgramList = () => {
     const navigate = useNavigate()
@@ -18,9 +18,9 @@ const ProgramList = () => {
             <div className="mt-4 mb-4">
                 <Button title={" + Add Program "} navigate={() => navigate('/program/program-form')}/>
             </div>
-            <Card title={"ITDP SMM Batch 3"} isActivity={false} styling={cardStyle}/> 
-            <Card title={"ITDP SMM Batch 2"} isActivity={false} styling={cardStyle}/>
-            <Card title={"ITDP SMM Batch 1"} isActivity={false} styling={cardStyle}/>
+            <ProgramCard title={"ITDP SMM Batch 3"} styling={cardStyle}/> 
+            <ProgramCard title={"ITDP SMM Batch 2"} styling={cardStyle}/>
+            <ProgramCard title={"ITDP SMM Batch 1"} styling={cardStyle}/>
         </div>
     )
 }
