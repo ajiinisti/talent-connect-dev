@@ -7,6 +7,7 @@ import Layout from '../components/layout/Layout';
 import ActivityForm from '../pages/activityForm/ActivityForm';
 import ActivityDetail from '../pages/activityDetail/ActivityDetail';
 import EvaluationScoring from '../pages/evaluationScoring/EvaluationScoring';
+import EvaluationAspectForm from '../pages/evaluationAspectForm/EvaluationAspectForm';
 
 
 function AppRouter() {
@@ -22,6 +23,8 @@ function AppRouter() {
             <Route path='program/activity-detail/:id' element={<ActivityDetail/>} />
             <Route path='management' element={<ProgramList/>}/>
             <Route path='evaluation-scoring' element={<EvaluationScoring/>}/>
+            <Route path='evaluation-scoring/evaluation-aspect-form' element={<EvaluationAspectForm/>}/>
+            <Route path='evaluation-scoring/evaluation-aspect-form/:id' element={<EvaluationAspectForm/>}/>
             <Route path='settings' element={<ProgramList/>}/>
         </Route>
         <Route path='login' element={<Login/>}/>

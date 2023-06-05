@@ -10,12 +10,12 @@ const DropdownEval = ({id, isAspect}) => {
         console.log(id,isAspect,type)
         if (isAspect) {
           if (type === "update") {
-            navigate(`/home/program/activity-form/${id}`)
+            navigate(`/home/evaluation-scoring/evaluation-aspect-form/${id}`)
           } else {
           }
         }else{
           if (type === "update") {
-            navigate(`/home/program/program-form/${id}`)
+            navigate(`/home/evaluation-scoring/evaluation-aspect-form/${id}`)
           } else if (type === "delete") {
             toggleDropdown()
           }
