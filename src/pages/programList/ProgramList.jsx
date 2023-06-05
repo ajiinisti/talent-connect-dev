@@ -27,7 +27,6 @@ const ProgramList = () => {
             <Card title={"ITDP SMM Batch 3"} isActivity={false} styling={cardStyle}/> 
             <Card title={"ITDP SMM Batch 2"} isActivity={false} styling={cardStyle}/>
             <Card title={"ITDP SMM Batch 1"} isActivity={false} styling={cardStyle}/>
-
             {
                 isModalDeleteOpen && (  
                 <div className="modal-overlay">

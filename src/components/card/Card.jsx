@@ -9,6 +9,7 @@ const Card = ({title, isActivity ,styling}) => {
   const dropdownRef = useRef(null);
   const {toggleModal, isModalDeleteOpen} = useProgramList()
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const isJudge = true
 
   const handleItemClick = (id, isActivity, type) => {
     console.log(id,isActivity,type)
@@ -67,12 +68,18 @@ const Card = ({title, isActivity ,styling}) => {
               <div className="box-program-list" style={{marginRight: '1rem'}}>
                 S
               </div>
-              <Link to={'/home/program/activity-list'}>
-                <h5 style={{ marginRight: 'auto', marginTop: '0.5rem' }}>{title}</h5>
-              </Link>
+              {
+                isJudge ? 
+                <Link to={'/program/evaluate-participant/id'}>
+                  <h5 style={{ marginRight: 'auto', marginTop: '0.5rem' }}>{title}</h5>
+                </Link> :
+                <Link to={'/program/activity-list'}>
+                  <h5 style={{ marginRight: 'auto', marginTop: '0.5rem' }}>{title}</h5>
+                </Link> 
+              }
             </div>:
             <div className="d-flex flex-column">
-              <Link to={'/home/program/activity-detail/01'}>
+              <Link to={'/program/activity-detail/01'}>
                 <h5 style={{ marginBottom: 'auto' }}>{title}</h5>
               </Link>
               <span style={{marginTop: '0.5rem'}}>12.00 - 13.00</span>

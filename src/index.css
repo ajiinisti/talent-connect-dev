@@ -212,3 +212,22 @@ a {
 .aspect-title{
   color: grey;
 }
+
+/* Horizontal Line */
+.line-evaluation-purple {
+  display: inline-block;
+  width: 16%;
+  border-bottom: 4px solid #A684F2;
+}
+
+.line-evaluation {
+  display: inline-block;
+  width: 16%;
+  border-top: 2px solid rgb(218, 214, 214);
+}
+
+.line-rest {
+  display: inline-block;
+  width: 68%;
+  border-top: 2px solid rgb(218, 214, 214);
+}
