@@ -1,6 +1,11 @@
 import { GoogleLoginLogo, LoginLogo } from "../../assets";
+import { useNavigate } from "react-router-dom"
 
 const Login = () => {
+    const navigate = useNavigate()
+    const validate = () => {
+
+    }
     return (
         <div className="container-fluid" style={{ height: "100vh" }}>
             <div className="row h-100">

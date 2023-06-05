@@ -94,7 +94,7 @@ const ActivityCard = ({title,styling}) => {
                     {
                         isMentee ?
                         <div>
-                            <Button title={"See Mentor's Feedback"} styling={feedbackButton} />
+                            <Button title={"See Mentor's Feedback"} styling={feedbackButton} navigate={()=> navigate('/program/mentor-feedback/idd')}/>
                         </div>:
                         <></>
                     }

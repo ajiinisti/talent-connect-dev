@@ -24,7 +24,7 @@ const Sidebar = () => {
     return (
         <div className="sidebar d-flex flex-column align-items-center align-items-sm-start px-5 pt-5 text-secondary min-vh-100">
         <div>
-            <img src={TalentConnectLogo} alt="Logo" />
+            <img src={TalentConnectLogo} alt="Logo" className="icon-navbar" />
         </div>
         <ul className="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start font-bold" id="menu">
             <NavLink to="/program" activeclassname="active" >
@@ -63,7 +63,7 @@ const Sidebar = () => {
         <hr />
         <div className="dropdown pb-4">
             <button className="btn" style={{backgroundColor: '#F1FAFB', border:'#1FAFB', outline: 'none', cursor:'pointer'}}>
-                <img src={LogoutIcon} alt="Profile Icon" />
+                <img src={LogoutIcon} alt="Profile Icon" className="icon-navbar" />
             </button>
         </div>
         </div>

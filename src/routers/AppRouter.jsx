@@ -10,6 +10,7 @@ import EvaluationScoring from '../pages/evaluationScoring/EvaluationScoring';
 import EvaluationAspectForm from '../pages/evaluationAspectForm/EvaluationAspectForm';
 import ProgramEvaluateParticipant from '../pages/programEvaluateParticipant/ProgramEvaluateParticipant';
 import ProgramEvaluateParticipantDetail from '../pages/programEvaluateParticipantDetail/ProgramEvaluateParticipantDetail';
+import MentorFeedback from '../pages/activityMentorFeedback/ActivityMentorFeedback';
 
 
 function AppRouter() {
@@ -21,7 +22,7 @@ function AppRouter() {
             <Route path='program/program-form' element={<ProgramForm />} />
             <Route path='program/program-form/:id' element={<ProgramForm />} />
             <Route path='program/activity-list' element={<ActivityList />} />
-            <Route path='program/mentor-feedback/:id' element={<ActivityList />} />
+            <Route path='program/mentor-feedback/:id' element={<MentorFeedback />} />
             <Route path='program/activity-form' element={<ActivityForm />} />
             <Route path='program/activity-form/:id' element={<ActivityForm />} />
             <Route path='program/activity-detail/:id' element={<ActivityDetail/>} />
