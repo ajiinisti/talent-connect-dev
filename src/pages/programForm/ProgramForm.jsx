@@ -1,6 +1,6 @@
 import { BsArrowLeft } from "react-icons/bs"
 import Button from "../../components/button/Button"
-import Layout from "../../components/layout/Layout"
+// import Layout from "../../components/layout/Layout"
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 
@@ -26,7 +26,7 @@ const ProgramForm = () => {
         if(params.id) {
             setUpdate(true)
         }
-    })
+    },[params.id])
 
     return(
         <div className="container mt-4 px-4">
