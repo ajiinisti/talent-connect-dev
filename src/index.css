@@ -205,9 +205,4 @@ a {
   position: sticky;
   top: 0;
   height: 100vh;
-  overflow-y: auto;
-}
-
-.content {
-  overflow-y: auto; /* Aktifkan scroll jika konten melebihi tinggi content area */
 }

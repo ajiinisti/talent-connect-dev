@@ -5,6 +5,7 @@ import ProgramForm from '../pages/programForm/ProgramForm';
 import ActivityList from '../pages/activityList/ActivityList';
 import Layout from '../components/layout/Layout';
 import ActivityForm from '../pages/activityForm/ActivityForm';
+import ActivityDetail from '../pages/activityDetail/ActivityDetail';
 
 
 function AppRouter() {
@@ -16,6 +17,7 @@ function AppRouter() {
             <Route path='program/program-form/:id' element={<ProgramForm />} />
             <Route path='program/activity-list' element={<ActivityList />} />
             <Route path='program/activity-form' element={<ActivityForm />} />
+            <Route path='program/activity-detail/:id' element={<ActivityDetail/>} />
             <Route path='management' element={<ProgramList/>}/>
             <Route path='evaluation-scoring' element={<ProgramList/>}/>
             <Route path='settings' element={<ProgramList/>}/>

@@ -72,7 +72,9 @@ const Card = ({title, isActivity ,styling}) => {
               </Link>
             </div>:
             <div className="d-flex flex-column">
-              <h5 style={{ marginBottom: 'auto' }}>{title}</h5>
+              <Link to={'/home/program/activity-detail/01'}>
+                <h5 style={{ marginBottom: 'auto' }}>{title}</h5>
+              </Link>
               <span style={{marginTop: '0.5rem'}}>12.00 - 13.00</span>
               <div style={{ marginTop: '0.5rem' }}>
                 <div className="mirror-icon">
