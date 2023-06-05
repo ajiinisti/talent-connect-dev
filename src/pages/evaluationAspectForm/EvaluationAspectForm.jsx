@@ -31,7 +31,7 @@ const EvaluationAspectForm = () => {
         if(params.id) {
             setUpdate(true)
         }
-    })
+    },[params.id])
 
     return(
         <div className="container mt-4 px-4">

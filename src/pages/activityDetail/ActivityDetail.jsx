@@ -1,17 +1,17 @@
-import { useNavigate } from "react-router-dom"
+// import { useNavigate } from "react-router-dom"
 import { DefaultProfileIcon } from "../../assets"
 import { BsArrowLeft } from "react-icons/bs"
 
 const ActivityDetail = () => {
-    const navigate = useNavigate()
-    const buttonStyle = {
-        borderRadius : '5px'
-    }
+    // const navigate = useNavigate()
+    // const buttonStyle = {
+    //     borderRadius : '5px'
+    // }
 
-    const cardStyle = {
-        top : '1.5rem',
-        bot : '1.5rem'
-    }
+    // const cardStyle = {
+    //     top : '1.5rem',
+    //     bot : '1.5rem'
+    // }
 
     return(
         <div className="container py-3 px-5">

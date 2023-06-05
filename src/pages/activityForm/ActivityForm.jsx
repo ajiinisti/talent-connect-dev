@@ -21,7 +21,7 @@ const ActivityForm = () => {
         if(params.id) {
             setUpdate(true)
         }
-    })
+    },[params.id])
 
     return(
         <div className="container py-3 px-5">
