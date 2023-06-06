@@ -11,13 +11,11 @@ const ActivityCard = ({title,styling}) => {
     const isMentor = false
     const isMentee = true
 
-    const handleItemClick = (id, isActivity, type) => {
-        console.log(id,isActivity,type)
-        if (isActivity) {
-            if (type === "update") {
-                navigate(`/program/activity-form/${id}`)
-            } else {
-            }
+    const handleItemClick = (id, type) => {
+        console.log(id,type)
+        if (type === "update") {
+            navigate(`/program/activity-form/${id}`)
+        } else {
         }
         setIsDropdownOpen(false);
     };
@@ -40,7 +38,7 @@ const ActivityCard = ({title,styling}) => {
     useEffect(() => {
         document.addEventListener('click', handleClickOutside);
         return () => {
-        document.removeEventListener('click', handleClickOutside);
+            document.removeEventListener('click', handleClickOutside);
         };
     }, []);
   
@@ -75,10 +73,10 @@ const ActivityCard = ({title,styling}) => {
                         </label>
                         {isDropdownOpen && (
                         <div className="dropdown-menu">
-                            <button className="dropdown-item" onClick={() => handleItemClick('Item 1', true, "update")}>
+                            <button className="dropdown-item" onClick={() => handleItemClick('Item 1', "update")}>
                             Update Activity
                             </button>
-                            <button className="dropdown-item" onClick={() => handleItemClick('Item 2', true, "delete")}>
+                            <button className="dropdown-item" onClick={() => handleItemClick('Item 2', "delete")}>
                             Delete Activity
                             </button>
                         </div>

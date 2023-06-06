@@ -7,8 +7,6 @@ import {
     MDBModalDialog,
     MDBModalContent,
     MDBModalHeader,
-    MDBModalTitle,
-    MDBModalBody,
     MDBModalFooter,
 } from 'mdb-react-ui-kit'
 import Select from 'react-select';
@@ -68,7 +66,7 @@ const EvaluationScoring = () => {
     
     return(
         <>
-            <div className="container py-3 px-5">
+            <div className="container py-5 px-5 mb-5">
                 <h1 className="mt-2"><b>Evaluation Scoring</b></h1>
                 <hr/>
                 <div className="mt-4">

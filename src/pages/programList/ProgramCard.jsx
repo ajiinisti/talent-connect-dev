@@ -3,7 +3,7 @@ import { BsPeople } from 'react-icons/bs';
 import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-const ProgramCard = ({title,styling}) => {
+const ProgramCard = ({title,styling,toogleModal}) => {
     const navigate = useNavigate()
     const dropdownRef = useRef(null);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -12,9 +12,12 @@ const ProgramCard = ({title,styling}) => {
     const handleItemClick = (id, type) => {
         console.log(id,type)
         if (type === "update") {
-            navigate(`/program/program-form/${id}`)
+          navigate(`/program/program-form/${id}`)
         } else if (type === "delete") {
-            toggleDropdown()
+          toggleDropdown()
+        } else{
+          toggleDropdown()
+          toogleModal()
         }
         setIsDropdownOpen(false);
     };
