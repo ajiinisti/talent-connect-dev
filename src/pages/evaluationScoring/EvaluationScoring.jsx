@@ -48,7 +48,7 @@ const EvaluationScoring = () => {
                 </div>
 
                 <h2 className="mt-5 mb-3">Evaluation Category</h2>
-                <Button title={"+ Add Evaluation Category"} navigate={()=>(0)}/>
+                <Button title={"+ Add Evaluation Category"} navigate={()=>navigate('/evaluation-scoring/evaluation-category-form')}/>
                 <div className="mt-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}}>
                     <div className="container mt-4 pb-4">  
                         <div className="row">

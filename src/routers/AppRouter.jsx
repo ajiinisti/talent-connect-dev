@@ -12,6 +12,7 @@ import ProgramEvaluateParticipant from '../pages/programEvaluateParticipant/Prog
 import ProgramEvaluateParticipantDetail from '../pages/programEvaluateParticipantDetail/ProgramEvaluateParticipantDetail';
 import MentorFeedback from '../pages/activityMentorFeedback/ActivityMentorFeedback';
 import ParticipantEvaluation from '../pages/participantEvaluation/ParticipantEvaluation';
+import EvaluationCategoryForm from '../pages/evaluationCategoryForm/EvaluationCategoryForm';
 
 
 function AppRouter() {
@@ -32,6 +33,8 @@ function AppRouter() {
             <Route path='management' element={<ProgramList/>}/>
             <Route path='evaluations/:id' element={<ParticipantEvaluation/>}/>
             <Route path='evaluation-scoring' element={<EvaluationScoring/>}/>
+            <Route path='evaluation-scoring/evaluation-category-form' element={<EvaluationCategoryForm/>}/>
+            <Route path='evaluation-scoring/evaluation-category-form/:id' element={<EvaluationCategoryForm/>}/>
             <Route path='evaluation-scoring/evaluation-aspect-form' element={<EvaluationAspectForm/>}/>
             <Route path='evaluation-scoring/evaluation-aspect-form/:id' element={<EvaluationAspectForm/>}/>
             <Route path='settings' element={<ProgramList/>}/>
