@@ -1,5 +1,7 @@
 import { NavLink, useLocation } from "react-router-dom"
 import { 
+    EvaluationIconActive,
+    EvaluationIconNonActive,
     EvaluationScoringIconActive,
     EvaluationScoringIconNonActive,
     LogoutIcon,
@@ -47,6 +49,14 @@ const Sidebar = () => {
                 <div className="mt-1 navbar-div-item" >
                     <li className="nav-item">
                         <img src={activeNavLink.includes('/evaluation-scoring') ? EvaluationScoringIconActive : EvaluationScoringIconNonActive}
+                        className="icon-navbar" alt="Evaluation Scoring Icon" />
+                    </li>
+                </div> 
+            </NavLink>
+            <NavLink to="/evaluations/id" activeclassname="active">
+                <div className="mt-1 navbar-div-item" >
+                    <li className="nav-item">
+                        <img src={activeNavLink.includes('/evaluations') ? EvaluationIconActive : EvaluationIconNonActive}
                         className="icon-navbar" alt="Evaluation Scoring Icon" />
                     </li>
                 </div> 
