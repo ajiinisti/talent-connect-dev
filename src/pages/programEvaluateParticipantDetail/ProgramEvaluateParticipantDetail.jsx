@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import Select from 'react-select'
 import { CFormCheck } from '@coreui/react'
-import { axiosInstance } from "../../lib/axios-client"
+import axiosInstance from "../../services/axios-client"
 
 const ProgramEvaluateParticipantDetail = () => {
     const params = useParams()

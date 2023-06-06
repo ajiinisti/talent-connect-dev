@@ -14,10 +14,12 @@ import {
     UserManagementIconNonActive
 } from "../../assets"
 import { useEffect, useState } from "react";
+import { useAuth } from "../../hooks/useAuth";
 
 const Sidebar = () => {
     const location = useLocation();
     const [activeNavLink, setActiveNavLink] = useState('');
+    const {logout} = useAuth()
     
     useEffect(() => {
         setActiveNavLink(location.pathname);
@@ -72,7 +74,7 @@ const Sidebar = () => {
         </ul>
         <hr />
         <div className="dropdown pb-4">
-            <button className="btn" style={{backgroundColor: '#F1FAFB', border:'#1FAFB', outline: 'none', cursor:'pointer'}}>
+            <button onClick={()=>logout()} className="btn" style={{backgroundColor: '#F1FAFB', border:'#1FAFB', outline: 'none', cursor:'pointer'}}>
                 <img src={LogoutIcon} alt="Profile Icon" className="icon-navbar" />
             </button>
         </div>
