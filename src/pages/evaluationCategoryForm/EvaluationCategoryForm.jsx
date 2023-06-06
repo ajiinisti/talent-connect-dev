@@ -12,7 +12,6 @@ import { BsArrowLeft } from "react-icons/bs"
 import Button from "../../components/button/Button"
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
-import SearchBar from '../../components/searchbar/Searchbar'
 
 const EvaluationCategoryForm = () => {
     const params = useParams()
@@ -117,17 +116,18 @@ const EvaluationCategoryForm = () => {
                         <MDBModalTitle>Add Aspect</MDBModalTitle>
                         <MDBBtn className='btn-close' color='none' onClick={(e)=>toggleShow(e)}></MDBBtn>
                     </MDBModalHeader>
-                    <MDBModalBody className='align-item-left'>
+                    <MDBModalBody style={{ alignContent: 'flex-start'}}>
                         {
                             allAspectList.map((aspect, index)=> (
-                                <div>
-                                    <label>
+                                <div style={{ display: 'flex', alignItems: 'center' }}>
+                                    <label style={{ marginRight: '10px' }}>
                                         <input
                                         type="checkbox"
                                         checked={allSelectedAspects[index]?.selected || false}
                                         onChange={() => handleCheckboxChange(index)}
+                                        style={{marginRight:'10px'}}
                                         />
-                                        {aspect.aspect}
+                                          {aspect.aspect}
                                     </label>
                                     <span style={{color: 'gray'}}>{aspect.option}</span>
                                     <hr/>
@@ -136,10 +136,8 @@ const EvaluationCategoryForm = () => {
                         }
                     </MDBModalBody>
                     <MDBModalFooter>
-                        <MDBBtn color='secondary' onClick={(e)=>toggleShow(e)}>
-                            Close
-                        </MDBBtn>
-                        <MDBBtn className='btn btn-primary custom-button' onClick={(e)=> modalToForm(e)}>Save changes</MDBBtn>
+                        <Button title={"Cancel"} navigate={(e)=>toggleShow(e)} styling={buttonCancelStyle}/>
+                        <Button title={"Save Changes"} navigate={(e)=> modalToForm(e)}/>
                     </MDBModalFooter>
                 </MDBModalContent>
                 </MDBModalDialog>

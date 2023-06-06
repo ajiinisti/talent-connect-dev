@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { FaEllipsisV } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-const DropdownEval = ({id, isAspect}) => {
+const DropdownEval = ({id, isAspect, toogleModal}) => {
     const navigate = useNavigate()
     const dropdownRef = useRef(null);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -18,6 +18,9 @@ const DropdownEval = ({id, isAspect}) => {
             navigate(`/evaluation-scoring/evaluation-category-form/${id}`)
           } else if (type === "delete") {
             toggleDropdown()
+          } else{
+            toggleDropdown()
+            toogleModal("id","Category Name")
           }
         }
         setIsDropdownOpen(false);
