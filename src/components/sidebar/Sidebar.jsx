@@ -37,10 +37,10 @@ const Sidebar = () => {
                     </li>
                 </div>
             </NavLink>
-            <NavLink to="/management" activeclassname="active" >
+            <NavLink to="/user-management" activeclassname="active" >
                 <div className="mt-1 navbar-div-item" >
                     <li className="nav-item">
-                        <img src={activeNavLink.includes('/management') ? UserManagementIconNonActive : UserManagementIconActive}
+                        <img src={activeNavLink.includes('/user-management') ? UserManagementIconNonActive : UserManagementIconActive}
                         className="icon-navbar" alt="User Management Icon" />
                     </li>
                 </div>
