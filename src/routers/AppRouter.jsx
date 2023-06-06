@@ -27,7 +27,7 @@ function AppRouter() {
             <Route path='program/activity-form/:id' element={<ActivityForm />} />
             <Route path='program/activity-detail/:id' element={<ActivityDetail/>} />
             <Route path='program/evaluate-participant/:id' element={<ProgramEvaluateParticipant/>} />
-            <Route path='program/evaluate-participant/:id/:id' element={<ProgramEvaluateParticipantDetail/>} />
+            <Route path='program/evaluate-participant/:programId/:evalIid' element={<ProgramEvaluateParticipantDetail/>} />
             <Route path='management' element={<ProgramList/>}/>
             <Route path='evaluation-scoring' element={<EvaluationScoring/>}/>
             <Route path='evaluation-scoring/evaluation-aspect-form' element={<EvaluationAspectForm/>}/>
