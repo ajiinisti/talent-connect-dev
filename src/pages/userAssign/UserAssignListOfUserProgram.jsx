@@ -67,17 +67,17 @@ const UserAssignListOfUserProgram = () => {
                 <h2><BsArrowLeft/><b>SMM ITDP Batch 3</b></h2>
                 <div className="mt-4 px-4 py-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}}>
                     <div style={{ display: 'flex', alignItems: 'center', marginBottom:'1rem' }}>
-                        <img src={DefaultProfileIcon} alt="Profiel Picture" style={{width:"5%", marginRight:"2rem"}}/> 
+                        <img src={DefaultProfileIcon} alt="Profile Icon" style={{width:"5%", marginRight:"2rem"}}/> 
                         <span style={{ fontSize: '20px'}}>Aji Inisti Udma Wijaya</span>
                         <button className="btn" style={{ marginLeft: 'auto', marginBottom: '0.5rem' }}><BsTrash3/> </button>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', marginBottom:'1rem' }}>
-                        <img src={DefaultProfileIcon} alt="Profiel Picture" style={{width:"5%", marginRight:"2rem"}}/> 
+                        <img src={DefaultProfileIcon} alt="Profile Icon" style={{width:"5%", marginRight:"2rem"}}/> 
                         <span style={{ fontSize: '20px'}}>Aji Inisti Udma Wijaya</span>
                         <button className="btn" style={{ marginLeft: 'auto', marginBottom: '0.5rem' }}><BsTrash3/> </button>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', marginBottom:'1rem' }}>
-                        <img src={DefaultProfileIcon} alt="Profiel Picture" style={{width:"5%", marginRight:"2rem"}}/> 
+                        <img src={DefaultProfileIcon} alt="Profile Icon" style={{width:"5%", marginRight:"2rem"}}/> 
                         <span style={{ fontSize: '20px'}}>Aji Inisti Udma Wijaya</span>
                         <button className="btn" style={{ marginLeft: 'auto', marginBottom: '0.5rem' }}><BsTrash3/> </button>
                     </div>

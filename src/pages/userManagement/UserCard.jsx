@@ -50,7 +50,7 @@ const UserCard = ({name, email, role}) => {
         <>
             <div className="row mt-3 px-4">
                 <div className="col-3">
-                    <img src={DefaultProfileIcon} alt="Profiel Picture"/> {name}
+                    <img src={DefaultProfileIcon} alt="Profile Icon"/> {name}
                 </div>
                 <div className="col-4 py-1">
                     <p>{email}</p>

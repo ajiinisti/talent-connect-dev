@@ -1,14 +1,13 @@
-import { useNavigate } from "react-router-dom"
 import { DefaultProfileIcon } from "../../assets"
 import { BsArrowLeft } from "react-icons/bs"
 
 const MentorFeedback = () => {
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
-    const cardStyle = {
-        top : '1.5rem',
-        bot : '1.5rem'
-    }
+    // const cardStyle = {
+    //     top : '1.5rem',
+    //     bot : '1.5rem'
+    // }
 
     return(
         <div className="container py-3 px-5">
@@ -22,7 +21,7 @@ const MentorFeedback = () => {
                             display: 'flex',
                             alignItems: 'flex-start'
                         }}>
-                        <img src={DefaultProfileIcon} alt="Image" class="image" style={{width: '7%', marginRight:'1rem'}}/>
+                        <img src={DefaultProfileIcon} alt="Profile Icon" class="image" style={{width: '7%', marginRight:'1rem'}}/>
                         <div class="content">
                             <div class="name">Aji Inisti</div>
                             <span style={{fontSize: '13px', color: 'gray'}}>12 June 2023</span>

@@ -17,11 +17,7 @@ const EvaluationCategoryForm = () => {
     const params = useParams()
     const [isUpdate, setUpdate] = useState(false)
     const [aspectList, setAspectList] = useState([])
-    const [allAspectList, setAllAspectList] = useState([
-        { aspect: "Feature A", option: "Rating"},
-        { aspect: "Feature B", option: "Rating"},
-        { aspect: "Feature C", option: "Rating"},
-    ])
+    const [allAspectList, setAllAspectList] = useState([])
     const [allSelectedAspects, setAllSelectedAspects] = useState([]);
     const [isModalOut, setIsModalOut] = useState(false)
     const toggleShow = (e) => {
@@ -64,7 +60,17 @@ const EvaluationCategoryForm = () => {
           selected: false,
         }));
         setAllSelectedAspects(initialAspects);
-    }, []);
+    }, [allAspectList]);
+
+    useEffect(() => {
+        setAllAspectList(
+            [
+                { aspect: "Feature A", option: "Rating"},
+                { aspect: "Feature B", option: "Rating"},
+                { aspect: "Feature C", option: "Rating"},
+            ]
+        )
+    }, [])
 
     return(
         <>
