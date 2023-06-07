@@ -1,29 +1,4 @@
-import { useNavigate } from "react-router-dom"
-import Button from "../../components/button/Button"
-
 const ParticipantEvaluation = () => {
-    const navigate = useNavigate()
-    const isMidEvaluation = true
-
-    const buttonEvalStyle = {
-        borderRadius : '5px',
-        backgroundColor: 'white',
-        color: 'black',
-        outline: 'gray',
-        width:'100%'
-    }
-
-    const passedButton = {
-        color: 'green', 
-        backgroundColor: '#D7FED8', 
-        border:'2px solid green'
-    }
-
-    const failedButton = {
-        color: 'red',
-        backgroundColor: '#FED7D7',
-        border:'2px solid red'
-    }
     return(
         <div className="container px-5 mb-5">
             <h1 className="mt-5"><b>Evaluation</b></h1>
