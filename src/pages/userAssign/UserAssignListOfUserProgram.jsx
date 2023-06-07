@@ -14,7 +14,7 @@ const UserAssignListOfUserProgram = () => {
     const isMentor = true
     const [isModalOut, setIsModalOut] = useState(false)
     const [allParticipantList, setAllParticipantList] = useState([])
-    const [allSelectedParticipants, setAllSelectedParticipants] = useState([]);
+    const [allSelectedParticipants, setAllSelectedParticipants] = useState(null);
     console.log(allSelectedParticipants)
 
     const handleCheckboxChange = (index) => {
@@ -51,19 +51,21 @@ const UserAssignListOfUserProgram = () => {
             { name: "Alwin Ihza", profilePicture: DefaultProfileIcon},
             { name: "Ariel Nathania", profilePicture: DefaultProfileIcon},
         ])
+    }, []);
 
+    useEffect(() => {
         const initialParticipant = allParticipantList.map((participant) => ({
-            ...participant,
-            selected: false,
+          ...participant,
+          selected: false,
         }));
         setAllSelectedParticipants(initialParticipant);
-    }, []);
+    }, [allParticipantList]);
 
     return(
         <>
             <div className="container mt-4 px-4 py-4">
                 <h2><BsArrowLeft/><b>SMM ITDP Batch 3</b></h2>
-                <form className="mt-4 px-4 py-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}}>
+                <div className="mt-4 px-4 py-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}}>
                     <div style={{ display: 'flex', alignItems: 'center', marginBottom:'1rem' }}>
                         <img src={DefaultProfileIcon} alt="Profiel Picture" style={{width:"5%", marginRight:"2rem"}}/> 
                         <span style={{ fontSize: '20px'}}>Aji Inisti Udma Wijaya</span>
@@ -80,7 +82,7 @@ const UserAssignListOfUserProgram = () => {
                         <button className="btn" style={{ marginLeft: 'auto', marginBottom: '0.5rem' }}><BsTrash3/> </button>
                     </div>
                     <Button title={"+ Add Mentee"} navigate={(e) => toggleShow(e)}/>
-                </form>
+                </div>
             </div>
         
             <MDBModal show={isModalOut} setShow={setIsModalOut} >
@@ -91,7 +93,7 @@ const UserAssignListOfUserProgram = () => {
                             <div style={{ display: 'flex', flexDirection: 'column' }}>
                                 <h4 style={{ marginBottom: '1.5rem' }}>Add Participant</h4>
                                 {
-                                    allParticipantList.map((participant, index)=> (
+                                    allSelectedParticipants && allParticipantList.map((participant, index)=> (
                                         <div style={{ display: 'flex', alignItems: 'center' }}>
                                             <label style={{ marginRight: '10px' }}>
                                                 <input

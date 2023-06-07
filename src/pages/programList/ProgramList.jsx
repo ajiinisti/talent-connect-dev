@@ -16,7 +16,7 @@ const ProgramList = () => {
     const navigate = useNavigate()
     const [isModalOut, setIsModalOut] = useState(false)
     const [allParticipantList, setAllParticipantList] = useState([])
-    const [allSelectedParticipants, setAllSelectedParticipants] = useState([]);
+    const [allSelectedParticipants, setAllSelectedParticipants] = useState(null);
     console.log(allSelectedParticipants)
 
     const toggleShow = () => {
@@ -54,13 +54,15 @@ const ProgramList = () => {
             { name: "Alwin Ihza", profilePicture: DefaultProfileIcon},
             { name: "Ariel Nathania", profilePicture: DefaultProfileIcon},
         ])
+    }, []);
 
+    useEffect(() => {
         const initialParticipant = allParticipantList.map((participant) => ({
-            ...participant,
-            selected: false,
+          ...participant,
+          selected: false,
         }));
         setAllSelectedParticipants(initialParticipant);
-    }, []);
+    }, [allParticipantList]);
 
     return(
         <>
@@ -83,7 +85,7 @@ const ProgramList = () => {
                             <div style={{ display: 'flex', flexDirection: 'column' }}>
                                 <h4 style={{ marginBottom: '1.5rem' }}>Add Participant</h4>
                                 {
-                                    allParticipantList.map((participant, index)=> (
+                                    allSelectedParticipants && allParticipantList.map((participant, index)=> (
                                         <div style={{ display: 'flex', alignItems: 'center' }}>
                                             <label style={{ marginRight: '10px' }}>
                                                 <input

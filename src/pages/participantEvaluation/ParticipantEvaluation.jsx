@@ -27,7 +27,9 @@ const ParticipantEvaluation = () => {
     }
     return(
         <div className="container px-5 mb-5">
-            <h1 className="mt-5"><b>SMM ITDP Batch 3</b></h1>
+            <h1 className="mt-5"><b>Evaluation</b></h1>
+            <h6>Mid Evaluation</h6>
+            <h6>Final Evaluation</h6>
             <div class="row mt-5">
                 <div class="col-2">
                     <Button title={<h6>Mid Evaluation</h6>} styling={buttonEvalStyle} navigate={() => navigate('/evaluations/mid-eval')}/>
