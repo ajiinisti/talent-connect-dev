@@ -13,6 +13,10 @@ import ProgramEvaluateParticipantDetail from '../pages/programEvaluateParticipan
 import MentorFeedback from '../pages/activityMentorFeedback/ActivityMentorFeedback';
 import ParticipantEvaluation from '../pages/participantEvaluation/ParticipantEvaluation';
 import EvaluationCategoryForm from '../pages/evaluationCategoryForm/EvaluationCategoryForm';
+import UserManagement from '../pages/userManagement/UserManagement';
+import UserForm from '../pages/userForm/UserForm';
+import UserAssign from '../pages/userAssign/UserAssign';
+import UserAssignListOfUserProgram from '../pages/userAssign/UserAssignListOfUserProgram';
 
 
 function AppRouter() {
@@ -31,6 +35,11 @@ function AppRouter() {
             <Route path='program/evaluate-participant/:id' element={<ProgramEvaluateParticipant/>} />
             <Route path='program/evaluate-participant/:programId/:evalIid' element={<ProgramEvaluateParticipantDetail/>} />
             <Route path='management' element={<ProgramList/>}/>
+            <Route path='user-management' element={<UserManagement/>}/>
+            <Route path='user-management/user-form' element={<UserForm/>}/>
+            <Route path='user-management/user-form/:id' element={<UserForm/>}/>
+            <Route path='user-management/assign-user/:id' element={<UserAssign/>}/>
+            <Route path='user-management/assign-user/:id/:programId' element={<UserAssignListOfUserProgram/>}/>
             <Route path='evaluations/:id' element={<ParticipantEvaluation/>}/>
             <Route path='evaluation-scoring' element={<EvaluationScoring/>}/>
             <Route path='evaluation-scoring/evaluation-category-form' element={<EvaluationCategoryForm/>}/>

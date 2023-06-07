@@ -1,15 +1,17 @@
-import { BsArrowLeft } from "react-icons/bs"
 import Button from "../../components/button/Button"
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import Select from 'react-select'
 import { CFormCheck } from '@coreui/react'
 import axiosInstance from "../../services/axios-client"
+import ArrowButton from "../../components/button/ArrowButton"
+import CancelButton from "../../components/button/CancelButton"
 
 const ProgramEvaluateParticipantDetail = () => {
     const params = useParams()
     const [questions, setQuestions] = useState([])
     const [payload, setPayload] = useState({})
+    const [isDetail, setDetail] = useState(false)
 
     const evaluationPeriod = [
         { value: 'mid', label: 'Mid Evaluation' },
@@ -50,6 +52,11 @@ const ProgramEvaluateParticipantDetail = () => {
     const onSubmit = () => {
         axiosInstance.post(`/answer`, payload).then((res)=>console.log(res))
     }
+    useEffect(()=> {
+        if(params.id) {
+            setDetail(true)
+        }
+    },[params.id])
 
     useEffect(()=> {
         axiosInstance.get(`/programs/questions/${params.programId}`).then((res)=>{
@@ -72,11 +79,12 @@ const ProgramEvaluateParticipantDetail = () => {
     }, [])
 
     return(
-        <div className="container py-3 px-5 mb-5">
+        <div className="container py-5 px-5 mb-5">
+            { isDetail }
             <h1 className="mt-2"><b>SMM ITDP Batch 3</b></h1>
             <hr/>
             <div className="row mt-4 px-3">
-                <h4><BsArrowLeft/> Ariel Nathania </h4>
+                <h4><ArrowButton/> Ariel Nathania </h4>
                 <form className="mt-4 px-4 py-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}}>
                     <div className="mb-4">
                         <label htmlFor="evaluationPeriod" className="form-label">Evaluation Period</label>
@@ -110,11 +118,15 @@ const ProgramEvaluateParticipantDetail = () => {
                         </div>
 
                     ))}
+                    <div className="mb-4">
+                        <label htmlFor="evaluationResult" className="form-label">Evaluation Period</label>
+                        <Select options={evaluationResult} id="evaluationResult"/>
+                    </div> 
                     <Button title={"Add Evaluation"} navigate={(e) => {
                         e.preventDefault()
                         onSubmit()
                         }}/>
-                    <Button title={"Cancel"} navigate={() => (0)} styling={buttonCancelStyle}/>
+                        <CancelButton/>
                 </form>
             </div>
         </div>

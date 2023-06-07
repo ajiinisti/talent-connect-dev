@@ -1,8 +1,9 @@
-import { BsArrowLeft } from "react-icons/bs"
 import Button from "../../components/button/Button"
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import Select from 'react-select';
+import ArrowButton from "../../components/button/ArrowButton";
+import CancelButton from "../../components/button/CancelButton";
 
 const EvaluationAspectForm = () => {
     const params = useParams()
@@ -17,16 +18,6 @@ const EvaluationAspectForm = () => {
         { value: 'rating', label: 'Rating' }
     ]
 
-    const buttonCancelStyle = {
-        borderRadius : '5px',
-        height: '40px',
-        backgroundColor: 'white',
-        color: 'black',
-        border: '0.5px solid #d3d3d3',
-        outline: 'gray',
-        marginLeft: '1rem'
-    }
-
     useEffect(()=> {
         if(params.id) {
             setUpdate(true)
@@ -34,8 +25,8 @@ const EvaluationAspectForm = () => {
     },[params.id])
 
     return(
-        <div className="container mt-4 px-4">
-            <h1><BsArrowLeft/><b>
+        <div className="container mt-4 py-5 px-5 mb-5">
+            <h1><ArrowButton/><b>
                 {
                     isUpdate ? " Edit Evaluation Aspect": " Add Evaluation Aspect"
                 }
@@ -43,7 +34,7 @@ const EvaluationAspectForm = () => {
             <form className="mt-4 px-4 py-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}}>
                 <div className="mb-4">
                     <label htmlFor="evaluationAspectTitle" className="form-label">Title</label>
-                    <input type="email" className="form-control evaluation-aspect-form " id="evaluationAspectTitle" placeholder="Enter title"/>
+                    <input type="text" className="form-control evaluation-aspect-form " id="evaluationAspectTitle" placeholder="Enter title"/>
                 </div>
                 <div className="mb-4">
                     <label htmlFor="type" className="form-label">Type</label>
@@ -61,11 +52,11 @@ const EvaluationAspectForm = () => {
                     isUpdate ? 
                     <>
                         <Button title={"Save Changes"} navigate={() => (0)}/>
-                        <Button title={"Cancel"} navigate={() => (0)} styling={buttonCancelStyle}/>
+                        <CancelButton/>
                     </>: 
                     <>
                         <Button title={"Add Evaluation Aspect"} navigate={() => (0)}/>
-                        <Button title={"Cancel"} navigate={() => (0)} styling={buttonCancelStyle}/>
+                        <CancelButton/>
                     </>
                 }
             </form>

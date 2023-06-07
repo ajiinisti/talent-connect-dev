@@ -2,18 +2,25 @@ import { FaEllipsisV } from 'react-icons/fa';
 import { BsPeople } from 'react-icons/bs';
 import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import DeleteModal from '../../components/modal/DeleteModal';
 
 const ProgramCard = ({title,styling, isJudge, programId}) => {
     const navigate = useNavigate()
     const dropdownRef = useRef(null);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [isDeleteModalOut, setIsDeleteModalOut] = useState(false)
+    const toggleShowDeleteModal = () => setIsDeleteModalOut(!isDeleteModalOut);
 
     const handleItemClick = (id, type) => {
         console.log(id,type)
-        if (type === "update") {
-            navigate(`/program/program-form/${id}`)
+        if (type === "edit") {
+          navigate(`/program/program-form/${id}`)
         } else if (type === "delete") {
-            toggleDropdown()
+          toggleDropdown()
+          toggleShowDeleteModal()
+        } else{
+          toggleDropdown()
+          toogleModalUpdate()
         }
         setIsDropdownOpen(false);
     };
@@ -27,6 +34,10 @@ const ProgramCard = ({title,styling, isJudge, programId}) => {
             setIsDropdownOpen(false);
         }
     };
+
+    const handleDeleteFunction = (event) => {
+      event.preventDefault()
+    }
     
     useEffect(() => {
         document.addEventListener('click', handleClickOutside);
@@ -37,6 +48,7 @@ const ProgramCard = ({title,styling, isJudge, programId}) => {
 
 
     return (
+      <>
         <div className="card d-flex flex-column gap-4 mt-3" style={{borderRadius: '10px', paddingBottom:styling.bot, paddingTop:styling.top }}>
           <ul className="list-group list-group-flush">
             <div
@@ -71,8 +83,8 @@ const ProgramCard = ({title,styling, isJudge, programId}) => {
                           <button className="dropdown-item" onClick={() => handleItemClick('Item 1', "add")}>
                           Add Participant
                           </button>
-                          <button className="dropdown-item" onClick={() => handleItemClick('Item 2', "update")}>
-                          Update Program
+                          <button className="dropdown-item" onClick={() => handleItemClick('Item 2', "edit")}>
+                          Edit Program
                           </button>
                           <button className="dropdown-item" onClick={() => handleItemClick('Item 3', "delete")}>
                           Delete Program
@@ -84,6 +96,17 @@ const ProgramCard = ({title,styling, isJudge, programId}) => {
             </div>
           </ul>
         </div>
+        
+        <DeleteModal 
+          title={title} 
+          type={'program'} 
+          isModalOut={isDeleteModalOut} 
+          setIsModalOut={setIsDeleteModalOut} 
+          toggleShow={toggleShowDeleteModal}
+          deleteFunction={handleDeleteFunction}
+        />
+      </>
+        
     );
 }
 

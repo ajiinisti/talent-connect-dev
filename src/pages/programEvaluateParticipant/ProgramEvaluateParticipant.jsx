@@ -36,7 +36,7 @@ const ProgramEvaluateParticipant = () => {
     }, [])
 
     return(
-        <div className="container px-5 mb-5">
+        <div className="container py-5 px-5 mb-5">
             <h1 className="mt-5"><b>SMM ITDP Batch 3</b></h1>
             <div className="row mt-5">
                 <div className="col-2">

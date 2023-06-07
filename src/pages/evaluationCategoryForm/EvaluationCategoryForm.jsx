@@ -8,21 +8,17 @@ import {
     MDBModalBody,
     MDBModalFooter,
 } from 'mdb-react-ui-kit'
-import { BsArrowLeft } from "react-icons/bs"
 import Button from "../../components/button/Button"
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
-import SearchBar from '../../components/searchbar/Searchbar'
+import ArrowButton from '../../components/button/ArrowButton'
+import CancelButton from '../../components/button/CancelButton'
 
 const EvaluationCategoryForm = () => {
     const params = useParams()
     const [isUpdate, setUpdate] = useState(false)
     const [aspectList, setAspectList] = useState([])
-    const [allAspectList, setAllAspectList] = useState([
-        { aspect: "Feature A", option: "Rating"},
-        { aspect: "Feature B", option: "Rating"},
-        { aspect: "Feature C", option: "Rating"},
-    ])
+    const [allAspectList, setAllAspectList] = useState([])
     const [allSelectedAspects, setAllSelectedAspects] = useState([]);
     const [isModalOut, setIsModalOut] = useState(false)
     const toggleShow = (e) => {
@@ -65,12 +61,22 @@ const EvaluationCategoryForm = () => {
           selected: false,
         }));
         setAllSelectedAspects(initialAspects);
-    }, []);
+    }, [allAspectList]);
+
+    useEffect(() => {
+        setAllAspectList(
+            [
+                { aspect: "Feature A", option: "Rating"},
+                { aspect: "Feature B", option: "Rating"},
+                { aspect: "Feature C", option: "Rating"},
+            ]
+        )
+    }, [])
 
     return(
         <>
-            <div className="container mt-4 px-4">
-                <h1><BsArrowLeft/><b>
+            <div className="container py-5 px-5 mb-5">
+                <h1><ArrowButton/><b>
                     {
                         isUpdate ? " Edit Evaluation Category": " Add Evaluation Category"
                     }
@@ -100,11 +106,11 @@ const EvaluationCategoryForm = () => {
                         isUpdate ? 
                         <>
                             <Button title={"Save Changes"} navigate={() => (0)}/>
-                            <Button title={"Cancel"} navigate={() => (0)} styling={buttonCancelStyle}/>
+                            <CancelButton/>
                         </>: 
                         <>
                             <Button title={"Add Evaluation Category"} navigate={() => (0)}/>
-                            <Button title={"Cancel"} navigate={() => (0)} styling={buttonCancelStyle}/>
+                            <CancelButton/>
                         </>
                     }
                 </form>
@@ -117,17 +123,18 @@ const EvaluationCategoryForm = () => {
                         <MDBModalTitle>Add Aspect</MDBModalTitle>
                         <MDBBtn className='btn-close' color='none' onClick={(e)=>toggleShow(e)}></MDBBtn>
                     </MDBModalHeader>
-                    <MDBModalBody className='align-item-left'>
+                    <MDBModalBody style={{ alignContent: 'flex-start'}}>
                         {
                             allAspectList.map((aspect, index)=> (
-                                <div>
-                                    <label>
+                                <div style={{ display: 'flex', alignItems: 'center' }}>
+                                    <label style={{ marginRight: '10px' }}>
                                         <input
                                         type="checkbox"
                                         checked={allSelectedAspects[index]?.selected || false}
                                         onChange={() => handleCheckboxChange(index)}
+                                        style={{marginRight:'10px'}}
                                         />
-                                        {aspect.aspect}
+                                          {aspect.aspect}
                                     </label>
                                     <span style={{color: 'gray'}}>{aspect.option}</span>
                                     <hr/>
@@ -136,10 +143,8 @@ const EvaluationCategoryForm = () => {
                         }
                     </MDBModalBody>
                     <MDBModalFooter>
-                        <MDBBtn color='secondary' onClick={(e)=>toggleShow(e)}>
-                            Close
-                        </MDBBtn>
-                        <MDBBtn className='btn btn-primary custom-button' onClick={(e)=> modalToForm(e)}>Save changes</MDBBtn>
+                        <Button title={"Cancel"} navigate={(e)=>toggleShow(e)} styling={buttonCancelStyle}/>
+                        <Button title={"Save Changes"} navigate={(e)=> modalToForm(e)}/>
                     </MDBModalFooter>
                 </MDBModalContent>
                 </MDBModalDialog>

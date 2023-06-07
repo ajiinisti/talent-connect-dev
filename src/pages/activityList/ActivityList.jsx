@@ -37,7 +37,7 @@ const ActivityList = () => {
     }
 
     return(
-        <div className="container py-3 px-5">
+        <div className="container py-5 px-5 mb-5">
             <h1 className="mt-2"><b>{program?.Name}</b></h1>
             <hr/>
             <div className="row">
@@ -58,9 +58,9 @@ const ActivityList = () => {
                         <img src={DefaultProfileIcon} alt="Profile Icon" /> <span>{v.User.FirstName} {v.User.LastName}</span>
                     </div>)) : <></>
                     }
-                    <div className="mt-3 align-item-center">
+                    {/* <div className="mt-3 align-item-center">
                         <button className="add-participant-button">+  Add Participant</button>
-                    </div>
+                    </div>  */}
                 </div>
             </div>
         </div>
