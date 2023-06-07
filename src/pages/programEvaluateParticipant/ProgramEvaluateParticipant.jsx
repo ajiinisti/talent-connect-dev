@@ -1,9 +1,14 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { DefaultProfileIcon } from "../../assets"
 import Button from "../../components/button/Button"
+import { useEffect, useState } from "react"
+import axiosInstance from "../../services/axios-client"
 
 const ProgramEvaluateParticipant = () => {
     const navigate = useNavigate()
+    const params = useParams()
+    const [data, setData] = useState({})
+    const [active,setActive] = useState("Mid")
     const buttonStyling = {
         float: 'right'
     }
@@ -25,49 +30,58 @@ const ProgramEvaluateParticipant = () => {
         width:'100%'
     }
 
+    useEffect(() => {
+        const getEvaluation = async () => {
+            let res = await axiosInstance.get("/auth/evaluation/program/"+params.id)
+            if(res.status === 200) {
+                setData(res.data.data)
+            }
+        }
+        getEvaluation()
+    }, [])
+
     return(
         <div className="container px-5 mb-5">
             <h1 className="mt-5"><b>SMM ITDP Batch 3</b></h1>
-            <div class="row mt-5">
-                <div class="col-2">
-                    <Button title={<h6>Mid Evaluation</h6>} styling={buttonEvalStyle}/>
+            <div className="row mt-5">
+                <div className="col-2">
+                    <Button navigate={()=>{
+                        setActive("Mid")
+                    }} title={<h6>Mid Evaluation</h6>} styling={buttonEvalStyle}/>
                 </div>
-                <div class="col-2">
-                    <Button title={<h6>Final Evaluation</h6>} styling={buttonEvalStyle}/>
+                <div className="col-2">
+                    <Button navigate={()=>{
+                        setActive("Final");
+                        }} type="button" title={<h6>Final Evaluation</h6>} styling={buttonEvalStyle}/>
                 </div>
             </div>
-            <span className="line-evaluation"/>
-            <span className="line-evaluation-purple"/>
+            <span className={active == "Mid" ? "line-evaluation-purple" : "line-evaluation"}/>
+            <span className={active == "Final" ? "line-evaluation-purple" : "line-evaluation"}/>
             <span className="line-rest"/>
 
             <h4 className="mt-4">Need to be Evaluated</h4>
             <div>
-                <div className="mt-4">
-                    <img src={DefaultProfileIcon} style={{ width: '5%' }} alt="Profile Icon" /> <span>Alwin Ihza</span>
-                    <Button title={"Evaluate"} styling={buttonStyling} navigate={() => navigate("id")}/>
-                </div>
-                <hr/>
-                <div className="mt-4">
-                    <img src={DefaultProfileIcon} style={{ width: '5%' }} alt="Profile Icon" /> <span>Alwin Ihza</span>
-                    <Button title={"Evaluate"} styling={buttonStyling} navigate={() => navigate("id")}/>
-                </div>
-                <hr/>
-                <div className="mt-4">
-                    <img src={DefaultProfileIcon} style={{ width: '5%' }} alt="Profile Icon" /> <span>Alwin Ihza</span>
-                    <Button title={"Evaluate"} styling={buttonStyling} navigate={() => navigate("id")}/>
-                </div>
+                {data?.[active] ? data?.[active].map((v)=>(
+                    !v.IsEvaluated && <>
+                    <div key={v.ID} className="mt-4">
+                        <img src={DefaultProfileIcon} style={{ width: '5%' }} alt="Profile Icon" /> <span>{v.Participant.User.FirstName} {v.Participant.User.LastName}</span>
+                        <Button title={"Evaluate"} styling={buttonStyling} navigate={() => navigate("id")}/>
+                    </div>
+                    <hr/>
+                    </>
+                )) : <></>}
             </div>
             <h4 className="mt-5">Already Evaluated</h4>
             <div>
-                <div className="mt-4">
-                    <img src={DefaultProfileIcon} style={{ width: '5%' }} alt="Profile Icon" /> <span>Alwin Ihza</span>
-                    <Button title={"Detail"} styling={buttonEvaluatedStyle} navigate={() => navigate("id")}/>
-                </div>
-                <hr/>
-                <div className="mt-4">
-                    <img src={DefaultProfileIcon} style={{ width: '5%' }} alt="Profile Icon" /> <span>Alwin Ihza</span>
-                    <Button title={"Detail"} styling={buttonEvaluatedStyle} navigate={() => navigate("id")}/>
-                </div>
+                {data?.[active] ? data?.[active].map((v)=>(
+                    v.IsEvaluated && <>
+                    <div key={v.ID} className="mt-4">
+                        <img src={DefaultProfileIcon} style={{ width: '5%' }} alt="Profile Icon" /> <span>{v.Participant.User.FirstName} {v.Participant.User.LastName}</span>
+                        <Button title={"Evaluate"} styling={buttonStyling} navigate={() => navigate("id")}/>
+                    </div>
+                    <hr/>
+                    </>
+                )) : <></>}
             </div>
         </div>
     )

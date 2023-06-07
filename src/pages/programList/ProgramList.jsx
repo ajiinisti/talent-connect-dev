@@ -39,25 +39,25 @@ const ProgramList = () => {
             </div>
             {program?.admin ? 
             <>
-            {program.admin.map((v)=>(<ProgramCard key={`admin${v.ID}`} title={v.Name} styling={cardStyle}/>))}
+            {program.admin.map((v)=>(<ProgramCard key={`admin${v.ID}`} title={v.Name} styling={cardStyle} programId={v.ID}/>))}
             </>
              : <></>}
             {program?.panelist ? 
             <>
             <h2>Panelist</h2>
-            {program.panelist.map((v)=>(<ProgramCard key={`panelist${v.ID}`} title={v.Name} styling={cardStyle}/>))}
+            {program.panelist.map((v)=>(<ProgramCard key={`panelist${v.ID}`} title={v.Name} styling={cardStyle} isJudge={true} programId={v.ID}/>))}
             </>
              : <></>}
             {program?.mentor ? 
             <>
             <h2>Mentor</h2>
-            {program.mentor.map((v)=>(<ProgramCard key={`mentor${v.ID}`} title={v.Name} styling={cardStyle}/>))}
+            {program.mentor.map((v)=>(<ProgramCard key={`mentor${v.ID}`} title={v.Name} styling={cardStyle} programId={v.ID}/>))}
             </>
              : <></>}
             {program?.participant ? 
             <>
             <h2>Mentee</h2>
-            {program.participant.map((v)=>(<ProgramCard key={`participant${v.ID}`} title={v.Name} styling={cardStyle}/>)) }
+            {program.participant.map((v)=>(<ProgramCard key={`participant${v.ID}`} title={v.Name} styling={cardStyle} programId={v.ID}/>)) }
             </>
             : <></>}
         </div>

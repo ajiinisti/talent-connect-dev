@@ -60,7 +60,7 @@ const Sidebar = () => {
                 </div> 
             </NavLink>
             }
-            {(role.includes("panelist") || role.includes("participant")) && 
+            {role.includes("participant") && 
                 <NavLink to="/evaluations/id" activeclassname="active">
                     <div className="mt-1 navbar-div-item" >
                         <li className="nav-item">

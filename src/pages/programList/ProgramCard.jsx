@@ -3,11 +3,10 @@ import { BsPeople } from 'react-icons/bs';
 import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-const ProgramCard = ({title,styling}) => {
+const ProgramCard = ({title,styling, isJudge, programId}) => {
     const navigate = useNavigate()
     const dropdownRef = useRef(null);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const isJudge = false
 
     const handleItemClick = (id, type) => {
         console.log(id,type)
@@ -50,10 +49,10 @@ const ProgramCard = ({title,styling}) => {
                   </div>
                   {
                     isJudge ? 
-                    <Link to={'/program/evaluate-participant/id'}>
+                    <Link to={`/program/evaluate-participant/${programId}`}>
                       <h5 style={{ marginRight: 'auto', marginTop: '0.5rem' }}>{title}</h5>
                     </Link> :
-                    <Link to={'/program/activity-list'}>
+                    <Link to={`/program/${programId}`}>
                       <h5 style={{ marginRight: 'auto', marginTop: '0.5rem' }}>{title}</h5>
                     </Link> 
                   }

@@ -1,4 +1,5 @@
 import axios from "axios"
+import { useAuth } from "../hooks/useAuth";
 const axiosInstance = axios.create({
     baseURL: "/api",
   });
@@ -10,5 +11,15 @@ axiosInstance.interceptors.request.use((config) => {
     }
     return config
 })
+
+axios.interceptors.response.use(res => {
+    const {logout} = useAuth()
+    if (res.status === 401){
+        logout()
+    }
+  },
+  res => {
+    throw res;
+  });
 
 export default  axiosInstance
