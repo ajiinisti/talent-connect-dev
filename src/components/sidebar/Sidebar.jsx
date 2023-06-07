@@ -19,7 +19,8 @@ import { useAuth } from "../../hooks/useAuth";
 const Sidebar = () => {
     const location = useLocation();
     const [activeNavLink, setActiveNavLink] = useState('');
-    const {logout} = useAuth()
+    const {logout, getCurrentRole} = useAuth()
+    const role = getCurrentRole()
     
     useEffect(() => {
         setActiveNavLink(location.pathname);
@@ -39,6 +40,7 @@ const Sidebar = () => {
                     </li>
                 </div>
             </NavLink>
+            {role.includes("admin") && 
             <NavLink to="/management" activeclassname="active" >
                 <div className="mt-1 navbar-div-item" >
                     <li className="nav-item">
@@ -47,6 +49,8 @@ const Sidebar = () => {
                     </li>
                 </div>
             </NavLink>
+            }
+            {role.includes("admin") &&
             <NavLink to="/evaluation-scoring" activeclassname="active">
                 <div className="mt-1 navbar-div-item" >
                     <li className="nav-item">
@@ -55,14 +59,17 @@ const Sidebar = () => {
                     </li>
                 </div> 
             </NavLink>
-            <NavLink to="/evaluations/id" activeclassname="active">
-                <div className="mt-1 navbar-div-item" >
-                    <li className="nav-item">
-                        <img src={activeNavLink.includes('/evaluations') ? EvaluationIconActive : EvaluationIconNonActive}
-                        className="icon-navbar" alt="Evaluation Scoring Icon" />
-                    </li>
-                </div> 
-            </NavLink>
+            }
+            {(role.includes("panelist") || role.includes("participant")) && 
+                <NavLink to="/evaluations/id" activeclassname="active">
+                    <div className="mt-1 navbar-div-item" >
+                        <li className="nav-item">
+                            <img src={activeNavLink.includes('/evaluations') ? EvaluationIconActive : EvaluationIconNonActive}
+                            className="icon-navbar" alt="Evaluation Scoring Icon" />
+                        </li>
+                    </div> 
+                </NavLink>
+            }
             <NavLink to="/settings" activeclassname="active">
                 <div className="mt-1 navbar-div-item" >
                     <li className="nav-item">

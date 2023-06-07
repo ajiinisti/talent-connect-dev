@@ -4,10 +4,13 @@ import SearchBar from "../../components/searchbar/Searchbar"
 import ProgramCard from "./ProgramCard"
 import { useEffect, useState } from "react"
 import axiosInstance from "../../services/axios-client"
+import { useAuth } from "../../hooks/useAuth"
 
 const ProgramList = () => {
     const navigate = useNavigate()
     const [program,setProgram] = useState([])
+    const [name, setName] = useState("")
+    const {getCurrentUser} = useAuth()
 
     const cardStyle = {
         top : '0.5rem',
@@ -19,15 +22,17 @@ const ProgramList = () => {
               let res = await axiosInstance.get("auth/programs")
               if (res.status === 200) {
                 setProgram(res.data.data)
-                console.log(res.data.data)
-              } 
+              } else if (res.status === 401) {
+                navigate("/login", {replace:true})
+              }
           }
           getPrograms()
+          setName(getCurrentUser().FirstName)
     }, [])
 
     return(
         <div className="container px-5">
-            <h1 className="mt-5"><b>Hello, Admin!</b></h1>
+            <h1 className="mt-5"><b>Hello, {name}!</b></h1>
             <SearchBar/>
             <div className="mt-4 mb-4">
                 <Button title={" + Add Program "} navigate={() => navigate('/program/program-form')}/>
