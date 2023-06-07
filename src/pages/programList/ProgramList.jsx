@@ -70,9 +70,9 @@ const ProgramList = () => {
                 <div className="mt-4 mb-4">
                     <Button title={" + Add Program "} navigate={() => navigate('/program/program-form')}/>
                 </div>
-                <ProgramCard title={"ITDP SMM Batch 3"} styling={cardStyle} toogleModal={toggleShow}/> 
-                <ProgramCard title={"ITDP SMM Batch 2"} styling={cardStyle} toogleModal={toggleShow}/>
-                <ProgramCard title={"ITDP SMM Batch 1"} styling={cardStyle} toogleModal={toggleShow}/>
+                <ProgramCard title={"ITDP SMM Batch 3"} styling={cardStyle} toogleModalUpdate={toggleShow}/> 
+                <ProgramCard title={"ITDP SMM Batch 2"} styling={cardStyle} toogleModalUpdate={toggleShow}/>
+                <ProgramCard title={"ITDP SMM Batch 1"} styling={cardStyle} toogleModalUpdate={toggleShow}/>
             </div>
 
             <MDBModal show={isModalOut} setShow={setIsModalOut} >

@@ -50,9 +50,9 @@ const ActivityDetail = () => {
                     <div className="mt-3">
                         <img src={DefaultProfileIcon} alt="Profile Icon" /> <span>Aji Inisti Udma Wijaya</span>
                     </div>
-                    <div className="mt-3 align-item-center">
+                    {/* <div className="mt-3 align-item-center">
                         <button className="add-participant-button">+  Add Participant</button>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>
