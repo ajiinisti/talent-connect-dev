@@ -43,7 +43,7 @@ const EvaluationAspectForm = () => {
             <form className="mt-4 px-4 py-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}}>
                 <div className="mb-4">
                     <label htmlFor="evaluationAspectTitle" className="form-label">Title</label>
-                    <input type="email" className="form-control evaluation-aspect-form " id="evaluationAspectTitle" placeholder="Enter title"/>
+                    <input type="text" className="form-control evaluation-aspect-form " id="evaluationAspectTitle" placeholder="Enter title"/>
                 </div>
                 <div className="mb-4">
                     <label htmlFor="type" className="form-label">Type</label>
