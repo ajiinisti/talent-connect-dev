@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import DeleteModal from '../../components/modal/DeleteModal';
 
-const ProgramCard = ({title,styling, isJudge, programId}) => {
+const ProgramCard = ({title,styling, isJudge, programId, toogleModalUpdate}) => {
     const navigate = useNavigate()
     const dropdownRef = useRef(null);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);

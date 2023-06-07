@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/button/Button";
 import DropdownEval from "./DropdownEval";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useAspect from "./useAspect";
 import {
     MDBModal,
@@ -10,6 +10,9 @@ import {
     MDBModalHeader,
     MDBModalFooter,
 } from 'mdb-react-ui-kit'
+
+import Select from 'react-select';
+
 
 const EvaluationScoring = () => {
   const navigate = useNavigate();
