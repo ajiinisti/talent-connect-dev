@@ -1,9 +1,6 @@
-import { useNavigate } from "react-router-dom"
-import Button from "../../components/button/Button"
-import SearchBar from "../../components/searchbar/Searchbar"
-import ProgramCard from "./ProgramCard"
-import { useEffect, useState } from "react"
+import { BsArrowLeft, BsTrash3 } from "react-icons/bs"
 import { DefaultProfileIcon } from "../../assets"
+import Button from "../../components/button/Button"
 import {
     MDBModal,
     MDBModalDialog,
@@ -11,27 +8,25 @@ import {
     MDBModalHeader,
     MDBModalFooter,
 } from 'mdb-react-ui-kit'
+import { useEffect, useState } from "react"
 
-const ProgramList = () => {
-    const navigate = useNavigate()
+const UserAssignListOfUserProgram = () => {
+    const isMentor = true
     const [isModalOut, setIsModalOut] = useState(false)
     const [allParticipantList, setAllParticipantList] = useState([])
     const [allSelectedParticipants, setAllSelectedParticipants] = useState(null);
     console.log(allSelectedParticipants)
-
-    const toggleShow = () => {
-        setIsModalOut(!isModalOut)
-    }
-
-    const assignParticipantToProgram = (e) => {
-        e.preventDefault()
-    }
 
     const handleCheckboxChange = (index) => {
         const updatedParticipants = [...allSelectedParticipants];
         updatedParticipants[index].selected = !updatedParticipants[index].selected;
         setAllSelectedParticipants(updatedParticipants);
     };
+
+    const toggleShow = (e) => {
+        e.preventDefault()
+        setIsModalOut(!isModalOut)
+    }
 
     const buttonCancelStyle = {
         borderRadius : '5px',
@@ -43,9 +38,11 @@ const ProgramList = () => {
         marginLeft: '1rem'
     }
 
-    const cardStyle = {
-        top : '0.5rem',
-        bot : '0.5rem'
+    const assignMenteetoUser = (e) => {
+        if (isMentor) {
+            
+        }
+        e.preventDefault()
     }
 
     useEffect(() => {
@@ -66,17 +63,28 @@ const ProgramList = () => {
 
     return(
         <>
-            <div className="container px-5">
-                <h1 className="mt-5"><b>Hello, Admin!</b></h1>
-                <SearchBar/>
-                <div className="mt-4 mb-4">
-                    <Button title={" + Add Program "} navigate={() => navigate('/program/program-form')}/>
+            <div className="container mt-4 px-4 py-4">
+                <h2><BsArrowLeft/><b>SMM ITDP Batch 3</b></h2>
+                <div className="mt-4 px-4 py-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}}>
+                    <div style={{ display: 'flex', alignItems: 'center', marginBottom:'1rem' }}>
+                        <img src={DefaultProfileIcon} alt="Profiel Picture" style={{width:"5%", marginRight:"2rem"}}/> 
+                        <span style={{ fontSize: '20px'}}>Aji Inisti Udma Wijaya</span>
+                        <button className="btn" style={{ marginLeft: 'auto', marginBottom: '0.5rem' }}><BsTrash3/> </button>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', marginBottom:'1rem' }}>
+                        <img src={DefaultProfileIcon} alt="Profiel Picture" style={{width:"5%", marginRight:"2rem"}}/> 
+                        <span style={{ fontSize: '20px'}}>Aji Inisti Udma Wijaya</span>
+                        <button className="btn" style={{ marginLeft: 'auto', marginBottom: '0.5rem' }}><BsTrash3/> </button>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', marginBottom:'1rem' }}>
+                        <img src={DefaultProfileIcon} alt="Profiel Picture" style={{width:"5%", marginRight:"2rem"}}/> 
+                        <span style={{ fontSize: '20px'}}>Aji Inisti Udma Wijaya</span>
+                        <button className="btn" style={{ marginLeft: 'auto', marginBottom: '0.5rem' }}><BsTrash3/> </button>
+                    </div>
+                    <Button title={"+ Add Mentee"} navigate={(e) => toggleShow(e)}/>
                 </div>
-                <ProgramCard title={"ITDP SMM Batch 3"} styling={cardStyle} toogleModalUpdate={toggleShow}/> 
-                <ProgramCard title={"ITDP SMM Batch 2"} styling={cardStyle} toogleModalUpdate={toggleShow}/>
-                <ProgramCard title={"ITDP SMM Batch 1"} styling={cardStyle} toogleModalUpdate={toggleShow}/>
             </div>
-
+        
             <MDBModal show={isModalOut} setShow={setIsModalOut} >
                 <MDBModalDialog>
                 <MDBModalContent>
@@ -105,7 +113,7 @@ const ProgramList = () => {
                     </MDBModalHeader>
                     <MDBModalFooter>
                         <Button title={"Cancel"} navigate={(e)=> toggleShow(e)} styling={buttonCancelStyle}/>
-                        <Button title={"Confirm"} navigate={(e)=> assignParticipantToProgram(e)}/>
+                        <Button title={"Confirm"} navigate={(e)=> assignMenteetoUser(e)}/>
                     </MDBModalFooter>
                 </MDBModalContent>
                 </MDBModalDialog>
@@ -114,4 +122,4 @@ const ProgramList = () => {
     )
 }
 
-export default ProgramList
+export default UserAssignListOfUserProgram
