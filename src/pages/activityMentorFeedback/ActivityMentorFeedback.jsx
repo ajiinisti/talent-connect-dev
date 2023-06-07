@@ -1,5 +1,5 @@
 import { DefaultProfileIcon } from "../../assets"
-import { BsArrowLeft } from "react-icons/bs"
+import ArrowButton from "../../components/button/ArrowButton"
 
 const MentorFeedback = () => {
     // const navigate = useNavigate()
@@ -15,7 +15,7 @@ const MentorFeedback = () => {
             <hr/>
             <div className="row">
                 <div className="col-md-9 mr-3">      
-                    <h4 className="mt-4 mb-4"><BsArrowLeft/> 1 on 1 Mentoring Feedback</h4>
+                    <h4 className="mt-4 mb-4"><ArrowButton/> 1 on 1 Mentoring Feedback</h4>
                     <div className="mt-4 px-4 py-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}}>
                     <div class="container mb-3" style={{
                             display: 'flex',

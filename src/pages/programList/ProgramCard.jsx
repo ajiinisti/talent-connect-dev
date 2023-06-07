@@ -8,7 +8,7 @@ const ProgramCard = ({title,styling,toogleModalUpdate}) => {
     const navigate = useNavigate()
     const dropdownRef = useRef(null);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const isJudge = false
+    const isJudge = true
     const [isDeleteModalOut, setIsDeleteModalOut] = useState(false)
     const toggleShowDeleteModal = () => setIsDeleteModalOut(!isDeleteModalOut);
 

@@ -1,13 +1,14 @@
-import { BsArrowLeft } from "react-icons/bs"
 import Button from "../../components/button/Button"
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import Select from 'react-select'
 import { CFormCheck } from '@coreui/react'
+import ArrowButton from "../../components/button/ArrowButton"
+import CancelButton from "../../components/button/CancelButton"
 
 const ProgramEvaluateParticipantDetail = () => {
     const params = useParams()
-    const [isUpdate, setUpdate] = useState(false)
+    const [isDetail, setDetail] = useState(false)
 
     const evaluationPeriod = [
         { value: 'mid', label: 'Mid Evaluation' },
@@ -19,29 +20,19 @@ const ProgramEvaluateParticipantDetail = () => {
         { value: 'failed', label: 'Failed' }
     ]
 
-    const buttonCancelStyle = {
-        borderRadius : '5px',
-        height: '40px',
-        backgroundColor: 'white',
-        color: 'black',
-        border: '0.5px solid #d3d3d3',
-        outline: 'gray',
-        marginLeft: '1rem'
-    }
-
     useEffect(()=> {
         if(params.id) {
-            setUpdate(true)
+            setDetail(true)
         }
     },[params.id])
 
     return(
         <div className="container py-5 px-5 mb-5">
-            { isUpdate }
+            { isDetail }
             <h1 className="mt-2"><b>SMM ITDP Batch 3</b></h1>
             <hr/>
             <div className="row mt-4 px-3">
-                <h4><BsArrowLeft/> Ariel Nathania </h4>
+                <h4><ArrowButton/> Ariel Nathania </h4>
                 <form className="mt-4 px-4 py-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}}>
                     <div className="mb-4">
                         <label htmlFor="evaluationPeriod" className="form-label">Evaluation Period</label>
@@ -66,7 +57,7 @@ const ProgramEvaluateParticipantDetail = () => {
                         <Select options={evaluationResult} id="evaluationResult"/>
                     </div>           
                     <Button title={"Add Evaluation"} navigate={() => (0)}/>
-                    <Button title={"Cancel"} navigate={() => (0)} styling={buttonCancelStyle}/>
+                    <CancelButton/>
                 </form>
             </div>
         </div>

@@ -1,4 +1,4 @@
-import { BsArrowLeft, BsTrash3 } from "react-icons/bs"
+import { BsTrash3 } from "react-icons/bs"
 import { DefaultProfileIcon } from "../../assets"
 import Button from "../../components/button/Button"
 import {
@@ -9,6 +9,7 @@ import {
     MDBModalFooter,
 } from 'mdb-react-ui-kit'
 import { useEffect, useState } from "react"
+import ArrowButton from "../../components/button/ArrowButton"
 
 const UserAssignListOfUserProgram = () => {
     const isMentor = true
@@ -64,7 +65,7 @@ const UserAssignListOfUserProgram = () => {
     return(
         <>
             <div className="container py-5 px-5 mb-5">
-                <h2><BsArrowLeft/><b>SMM ITDP Batch 3</b></h2>
+                <h2><ArrowButton/><b>SMM ITDP Batch 3</b></h2>
                 <div className="mt-4 px-4 py-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}}>
                     <div style={{ display: 'flex', alignItems: 'center', marginBottom:'1rem' }}>
                         <img src={DefaultProfileIcon} alt="Profile Icon" style={{width:"5%", marginRight:"2rem"}}/> 

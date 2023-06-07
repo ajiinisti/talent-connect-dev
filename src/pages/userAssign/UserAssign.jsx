@@ -1,12 +1,12 @@
-import { BsArrowLeft } from "react-icons/bs"
 import UserAssignCard from "./UserAssignCard"
+import ArrowButton from "../../components/button/ArrowButton"
 
 const UserAssign = () => {
     const isMentor = true
 
     return(
         <div className="container py-5 px-5 mb-5">
-            <h2><BsArrowLeft/><b>
+            <h2><ArrowButton/><b>
                 {
                     isMentor ? "Assign Mentee to Mentor": "Assign Mentee to Judge"
                 }

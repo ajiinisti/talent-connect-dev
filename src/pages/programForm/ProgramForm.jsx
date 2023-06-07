@@ -1,8 +1,9 @@
-import { BsArrowLeft } from "react-icons/bs"
 import Button from "../../components/button/Button"
 // import Layout from "../../components/layout/Layout"
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
+import CancelButton from "../../components/button/CancelButton"
+import ArrowButton from "../../components/button/ArrowButton"
 
 const ProgramForm = () => {
     const params = useParams()
@@ -10,16 +11,6 @@ const ProgramForm = () => {
 
     const buttonStyle = {
         height: '40px'
-    }
-
-    const buttonCancelStyle = {
-        borderRadius : '5px',
-        height: '40px',
-        backgroundColor: 'white',
-        color: 'black',
-        border: '0.5px solid #d3d3d3',
-        outline: 'gray',
-        marginLeft: '1rem'
     }
 
     useEffect(()=> {
@@ -30,7 +21,7 @@ const ProgramForm = () => {
 
     return(
         <div className="container mt-4 px-4">
-            <h1><BsArrowLeft/><b>
+            <h1><ArrowButton/><b>
                 {
                     isUpdate ? " Edit Program": " Add Program"
                 }
@@ -52,11 +43,11 @@ const ProgramForm = () => {
                     isUpdate ? 
                     <>
                         <Button title={"Save Changes"} navigate={() => (0)} styling={buttonStyle}/>
-                        <Button title={"Cancel"} navigate={() => (0)} styling={buttonCancelStyle}/>
+                        <CancelButton/>
                     </>: 
                     <>
                         <Button title={"Add Program"} navigate={() => (0)} styling={buttonStyle}/>
-                        <Button title={"Cancel"} navigate={() => (0)} styling={buttonCancelStyle}/>
+                        <CancelButton/>
                     </>
                 }
             </form>
