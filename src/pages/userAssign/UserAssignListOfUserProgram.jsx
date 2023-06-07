@@ -63,7 +63,7 @@ const UserAssignListOfUserProgram = () => {
 
     return(
         <>
-            <div className="container mt-4 px-4 py-4">
+            <div className="container py-5 px-5 mb-5">
                 <h2><BsArrowLeft/><b>SMM ITDP Batch 3</b></h2>
                 <div className="mt-4 px-4 py-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}}>
                     <div style={{ display: 'flex', alignItems: 'center', marginBottom:'1rem' }}>

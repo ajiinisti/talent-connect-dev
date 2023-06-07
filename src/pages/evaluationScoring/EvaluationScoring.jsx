@@ -67,10 +67,10 @@ const EvaluationScoring = () => {
     return(
         <>
             <div className="container py-5 px-5 mb-5">
-                <h1 className="mt-2"><b>Evaluation Scoring</b></h1>
+                <h2><b>Evaluation Scoring</b></h2>
                 <hr/>
                 <div className="mt-4">
-                    <h2 className="mt-3 mb-3">Evaluation Aspects</h2>
+                    <h3 className="mt-3 mb-3">Evaluation Aspects</h3>
                     <Button title={"+ Add Evaluation Aspect"} navigate={()=>navigate('/evaluation-scoring/evaluation-aspect-form')}/>
                     <div className="mt-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}}>
                         <div className="container mt-4 pb-4">  
@@ -108,7 +108,7 @@ const EvaluationScoring = () => {
                         </div>
                     </div>
 
-                    <h2 className="mt-5 mb-3">Evaluation Category</h2>
+                    <h3 className="mt-5 mb-3">Evaluation Category</h3>
                     <Button title={"+ Add Evaluation Category"} navigate={()=>navigate('/evaluation-scoring/evaluation-category-form')}/>
                     <div className="mt-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}}>
                         <div className="container mt-4 pb-4">  

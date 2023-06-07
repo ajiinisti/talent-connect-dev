@@ -14,7 +14,7 @@ const ActivityDetail = () => {
     // }
 
     return(
-        <div className="container py-3 px-5">
+        <div className="container py-5 px-5 mb-5">
             <h1 className="mt-2"><b>SMM ITDP Batch 3</b></h1>
             <hr/>
             <div className="row">

@@ -30,7 +30,7 @@ const UserForm = () => {
     },[params.id])
 
     return(
-        <div className="container mt-4 px-4 py-4">
+        <div className="container py-5 px-5 mb-5">
             <h1><BsArrowLeft/><b>
                 {
                     isUpdate ? " Edit User": " Add User"

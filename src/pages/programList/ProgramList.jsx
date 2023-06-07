@@ -66,8 +66,8 @@ const ProgramList = () => {
 
     return(
         <>
-            <div className="container px-5">
-                <h1 className="mt-5"><b>Hello, Admin!</b></h1>
+            <div className="container py-5 px-5 mb-5">
+                <h1><b>Hello, Admin!</b></h1>
                 <SearchBar/>
                 <div className="mt-4 mb-4">
                     <Button title={" + Add Program "} navigate={() => navigate('/program/program-form')}/>
