@@ -73,7 +73,7 @@ const Sidebar = () => {
             <hr />
             <div className="dropdown pb-4">
                 <button className="btn" style={{backgroundColor: '#F1FAFB', border:'#1FAFB', outline: 'none', cursor:'pointer'}}>
-                    <img src={LogoutIcon} alt="Profile Icon"/>
+                    <img src={LogoutIcon} className="icon-navbar" alt="Profile Icon"/>
                 </button>
             </div>
         </div>
