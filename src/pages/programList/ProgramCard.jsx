@@ -14,7 +14,7 @@ const ProgramCard = ({title,styling,toogleModalUpdate}) => {
 
     const handleItemClick = (id, type) => {
         console.log(id,type)
-        if (type === "update") {
+        if (type === "edit") {
           navigate(`/program/program-form/${id}`)
         } else if (type === "delete") {
           toggleDropdown()
@@ -84,8 +84,8 @@ const ProgramCard = ({title,styling,toogleModalUpdate}) => {
                           <button className="dropdown-item" onClick={() => handleItemClick('Item 1', "add")}>
                           Add Participant
                           </button>
-                          <button className="dropdown-item" onClick={() => handleItemClick('Item 2', "update")}>
-                          Update Program
+                          <button className="dropdown-item" onClick={() => handleItemClick('Item 2', "edit")}>
+                          Edit Program
                           </button>
                           <button className="dropdown-item" onClick={() => handleItemClick('Item 3', "delete")}>
                           Delete Program

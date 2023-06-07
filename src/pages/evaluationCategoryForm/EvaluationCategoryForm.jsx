@@ -74,7 +74,7 @@ const EvaluationCategoryForm = () => {
 
     return(
         <>
-            <div className="container mt-4 px-4">
+            <div className="container py-5 px-5 mb-5">
                 <h1><BsArrowLeft/><b>
                     {
                         isUpdate ? " Edit Evaluation Category": " Add Evaluation Category"

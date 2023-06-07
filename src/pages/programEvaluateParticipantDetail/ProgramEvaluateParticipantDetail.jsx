@@ -36,7 +36,7 @@ const ProgramEvaluateParticipantDetail = () => {
     },[params.id])
 
     return(
-        <div className="container py-3 px-5 mb-5">
+        <div className="container py-5 px-5 mb-5">
             { isUpdate }
             <h1 className="mt-2"><b>SMM ITDP Batch 3</b></h1>
             <hr/>

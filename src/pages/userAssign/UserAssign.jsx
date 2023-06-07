@@ -5,7 +5,7 @@ const UserAssign = () => {
     const isMentor = true
 
     return(
-        <div className="container mt-4 px-4 py-4">
+        <div className="container py-5 px-5 mb-5">
             <h2><BsArrowLeft/><b>
                 {
                     isMentor ? "Assign Mentee to Mentor": "Assign Mentee to Judge"
