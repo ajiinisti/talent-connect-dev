@@ -38,7 +38,7 @@ const ProgramForm = () => {
             <form className="mt-4 px-4 py-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}}>
                 <div className="mb-4">
                     <label htmlFor="programTitle" className="form-label">Title</label>
-                    <input type="email" className="form-control program-form " id="programTitle" placeholder="Enter title"/>
+                    <input type="text" className="form-control program-form " id="programTitle" placeholder="Enter title"/>
                 </div>
                 <div className="mb-4">
                     <label htmlFor="startDate" className="form-label">Start Date</label>

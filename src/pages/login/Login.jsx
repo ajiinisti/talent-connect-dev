@@ -13,7 +13,7 @@ const Login = () => {
                         <form>
                             <div className="mb-3">
                                 <label htmlFor="exampleInputEmail1" className="form-label">Email</label>
-                                <input type="email" className="form-control login-form" id="exampleInputEmail1" placeholder="Enter your email" />
+                                <input type="text" className="form-control login-form" id="exampleInputEmail1" placeholder="Enter your email" />
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
