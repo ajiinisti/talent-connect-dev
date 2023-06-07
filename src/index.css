@@ -49,7 +49,7 @@ a {
 
 .icon-navbar {
   margin-right: 1.5em;
-  max-width: 100%;
+  width: 100%;
   height: auto;
 }
 
@@ -211,4 +211,44 @@ a {
 
 .aspect-title{
   color: grey;
+}
+
+/* Horizontal Line */
+.line-evaluation-purple {
+  display: inline-block;
+  width: 16%;
+  border-bottom: 4px solid #A684F2;
+}
+
+.line-evaluation {
+  display: inline-block;
+  width: 16%;
+  border-top: 2px solid rgb(218, 214, 214);
+}
+
+.line-rest {
+  display: inline-block;
+  width: 68%;
+  border-top: 2px solid rgb(218, 214, 214);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+}
+
+/*  */
+
+.image-mentors {
+  flex-shrink: 0;
+  width: 100px;
+  height: auto;
+}
+
+.content-mentors {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 10px;
 }
