@@ -1,9 +1,8 @@
 import { useNavigate } from "react-router-dom"
 import { DefaultProfileIcon } from "../../assets"
-import Button from "../../components/button/Button"
-import ActivityCard from "./ActivityCard"
+import { BsArrowLeft } from "react-icons/bs"
 
-const ActivityList = () => {
+const MentorFeedback = () => {
     const navigate = useNavigate()
 
     const cardStyle = {
@@ -16,13 +15,22 @@ const ActivityList = () => {
             <h1 className="mt-2"><b>SMM ITDP Batch 3</b></h1>
             <hr/>
             <div className="row">
-                <div className="col-md-9">      
-                    <div className="mt-4">
-                        <Button title={"+ Add Activity"} navigate={() => navigate('/program/activity-form')}/>
+                <div className="col-md-9 mr-3">      
+                    <h4 className="mt-4 mb-4"><BsArrowLeft/> 1 on 1 Mentoring Feedback</h4>
+                    <div className="mt-4 px-4 py-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}}>
+                    <div class="container mb-3" style={{
+                            display: 'flex',
+                            alignItems: 'flex-start'
+                        }}>
+                        <img src={DefaultProfileIcon} alt="Image" class="image" style={{width: '7%', marginRight:'1rem'}}/>
+                        <div class="content">
+                            <div class="name">Aji Inisti</div>
+                            <span style={{fontSize: '13px', color: 'gray'}}>12 June 2023</span>
+                        </div>
                     </div>
-                    <h4 className="mt-4">Thursday, 25 Mei 2023</h4>
-                    <div style={{ marginTop: "1.5rem" }}>
-                        <ActivityCard title={"Kickoff ITDP SMM Batch 3"} styling={cardStyle}/>
+                        <div className="mb-4" style={{ display: 'flex', flexDirection: 'column'}}>
+                            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia magni voluptatum quam sed pariatur labore alias dolores quod natus perspiciatis iure nobis doloribus quasi magnam et culpa est, animi voluptatibus.</span>
+                        </div>
                     </div>
                 </div>
                 <div className="col-md-3">
@@ -45,4 +53,4 @@ const ActivityList = () => {
     )
 }
 
-export default ActivityList
+export default MentorFeedback
