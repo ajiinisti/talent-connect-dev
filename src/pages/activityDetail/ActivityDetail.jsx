@@ -35,7 +35,7 @@ const ActivityDetail = () => {
 
     return(
         <div className="container py-3 px-5">
-            <h1 className="mt-2"><b>SMM ITDP Batch 3</b></h1>
+            <h1 className="mt-2"><b>{activity.program?.Name}</b></h1>
             <hr/>
             <div className="row">
                 <div className="col-md-9 mr-3">      
@@ -43,7 +43,7 @@ const ActivityDetail = () => {
                     <div className="mt-4 px-4 py-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}}>
                         <div className="mb-4" style={{ display: 'flex', flexDirection: 'column'}}>
                             <label style={{ display: 'inline-block'}}>Link</label>
-                            <b><span>{activity?.Link}</span></b>
+                            <b><span>{activity?.Link ? <a target="_blank" rel="noopener noreferrer" href={activity?.Link}> {activity?.Link}</a> : <div>-</div> } </span></b>
                         </div>
                         <div className="mb-4" style={{ display: 'flex', flexDirection: 'column'}}>
                             <label style={{ display: 'inline-block'}}>Date</label>
@@ -60,16 +60,12 @@ const ActivityDetail = () => {
                     </div>
                 </div>
                 <div className="col-md-3">
-                    <h5 className="mt-4 mb-4">Participants (6)</h5>
-                    <div className="mt-3">
-                        <img src={DefaultProfileIcon} alt="Profile Icon" /> <span>Alwin Ihza</span>
-                    </div>
-                    <div className="mt-3">
-                        <img src={DefaultProfileIcon} alt="Profile Icon" /> <span>Ariel Nathania</span>
-                    </div>
-                    <div className="mt-3">
-                        <img src={DefaultProfileIcon} alt="Profile Icon" /> <span>Aji Inisti Udma Wijaya</span>
-                    </div>
+                    <h5 className="mt-4 mb-4">Participants ({activity.program?.participants ? activity.program?.participants.length : 0})</h5>
+                    {activity.program?.participants.map((v)=>(
+                        <div className="mt-3">
+                            <img src={DefaultProfileIcon} alt="Profile Icon" /> <span>{v.User.FirstName} {v.User.LastName}</span>
+                        </div>
+                    ))}
                     <div className="mt-3 align-item-center">
                         <button className="add-participant-button">+  Add Participant</button>
                     </div>

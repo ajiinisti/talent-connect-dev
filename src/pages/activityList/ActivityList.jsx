@@ -12,9 +12,7 @@ const ActivityList = () => {
     const [activities, setActivities] = useState()
     const param = useParams()
 
-    useEffect(()=>{
-
-    }, [activities])
+    // group activity based on start Date
 
     useEffect(()=>{
         const getActivity = async () => {

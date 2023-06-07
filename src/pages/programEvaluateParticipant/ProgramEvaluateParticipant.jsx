@@ -3,11 +3,12 @@ import { DefaultProfileIcon } from "../../assets"
 import Button from "../../components/button/Button"
 import { useEffect, useState } from "react"
 import axiosInstance from "../../services/axios-client"
+import useEvaluateParticipant from "./useEvaluateParticipant"
 
 const ProgramEvaluateParticipant = () => {
     const navigate = useNavigate()
     const params = useParams()
-    const [data, setData] = useState({})
+    const {getEvaluation, data} = useEvaluateParticipant()
     const [active,setActive] = useState("Mid")
     const buttonStyling = {
         float: 'right'
@@ -31,13 +32,7 @@ const ProgramEvaluateParticipant = () => {
     }
 
     useEffect(() => {
-        const getEvaluation = async () => {
-            let res = await axiosInstance.get("/auth/evaluation/program/"+params.id)
-            if(res.status === 200) {
-                setData(res.data.data)
-            }
-        }
-        getEvaluation()
+        getEvaluation(params.id)
     }, [])
 
     return(

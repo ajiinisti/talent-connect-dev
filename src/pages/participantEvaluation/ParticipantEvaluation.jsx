@@ -1,9 +1,13 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import Button from "../../components/button/Button"
 import { DefaultProfileIcon } from "../../assets"
+import useParticipantEvaluation from "./useParticipantEvaluation"
+import { useEffect } from "react"
 
 const ParticipantEvaluation = () => {
     const navigate = useNavigate()
+    const params = useParams()
+    const {getParticipantEvaluation, data} = useParticipantEvaluation()
     const isMidEvaluation = true
 
     const buttonEvalStyle = {
@@ -25,40 +29,24 @@ const ParticipantEvaluation = () => {
         backgroundColor: '#FED7D7',
         border:'2px solid red'
     }
+
+    useEffect(() => {
+        getParticipantEvaluation(params.id)
+    }, [])
     return(
         <div className="container px-5 mb-5">
             <h1 className="mt-5"><b>SMM ITDP Batch 3</b></h1>
-            <div class="row mt-5">
-                <div class="col-2">
-                    <Button title={<h6>Mid Evaluation</h6>} styling={buttonEvalStyle} navigate={() => navigate('/evaluations/mid-eval')}/>
-                </div>
-                <div class="col-2">
-                    <Button title={<h6>Final Evaluation</h6>} styling={buttonEvalStyle} navigate={() => navigate('/evaluations/final-eval')}/>
-                </div>
-            </div>
-            
-            { 
-                isMidEvaluation ?
-                <>
-                    <span className="line-evaluation-purple"/>
-                    <span className="line-evaluation"/>
-                </>: 
-                <>
-                <span className="line-evaluation"/>
-                <span className="line-evaluation-purple"/>
-                </>
-            }
             <span className="line-rest"/>
 
             <div className="container" style={{display: 'flex', justifyContent: 'space-between'}}>
                 <h4 className="mt-4" style={{ alignSelf: 'flex-start'}}>My Evaluation Result</h4>
-                <p style={{ alignSelf: 'flex-end'}}>Not Yet Evaluated</p>
-                <p style={{ alignSelf: 'flex-end', color: '#A684F2'}}>Evaluated</p>
+                <p style={{ alignSelf: 'flex-end'}}>Mid Evaluation</p>
+                <p style={{ alignSelf: 'flex-end'}}>Final Evaluation</p>
             </div>
             <div className="container" style={{display: 'flex', justifyContent: 'space-between'}}>
                 <h4 className="mt-4" style={{ alignSelf: 'flex-start'}}>Result</h4>
-                <button disabled className="btn" style={passedButton}>Passed</button>
-                <button disabled className="btn" style={failedButton}>Failed</button>
+                <button disabled className="btn" style={data.MidStatus === "Passed" ? passedButton : failedButton}>{data.MidStatus}</button>
+                <button disabled className="btn" style={data.FinalStatus === "Passed" ? passedButton : failedButton}>{data.FinalStatus}</button>
             </div>
             {
                 isMidEvaluation?
