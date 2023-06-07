@@ -31,6 +31,8 @@ const UserManagement = () => {
                 </div>
 
                 <UserCard name={"Aji Inisti"} email={"ajiinisti@gmail.com"} role={"Mentee"}/>
+                <UserCard name={"Alwin Ihza"} email={"alwinihza@gmail.com"} role={"Mentor"}/>
+                <UserCard name={"Jution"} email={"jutionck@gmail.com"} role={"Judge"}/>
             </div>
         </div>
     )

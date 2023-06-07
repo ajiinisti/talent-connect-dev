@@ -16,10 +16,12 @@ const UserCard = ({name, email, role}) => {
         console.log(id,type)
         if (type === "edit") {
             navigate(`/user-management/user-form/${id}`)
-        } else {
+        } else if (type === "delete"){
             toggleDropdown()
             toggleShowDeleteModal()
-        }
+        } else{
+            navigate(`/user-management/assign-user/${id}`)
+        } 
         setIsDropdownOpen(false);
     };
 
@@ -75,6 +77,20 @@ const UserCard = ({name, email, role}) => {
                             <button className="dropdown-item" onClick={() => handleItemClick('Item 2', "delete")}>
                                 Delete User
                             </button>
+                            {
+                                role === "Mentor" ?
+                                <button className="dropdown-item" onClick={() => handleItemClick('Item 2', "mentorMentee")}>
+                                    Assign Mentee to Mentor
+                                </button>:
+                                <></>
+                            }
+                            {
+                                role === "Judge" ?
+                                <button className="dropdown-item" onClick={() => handleItemClick('Item 2', "judgeMentee")}>
+                                    Assign Mentee to Judge
+                                </button>:
+                                <></>
+                            }
                         </div>
                         )}
                     </div>
