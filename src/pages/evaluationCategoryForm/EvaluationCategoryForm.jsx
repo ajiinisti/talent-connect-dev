@@ -8,10 +8,11 @@ import {
     MDBModalBody,
     MDBModalFooter,
 } from 'mdb-react-ui-kit'
-import { BsArrowLeft } from "react-icons/bs"
 import Button from "../../components/button/Button"
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
+import ArrowButton from '../../components/button/ArrowButton'
+import CancelButton from '../../components/button/CancelButton'
 
 const EvaluationCategoryForm = () => {
     const params = useParams()
@@ -75,7 +76,7 @@ const EvaluationCategoryForm = () => {
     return(
         <>
             <div className="container py-5 px-5 mb-5">
-                <h1><BsArrowLeft/><b>
+                <h1><ArrowButton/><b>
                     {
                         isUpdate ? " Edit Evaluation Category": " Add Evaluation Category"
                     }
@@ -105,11 +106,11 @@ const EvaluationCategoryForm = () => {
                         isUpdate ? 
                         <>
                             <Button title={"Save Changes"} navigate={() => (0)}/>
-                            <Button title={"Cancel"} navigate={() => (0)} styling={buttonCancelStyle}/>
+                            <CancelButton/>
                         </>: 
                         <>
                             <Button title={"Add Evaluation Category"} navigate={() => (0)}/>
-                            <Button title={"Cancel"} navigate={() => (0)} styling={buttonCancelStyle}/>
+                            <CancelButton/>
                         </>
                     }
                 </form>

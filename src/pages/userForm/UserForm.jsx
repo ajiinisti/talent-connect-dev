@@ -1,8 +1,9 @@
-import { BsArrowLeft } from "react-icons/bs"
 import Button from "../../components/button/Button"
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import Select from 'react-select';
+import CancelButton from "../../components/button/CancelButton";
+import ArrowButton from "../../components/button/ArrowButton";
 
 const UserForm = () => {
     const params = useParams()
@@ -13,16 +14,6 @@ const UserForm = () => {
         { value: 'judge', label: 'Judge' }
     ]
 
-    const buttonCancelStyle = {
-        borderRadius : '5px',
-        height: '40px',
-        backgroundColor: 'white',
-        color: 'black',
-        border: '0.5px solid #d3d3d3',
-        outline: 'gray',
-        marginLeft: '1rem'
-    }
-
     useEffect(()=> {
         if(params.id) {
             setUpdate(true)
@@ -31,7 +22,7 @@ const UserForm = () => {
 
     return(
         <div className="container py-5 px-5 mb-5">
-            <h1><BsArrowLeft/><b>
+            <h1><ArrowButton/><b>
                 {
                     isUpdate ? " Edit User": " Add User"
                 }
@@ -53,11 +44,11 @@ const UserForm = () => {
                     isUpdate ? 
                     <>
                         <Button title={"Save Changes"} navigate={() => (0)}/>
-                        <Button title={"Cancel"} navigate={() => (0)} styling={buttonCancelStyle}/>
+                        <CancelButton/>
                     </>: 
                     <>
                         <Button title={"Add Evaluation Aspect"} navigate={() => (0)}/>
-                        <Button title={"Cancel"} navigate={() => (0)} styling={buttonCancelStyle}/>
+                        <CancelButton/>
                     </>
                 }
             </form>

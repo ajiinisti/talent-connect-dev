@@ -1,6 +1,6 @@
 // import { useNavigate } from "react-router-dom"
 import { DefaultProfileIcon } from "../../assets"
-import { BsArrowLeft } from "react-icons/bs"
+import ArrowButton from "../../components/button/ArrowButton"
 
 const ActivityDetail = () => {
     // const navigate = useNavigate()
@@ -19,7 +19,7 @@ const ActivityDetail = () => {
             <hr/>
             <div className="row">
                 <div className="col-md-9 mr-3">      
-                    <h4 className="mt-4 mb-4"><BsArrowLeft/>   KICK OFF ITDP BATCH 3</h4>
+                    <h4 className="mt-4 mb-4"><ArrowButton/>   KICK OFF ITDP BATCH 3</h4>
                     <div className="mt-4 px-4 py-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}}>
                         <div className="mb-4" style={{ display: 'flex', flexDirection: 'column'}}>
                             <label style={{ display: 'inline-block'}}>Link</label>
