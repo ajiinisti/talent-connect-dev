@@ -2,10 +2,18 @@ import { BsArrowLeft } from "react-icons/bs"
 import Button from "../../components/button/Button"
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
+import Select from 'react-select';
 
 const ActivityForm = () => {
     const params = useParams()
     const [isUpdate, setUpdate] = useState(false)
+    const isAdmin = false
+    const isMentor = true
+    const participants = [
+        {value: "ID1", label:"Aji Inisti "},
+        {value: "ID2", label:"Aji Udma "},
+        {value: "ID3", label:"Aji Wijaya"},
+    ]
 
     const buttonCancelStyle = {
         borderRadius : '5px',
@@ -46,10 +54,26 @@ const ActivityForm = () => {
                         <label htmlFor="date" className="form-label">Date</label>
                         <input type="date" className="form-control" id="date" placeholder="DD/MM/YYYY"/>
                     </div>
-                    <div className="mb-4">
-                        <label htmlFor="participant" className="form-label">Participant</label>
-                        <input disabled="disabled" type="participant" className="form-control" id="participant" placeholder="All"/>
-                    </div>
+                    {
+                        isAdmin ?
+                        <div className="mb-4">
+                            <label htmlFor="participant" className="form-label">Participant</label>
+                            <input disabled="disabled" type="participant" className="form-control" id="participant" placeholder="All"/>
+                        </div> : <></>
+                    }
+                    {
+                        isMentor ?
+                        <div className="mb-4">
+                            <label htmlFor="participant" className="form-label">Participant</label>
+                            <Select
+                                isMulti
+                                name="participant"
+                                options={participants}
+                                className="basic-multi-select"
+                                classNamePrefix="select"
+                            />
+                        </div> : <></>
+                    }
                     <div className="mb-4">
                         <label htmlFor="description" className="form-label">Description</label>
                         <textarea name="Text1" rows="5" id="description" className="form-control" placeholder="Description"></textarea>
