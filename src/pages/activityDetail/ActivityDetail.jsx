@@ -1,4 +1,3 @@
-// import { useNavigate } from "react-router-dom"
 import { useParams } from "react-router-dom"
 import { DefaultProfileIcon } from "../../assets"
 import { useEffect, useState } from "react"
@@ -8,19 +7,10 @@ import useActivityDetail from "./useActivityDetail"
 const ActivityDetail = () => {
     const params = useParams()
     const {activity, getDetail} = useActivityDetail()
-    // const navigate = useNavigate()
-    // const buttonStyle = {
-    //     borderRadius : '5px'
-    // }
-
-    // const cardStyle = {
-    //     top : '1.5rem',
-    //     bot : '1.5rem'
-    // }
 
     useEffect(()=>{
         getDetail(params.id)
-    }, [getDetail])
+    }, [])
 
     return(
         <div className="container py-5 px-5 mb-5">

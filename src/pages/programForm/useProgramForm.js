@@ -12,17 +12,29 @@ const useProgramForm = () => {
     const navigate = useNavigate()
 
     const postProgramForm = async (data) => {
-        let res = await axiosInstance.post("/programs",data)
+        const isoStartDate = new Date(data.startDate).toISOString();
+        const isoEndDate = new Date(data.endDate).toISOString();
+        let newData = {
+            ...data,
+            startDate: isoStartDate,
+            endDate: isoEndDate
+        }
+        let res = await axiosInstance.post("/programs",newData)
         if(res.status === 200) {
-            console.log(res.data)
             navigate('/program')
         }
     }
 
     const putProgramForm = async (data) => {
-        let res = await axiosInstance.put("/programs",data)
+        const isoStartDate = new Date(data.startDate).toISOString();
+        const isoEndDate = new Date(data.endDate).toISOString();
+        let newData = {
+            ...data,
+            startDate: isoStartDate,
+            endDate: isoEndDate
+        }
+        let res = await axiosInstance.put("/programs",newData)
         if(res.status === 200) {
-            console.log(res.data)
             navigate('/program')
         }
     }
@@ -37,12 +49,11 @@ const useProgramForm = () => {
 
     const fetchData = async(id) => {
         const getData = await getProgramById(id)
-        console.log(getData)
         setData({
             id: getData.ID,
             name: getData.Name,
-            startDate: getData.startDate,
-            endDate: getData.endDate
+            startDate: getData.StartDate,
+            endDate: getData.EndDate
         })
     }
 
