@@ -20,7 +20,7 @@ const DropdownEval = ({id, isAspect, toogleModal}) => {
             toggleDropdown()
           } else{
             toggleDropdown()
-            toogleModal("id","Category Name")
+            toogleModal()
           }
         }
         setIsDropdownOpen(false);

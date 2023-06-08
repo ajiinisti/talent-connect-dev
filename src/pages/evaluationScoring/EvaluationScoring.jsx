@@ -17,20 +17,17 @@ import Select from 'react-select';
 const EvaluationScoring = () => {
   const navigate = useNavigate();
   const [isModalOut, setIsModalOut] = useState(false)
-  const { aspect, category, getAspect, getCategory } = useAspect();
+  const { aspect, category, getAspect, getCategory, allProgram, getProgram, postProgEval } = useAspect();
   const [assignCategoryToProgram, setAssignCategoryToProgram] = useState({
-      categoryId: "",
-      categoryName: "",
-      programId: ""
+    questionCategoryId: "",
+      programId: "",
+      CategoryWeight: 0.0
   });
 
-  const [allProgram, setAllProgram] = useState([])
-
-  const changeCategoryName = (id, name) => {
+  const changeCategoryName = (id) => {
       setAssignCategoryToProgram({
           ...assignCategoryToProgram,
-          categoryName: name,
-          categoryId: id
+          questionCategoryId: id
       })
       toggleShow()
   }
@@ -42,6 +39,7 @@ const EvaluationScoring = () => {
 
   const submitCategoryToProgram = (e) => {
     e.preventDefault()
+    postProgEval(assignCategoryToProgram, setIsModalOut)
 }
 
 const setProgramState = (selectedOption) => {
@@ -64,11 +62,7 @@ const buttonCancelStyle = {
   useEffect(() => {
     getAspect();
     getCategory();
-    setAllProgram([
-        {value: "IDD",label:"SMM ITDP Batch 1"},
-        {value: "IDD",label:"SMM ITDP Batch 2"},
-        {value: "IDD",label:"SMM ITDP Batch 3"},
-    ])
+    getProgram();
   }, []);
   return (
     <>
@@ -106,7 +100,7 @@ const buttonCancelStyle = {
                   <div className="row mt-4">
                     <div className="col-8">{v.Question}</div>
                     <div className="col-1">{v.Type}</div>
-                    <div className="col-1">{v.options?.length}</div>
+                    <div className="col-1">{v.Option > 0 ?  v.Option : ""}</div>
                     {/* <div className="col-4">
                       Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                       Ab voluptatum numquam, architecto ad harum eum corrupti
@@ -151,7 +145,7 @@ const buttonCancelStyle = {
                 <div className="row mt-4">
                   <div className="col-11">{v.Name}</div>
                   <div className="col-1">
-                    <DropdownEval id={v.ID} isAspect={false} toogleModal={changeCategoryName}/>
+                    <DropdownEval id={v.ID} isAspect={false} toogleModal={()=>changeCategoryName(v.ID,)}/>
                   </div>
                 </div>
     
@@ -173,6 +167,7 @@ const buttonCancelStyle = {
                             <div style={{ display: 'flex', flexDirection: 'column' }}>
                                 <h4 style={{ marginBottom: '1.5rem' }}>Assign {assignCategoryToProgram.categoryName} to Program</h4>
                                 <Select onChange={setProgramState} options={allProgram} id="type" placeholder="Select Program" />
+                                <input type="number" step="10.0" name="CategoryWeight" placeholder="Category Weight ex: 10.5" value={assignCategoryToProgram.CategoryWeight} onChange={(e)=>setAssignCategoryToProgram({...assignCategoryToProgram, CategoryWeight: e.target.value})}/>
                             </div>
                         </div>
                     </MDBModalHeader>

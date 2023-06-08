@@ -20,7 +20,7 @@ const ActivityDetail = () => {
 
     useEffect(()=>{
         getDetail(params.id)
-    }, [getDetail])
+    }, [])
 
     return(
         <div className="container py-5 px-5 mb-5">

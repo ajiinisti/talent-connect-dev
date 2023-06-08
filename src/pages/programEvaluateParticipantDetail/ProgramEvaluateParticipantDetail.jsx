@@ -41,6 +41,17 @@ const ProgramEvaluateParticipantDetail = () => {
         getQuestions(params.programId, params.evalId)
     }, [getQuestions, params.programId, params.evalId])
 
+    const createOption = (question, num, v, i, j) => {
+        const rows = []
+        for (let index = 0; index < num; index++) {
+            rows.push(<CFormCheck key={index} inline type="radio" name={`qes-${v.ID}-${question.ID}`} id={`qes-${v.ID}-${question.ID}-${index}`} value={index+1} label={index+1} onChange={
+                (e) => {
+                   onInputChange(e, i, j)
+            }} checked={payload.QuestionCategories[i].QuestionList[j].Answer == index+1}/>)     
+        }
+        return (rows)
+    }
+
     return(
         <div className="container py-5 px-5 mb-5">
             { isDetail }
@@ -62,12 +73,7 @@ const ProgramEvaluateParticipantDetail = () => {
                                 <label htmlFor={`qes-${v.ID}-${question.ID}`} className="form-label">{question.Question}</label>
                                 {question.Type === "rating" ? (
                                 <div>
-                                    {question.options.map((val, k) => (
-                                        <CFormCheck key={k} inline type="radio" name={`qes-${v.ID}-${question.ID}`} id={`qes-${v.ID}-${question.ID}-${k}`} value={val.Value} label={val.Value} onChange={
-                                            (e) => {
-                                               onInputChange(e, i, j)
-                                        }} checked={payload.QuestionCategories[i].QuestionList[j].Answer == val.Value}/>
-                                    ))}
+                                    {createOption(question, question.Option, v, i, j)}
                                 </div>
                                 ) : (
                                     <textarea rows="5" name={`qes-${v.CategoryID}-${question.ID}`} className="form-control" onChange={(e)=>onInputChange(e,i,j)}></textarea>
