@@ -7,10 +7,11 @@ import useUserAssign from "./useUserAssign"
 const UserAssign = () => {
     const params = useParams()
     const {programs, getPrograms} = useUserAssign()
+    console.log(params.role)
     const isMentor = params.role === "mentor"
 
     useEffect(()=>{
-        getPrograms(params.role, params.id)
+        getPrograms()
     }, [])
     return(
         <div className="container py-5 px-5 mb-5">
@@ -21,7 +22,9 @@ const UserAssign = () => {
             </b></h2>
             <h4 style={{marginLeft:"2rem"}}>Jution</h4>
             <div className="container">
-                <UserAssignCard title={"ITDP SMM BATCH 3"} programId ={"123"}/>
+                {programs.map((v)=>(
+                    <UserAssignCard title={v.Name} programId ={v.ID}/>
+                ))}
             </div>
         </div>
     )

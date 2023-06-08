@@ -24,12 +24,12 @@ const UserAssignCard = ({title, programId}) => {
                         <div className="box-program-list" style={{marginRight: '1rem'}}>
                         S
                         </div>
-                        <Link to={'/program/evaluate-participant/id'}>
+                        <Link to={programId}>
                             <h5 style={{ marginRight: 'auto', marginTop: '0.5rem' }}>{title}</h5>
                         </Link> 
                     </div>
                     <div>
-                        <Button title={<h3>{`>`}</h3>} styling={buttonCancelStyle} navigate={()=>navigate(`pIdkey`)}/>
+                        <Button title={<h3>{`>`}</h3>} styling={buttonCancelStyle} navigate={()=>navigate(programId)}/>
                     </div>
                 </div>
             </ul>
