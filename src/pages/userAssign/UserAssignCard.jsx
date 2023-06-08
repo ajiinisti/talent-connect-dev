@@ -22,7 +22,6 @@ const UserAssignCard = ({title, programId}) => {
                 >
                     <div className="d-flex align-items-center">
                         <div className="box-program-list" style={{marginRight: '1rem'}}>
-                        S
                         </div>
                         <Link to={programId}>
                             <h5 style={{ marginRight: 'auto', marginTop: '0.5rem' }}>{title}</h5>
