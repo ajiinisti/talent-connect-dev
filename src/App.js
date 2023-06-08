@@ -1,4 +1,4 @@
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, HashRouter } from "react-router-dom";
 import "./App.css";
 import AppRouter from "./routers/AppRouter";
 import { AuthProvider } from "./context/AuthContext";
@@ -8,14 +8,14 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <AuthProvider>
         <AxiosInterceptor>
           <AppRouter />
         </AxiosInterceptor>
       </AuthProvider>
       <ToastContainer />
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
