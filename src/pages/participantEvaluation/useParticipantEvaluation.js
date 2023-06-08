@@ -7,6 +7,7 @@ const useParticipantEvaluation = () => {
     const getParticipantEvaluation = async (id) => {
         let res = await axiosInstance.get("/participants/evaluation/"+id)
         if(res.status === 200) {
+            console.log(res.data)
             setData(res.data.data)
             console.log(res.data.data)
         }

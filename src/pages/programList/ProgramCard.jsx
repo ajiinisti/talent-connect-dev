@@ -14,7 +14,7 @@ const ProgramCard = ({title,styling, isJudge, programId, toogleModalUpdate}) => 
     const handleItemClick = (id, type) => {
         console.log(id,type)
         if (type === "edit") {
-          navigate(`/program/program-form/${id}`)
+          navigate(`/program/program-form/${programId}`)
         } else if (type === "delete") {
           toggleDropdown()
           toggleShowDeleteModal()

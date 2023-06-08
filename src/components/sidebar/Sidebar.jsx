@@ -19,7 +19,7 @@ import { useAuth } from "../../hooks/useAuth";
 const Sidebar = () => {
     const location = useLocation();
     const [activeNavLink, setActiveNavLink] = useState('');
-    const {logout, getCurrentRole} = useAuth()
+    const {logout, getCurrentRole, getCurrentUser} = useAuth()
     const role = getCurrentRole()
     
     useEffect(() => {
@@ -40,7 +40,7 @@ const Sidebar = () => {
                         </li>
                     </div>
                 </NavLink>
-                {role.includes("admin") &&
+                {role && role.includes("admin") &&
                 <NavLink to="/user-management" activeclassname="active" >
                     <div className="mt-1 navbar-div-item" >
                         <li>
@@ -50,7 +50,7 @@ const Sidebar = () => {
                     </div>
                 </NavLink>
                 }
-                {role.includes("participant") &&
+                {role && role.includes("participant") &&
                 <NavLink to="/evaluation-scoring" activeclassname="active">
                     <div className="mt-1 navbar-div-item" >
                         <li>
@@ -60,8 +60,8 @@ const Sidebar = () => {
                     </div> 
                 </NavLink>
                 }
-                {role.includes("panelist") &&
-                <NavLink to="/evaluations/id" activeclassname="active">
+                {role && role.includes("panelist") &&
+                <NavLink to={`/evaluations/${getCurrentUser().ID}`} activeclassname="active">
                     <div className="mt-1 navbar-div-item" >
                         <li>
                             <img src={activeNavLink.includes('/evaluations') ? EvaluationIconActive : EvaluationIconNonActive}
