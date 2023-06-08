@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 // import Button from '../../components/button/Button';
 import DeleteModal from '../../components/modal/DeleteModal';
 
-const ActivityCard = ({title,styling}) => {
+const ActivityCard = ({title, styling, activity, programId}) => {
     const navigate = useNavigate()
     const dropdownRef = useRef(null);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -14,10 +14,9 @@ const ActivityCard = ({title,styling}) => {
     // const isMentor = false
     // const isMentee = true
 
-    const handleItemClick = (id, type) => {
-        console.log(id,type)
+    const handleItemClick = (type) => {
         if (type === "update") {
-            navigate(`/program/activity-form/${id}`)
+            navigate(`/program/${programId}activity-form/${activity.ID}`)
         } else {
             toggleDropdown()
             toggleShowDeleteModal()
@@ -60,10 +59,10 @@ const ActivityCard = ({title,styling}) => {
                     style={{ height: '10vh'}}
                     >
                         <div className="d-flex flex-column">
-                        <Link to={'/program/activity-detail/01'}>
+                        <Link to={'/program/activity-detail/'+activity.ID}>
                             <h5 style={{ marginBottom: 'auto' }}>{title}</h5>
                         </Link>
-                        <span style={{marginTop: '0.5rem'}}>12.00 - 13.00</span>
+                        <span style={{marginTop: '0.5rem'}}>{activity.StartDate} - {activity.EndDate}</span>
                         <div style={{ marginTop: '0.5rem' }}>
                             <div className="mirror-icon">
                             <BsPeople style={{ marginLeft: '0.5rem', marginBottom:'0.2rem'}} />
@@ -83,10 +82,10 @@ const ActivityCard = ({title,styling}) => {
                                 </label>
                                 {isDropdownOpen && (
                                 <div className="dropdown-menu">
-                                    <button className="dropdown-item" onClick={() => handleItemClick('Item 1', "update")}>
+                                    <button className="dropdown-item" onClick={() => handleItemClick("update")}>
                                     Update Activity
                                     </button>
-                                    <button className="dropdown-item" onClick={() => handleItemClick('Item 2', "delete")}>
+                                    <button className="dropdown-item" onClick={() => handleItemClick("delete")}>
                                     Delete Activity
                                     </button>
                                 </div>

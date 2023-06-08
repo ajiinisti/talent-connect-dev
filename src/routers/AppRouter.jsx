@@ -25,12 +25,12 @@ function AppRouter() {
         <Route path='/' element={<Login/>}/>
         <Route path='/' element={<Layout/>}>
             <Route path='program' element={<ProgramList />}/>
-            <Route path='program/:id' element={<ActivityList />} />
+            <Route path='program/:programId' element={<ActivityList />} />
             <Route path='program/program-form' element={<ProgramForm />} />
             <Route path='program/program-form/:id' element={<ProgramForm />} />
             <Route path='program/mentor-feedback/:id' element={<MentorFeedback />} />
-            <Route path='program/activity-form' element={<ActivityForm />} />
-            <Route path='program/activity-form/:id' element={<ActivityForm />} />
+            <Route path='program/:programId/activity-form' element={<ActivityForm />} />
+            <Route path='program/:programId/activity-form/:id' element={<ActivityForm />} />
             <Route path='program/activity-detail/:id' element={<ActivityDetail/>} />
             <Route path='program/evaluate-participant/:id' element={<ProgramEvaluateParticipant/>} />
             <Route path='program/evaluate-participant/:programId/:evalIid' element={<ProgramEvaluateParticipantDetail/>} />
