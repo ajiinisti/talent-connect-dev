@@ -17,12 +17,13 @@ import UserManagement from '../pages/userManagement/UserManagement';
 import UserForm from '../pages/userForm/UserForm';
 import UserAssign from '../pages/userAssign/UserAssign';
 import UserAssignListOfUserProgram from '../pages/userAssign/UserAssignListOfUserProgram';
+import ProtectedRoute from './ProtectedRouter';
 
 
 function AppRouter() {
   return (
     <Routes>
-        <Route path='/' element={<Login/>}/>
+        <Route path='/' index element={<Login/>}/>
         <Route path='/' element={<Layout/>}>
             <Route path='program' element={<ProgramList />}/>
             <Route path='program/:id' element={<ActivityList />} />

@@ -40,7 +40,7 @@ const Sidebar = () => {
                         </li>
                     </div>
                 </NavLink>
-                {role.includes("admin") &&
+                {role?.includes("admin") &&
                 <NavLink to="/user-management" activeclassname="active" >
                     <div className="mt-1 navbar-div-item" >
                         <li>
@@ -50,7 +50,7 @@ const Sidebar = () => {
                     </div>
                 </NavLink>
                 }
-                {role.includes("participant") &&
+                {role?.includes("participant") &&
                 <NavLink to="/evaluation-scoring" activeclassname="active">
                     <div className="mt-1 navbar-div-item" >
                         <li>
@@ -60,7 +60,7 @@ const Sidebar = () => {
                     </div> 
                 </NavLink>
                 }
-                {role.includes("panelist") &&
+                {role?.includes("panelist") &&
                 <NavLink to="/evaluations/id" activeclassname="active">
                     <div className="mt-1 navbar-div-item" >
                         <li>
