@@ -1,9 +1,17 @@
 import UserAssignCard from "./UserAssignCard"
 import ArrowButton from "../../components/button/ArrowButton"
+import { useParams } from "react-router-dom"
+import { useEffect } from "react"
+import useUserAssign from "./useUserAssign"
 
 const UserAssign = () => {
-    const isMentor = true
+    const params = useParams()
+    const {programs, getPrograms} = useUserAssign()
+    const isMentor = params.role === "mentor"
 
+    useEffect(()=>{
+        getPrograms(params.role, params.id)
+    }, [])
     return(
         <div className="container py-5 px-5 mb-5">
             <h2><ArrowButton/><b>

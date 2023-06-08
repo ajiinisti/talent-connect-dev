@@ -38,8 +38,8 @@ function AppRouter() {
             <Route path='user-management' element={<UserManagement/>}/>
             <Route path='user-management/user-form' element={<UserForm/>}/>
             <Route path='user-management/user-form/:id' element={<UserForm/>}/>
-            <Route path='user-management/assign-user/:id' element={<UserAssign/>}/>
-            <Route path='user-management/assign-user/:id/:programId' element={<UserAssignListOfUserProgram/>}/>
+            <Route path='user-management/assign-user/:role/:id' element={<UserAssign/>}/>
+            <Route path='user-management/assign-user/:role/:id/:programId' element={<UserAssignListOfUserProgram/>}/>
             <Route path='evaluations/:id' element={<ParticipantEvaluation/>}/>
             <Route path='evaluation-scoring' element={<EvaluationScoring/>}/>
             <Route path='evaluation-scoring/evaluation-category-form' element={<EvaluationCategoryForm/>}/>
