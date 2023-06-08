@@ -3,7 +3,7 @@ import axiosInstance from "../../services/axios-client"
 
 const useActivityList = () => {
     const [programs, setPrograms] = useState({})
-    const [activities, setActivities] = useState({})
+    const [activities, setActivities] = useState([])
     
     const getPrograms = async (id) => {
         try{
