@@ -9,7 +9,6 @@ const useParticipantEvaluation = () => {
         if(res.status === 200) {
             console.log(res.data)
             setData(res.data.data)
-            console.log(res.data.data)
         }
     }
 

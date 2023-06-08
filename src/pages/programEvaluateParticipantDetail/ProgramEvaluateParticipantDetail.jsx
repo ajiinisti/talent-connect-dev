@@ -3,14 +3,13 @@ import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import Select from 'react-select'
 import { CFormCheck } from '@coreui/react'
-import axiosInstance from "../../services/axios-client"
 import ArrowButton from "../../components/button/ArrowButton"
 import CancelButton from "../../components/button/CancelButton"
+import useEvaluate from "./useEvaluate"
 
 const ProgramEvaluateParticipantDetail = () => {
     const params = useParams()
-    const [questions, setQuestions] = useState([])
-    const [payload, setPayload] = useState({})
+    const {questions, payload, onInputChange, onSubmit, getQuestions} = useEvaluate()
     const [isDetail, setDetail] = useState(false)
 
     const evaluationPeriod = [
@@ -32,26 +31,6 @@ const ProgramEvaluateParticipantDetail = () => {
         outline: 'gray',
         marginLeft: '1rem'
     }
-
-    const onInputChange = ((event, i, j)=>{
-        let newState = JSON.parse(JSON.stringify(payload))
-        newState.QuestionCategories = newState.QuestionCategories.map((v, index)=>{
-            if(index === i) {
-                let questionList = v.QuestionList.map((question, jndex)=> {
-                    if (jndex == j)
-                    return {...question, Answer : event.target.value}
-                    return question
-                })
-                return {...v, QuestionList: questionList}
-            }
-            return v
-        })
-        setPayload(newState)
-    })
-
-    const onSubmit = () => {
-        axiosInstance.post(`/answer`, payload).then((res)=>console.log(res))
-    }
     useEffect(()=> {
         if(params.id) {
             setDetail(true)
@@ -59,24 +38,8 @@ const ProgramEvaluateParticipantDetail = () => {
     },[params.id])
 
     useEffect(()=> {
-        axiosInstance.get(`/programs/questions/${params.programId}`).then((res)=>{
-            setQuestions(res.data.data)
-            let data = Object.assign({}, payload)
-            data.QuestionCategories = []
-            data.EvaluationID = params.evalIid
-            data.ProgramID = params.programId
-            res.data.data.forEach((v, i)=>{
-                let temp = {CategoryID : v.ID, QuestionList: []}
-                data.QuestionCategories.push(temp)
-                data.QuestionCategories[i].QuestionList = []
-                v.QuestionCategory.questions.forEach((question, j)=>{
-                    temp = {QuestionID: question.ID, Answer : ""}
-                    data.QuestionCategories[i].QuestionList.push(temp)
-                })
-            })
-            setPayload(data)
-        })
-    }, [])
+        getQuestions(params.programId, params.evalId)
+    }, [getQuestions, params.programId, params.evalId])
 
     return(
         <div className="container py-5 px-5 mb-5">

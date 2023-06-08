@@ -2,12 +2,12 @@
 import { useParams } from "react-router-dom"
 import { DefaultProfileIcon } from "../../assets"
 import { useEffect, useState } from "react"
-import axiosInstance from "../../services/axios-client"
 import ArrowButton from "../../components/button/ArrowButton"
+import useActivityDetail from "./useActivityDetail"
 
 const ActivityDetail = () => {
     const params = useParams()
-    const [activity, setActivity] = useState({})
+    const {activity, getDetail} = useActivityDetail()
     // const navigate = useNavigate()
     // const buttonStyle = {
     //     borderRadius : '5px'
@@ -19,19 +19,8 @@ const ActivityDetail = () => {
     // }
 
     useEffect(()=>{
-        const getDetail = async () => {
-            try {
-                let res = await axiosInstance.get("activities/"+params.id)
-                if (res.status === 200) {
-                    setActivity(res.data.data)
-                    console.log(new Date(res.data.data.StartDate).toDateString())
-                }
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        getDetail()
-    }, [])
+        getDetail(params.id)
+    }, [getDetail])
 
     return(
         <div className="container py-5 px-5 mb-5">

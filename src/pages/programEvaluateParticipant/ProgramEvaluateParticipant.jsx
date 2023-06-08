@@ -2,7 +2,6 @@ import { useNavigate, useParams } from "react-router-dom"
 import { DefaultProfileIcon } from "../../assets"
 import Button from "../../components/button/Button"
 import { useEffect, useState } from "react"
-import axiosInstance from "../../services/axios-client"
 import useEvaluateParticipant from "./useEvaluateParticipant"
 
 const ProgramEvaluateParticipant = () => {
@@ -33,7 +32,7 @@ const ProgramEvaluateParticipant = () => {
 
     useEffect(() => {
         getEvaluation(params.id)
-    }, [])
+    }, [getEvaluation, params.id])
 
     return(
         <div className="container py-5 px-5 mb-5">
@@ -60,7 +59,7 @@ const ProgramEvaluateParticipant = () => {
                     !v.IsEvaluated && <>
                     <div key={v.ID} className="mt-4">
                         <img src={DefaultProfileIcon} style={{ width: '5%' }} alt="Profile Icon" /> <span>{v.Participant.User.FirstName} {v.Participant.User.LastName}</span>
-                        <Button title={"Evaluate"} styling={buttonStyling} navigate={() => navigate("id")}/>
+                        <Button title={"Evaluate"} styling={buttonStyling} navigate={() => navigate(v.ID)}/>
                     </div>
                     <hr/>
                     </>
