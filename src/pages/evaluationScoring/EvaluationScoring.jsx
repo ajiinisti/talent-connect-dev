@@ -13,16 +13,18 @@ import {
 
 import Select from 'react-select';
 
-
 const EvaluationScoring = () => {
   const navigate = useNavigate();
   const [isModalOut, setIsModalOut] = useState(false)
   const { aspect, category, getAspect, getCategory, allProgram, getProgram, postProgEval } = useAspect();
   const [assignCategoryToProgram, setAssignCategoryToProgram] = useState({
     questionCategoryId: "",
-      programId: "",
-      CategoryWeight: 0.0
+    programId: "",
+    CategoryWeight: 0.0
   });
+
+  console.log(aspect)
+  console.log(category)
 
   const changeCategoryName = (id) => {
       setAssignCategoryToProgram({
@@ -66,7 +68,7 @@ const buttonCancelStyle = {
   }, []);
   return (
     <>
-    <div className="container py-3 px-5">
+    <div className="container py-5 px-5 mb-5">
       <h1 className="mt-2">
         <b>Evaluation Scoring</b>
       </h1>
@@ -109,7 +111,7 @@ const buttonCancelStyle = {
                       sint.
                     </div> */}
                     <div className="col-1">
-                      <DropdownEval id={v.ID} isAspect={true} />
+                      <DropdownEval id={v.ID} isAspect={true} title={v.Question} />
                     </div>
                   </div>
                   <hr />
@@ -145,7 +147,7 @@ const buttonCancelStyle = {
                 <div className="row mt-4">
                   <div className="col-11">{v.Name}</div>
                   <div className="col-1">
-                    <DropdownEval id={v.ID} isAspect={false} toogleModal={()=>changeCategoryName(v.ID,)}/>
+                    <DropdownEval id={v.ID} isAspect={false} toogleModal={()=>changeCategoryName(v.ID)} title={v.Name}/>
                   </div>
                 </div>
     
@@ -160,25 +162,25 @@ const buttonCancelStyle = {
     
 
     <MDBModal show={isModalOut} setShow={setIsModalOut} >
-                <MDBModalDialog>
-                <MDBModalContent>
-                    <MDBModalHeader>
-                        <div className="container" style={{ alignContent: 'flex-start'}}>
-                            <div style={{ display: 'flex', flexDirection: 'column' }}>
-                                <h4 style={{ marginBottom: '1.5rem' }}>Assign {assignCategoryToProgram.categoryName} to Program</h4>
-                                <Select onChange={setProgramState} options={allProgram} id="type" placeholder="Select Program" />
-                                <input type="number" step="10.0" name="CategoryWeight" placeholder="Category Weight ex: 10.5" value={assignCategoryToProgram.CategoryWeight} onChange={(e)=>setAssignCategoryToProgram({...assignCategoryToProgram, CategoryWeight: e.target.value})}/>
-                            </div>
-                        </div>
-                    </MDBModalHeader>
-                    <MDBModalFooter>
-                        <Button title={"Cancel"} navigate={(e)=> toggleShow(e)} styling={buttonCancelStyle}/>
-                        <Button title={"Confirm"} navigate={(e)=> submitCategoryToProgram(e)}/>
-                    </MDBModalFooter>
-                </MDBModalContent>
-                </MDBModalDialog>
-            </MDBModal>
-    </>
+      <MDBModalDialog>
+        <MDBModalContent>
+            <MDBModalHeader>
+                <div className="container" style={{ alignContent: 'flex-start'}}>
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                        <h4 style={{ marginBottom: '1.5rem' }}>Assign {assignCategoryToProgram.categoryName} to Program</h4>
+                        <Select onChange={setProgramState} options={allProgram} id="type" placeholder="Select Program" />
+                        <input type="number" step="10.0" name="CategoryWeight" placeholder="Category Weight ex: 10.5" value={assignCategoryToProgram.CategoryWeight} onChange={(e)=>setAssignCategoryToProgram({...assignCategoryToProgram, CategoryWeight: e.target.value})}/>
+                    </div>
+                </div>
+            </MDBModalHeader>
+            <MDBModalFooter>
+                <Button title={"Cancel"} navigate={(e)=> toggleShow(e)} styling={buttonCancelStyle}/>
+                <Button title={"Confirm"} navigate={(e)=> submitCategoryToProgram(e)}/>
+            </MDBModalFooter>
+        </MDBModalContent>
+      </MDBModalDialog>
+    </MDBModal>
+  </>
   );
 };
 

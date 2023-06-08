@@ -14,6 +14,7 @@ const ActivityCard = ({title, styling, activity, programId, isMentoring}) => {
     const toggleShowDeleteModal = () => setIsDeleteModalOut(!isDeleteModalOut);
     const { deleteActivity, deleteMentoringSchedule} = useActivityList()
     const deleteButton = isMentoring ? deleteMentoringSchedule: deleteActivity
+    const type = isMentoring ? "mentoring" : "activity"
 
     const handleItemClick = (type) => {
         if (type === "update") {
@@ -122,7 +123,7 @@ const ActivityCard = ({title, styling, activity, programId, isMentoring}) => {
 
             <DeleteModal 
                 title={title} 
-                type={'activity'} 
+                type={type} 
                 isModalOut={isDeleteModalOut} 
                 setIsModalOut={setIsDeleteModalOut} 
                 toggleShow={toggleShowDeleteModal}

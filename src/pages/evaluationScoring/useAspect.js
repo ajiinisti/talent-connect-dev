@@ -51,7 +51,35 @@ const useAspect = () => {
         }
     }
 
-    return {getAspect, getCategory, aspect, category, allProgram, setAllProgram, getProgram, postProgEval
+    const deleteAspect= async(id) => {
+        try {
+            let res = await axiosInstance.delete(`/questions/${id}`)
+            console.log(res)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const deleteCategory = async(id) => {
+        try {
+            let res = await axiosInstance.delete(`/category/questions/${id}`)
+            console.log(res)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    return {
+        getAspect, 
+        getCategory, 
+        aspect, 
+        category, 
+        allProgram, 
+        setAllProgram, 
+        getProgram, 
+        postProgEval,
+        deleteAspect,
+        deleteCategory
     }
 
 }
