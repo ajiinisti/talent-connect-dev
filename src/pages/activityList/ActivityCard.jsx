@@ -2,10 +2,10 @@ import { FaEllipsisH } from 'react-icons/fa';
 import { BsPeople } from 'react-icons/bs';
 import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-// import Button from '../../components/button/Button';
 import DeleteModal from '../../components/modal/DeleteModal';
+import React from 'react';
 
-const ActivityCard = ({title,styling, activity}) => {
+const ActivityCard = ({title, styling, activity, programId, isMentoring}) => {
     const navigate = useNavigate()
     const dropdownRef = useRef(null);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -16,7 +16,7 @@ const ActivityCard = ({title,styling, activity}) => {
 
     const handleItemClick = (type) => {
         if (type === "update") {
-            navigate(`/program/activity-form/${activity.ID}`)
+            navigate(`/program/${programId}/activity-form/${activity.ID}`)
         } else {
             toggleDropdown()
             toggleShowDeleteModal()
@@ -62,12 +62,25 @@ const ActivityCard = ({title,styling, activity}) => {
                         <Link to={'/program/activity-detail/'+activity.ID}>
                             <h5 style={{ marginBottom: 'auto' }}>{title}</h5>
                         </Link>
-                        <span style={{marginTop: '0.5rem'}}>{activity.StartDate} - {activity.EndDate}</span>
+                        <span style={{marginTop: '0.2rem', width: '20rem'}}>{activity.StartDate.slice(11,16)}</span>
                         <div style={{ marginTop: '0.5rem' }}>
                             <div className="mirror-icon">
                             <BsPeople style={{ marginLeft: '0.5rem', marginBottom:'0.2rem'}} />
                             </div>
-                            <span>All</span>
+                            {
+                                isMentoring ? (
+                                    <span>
+                                    {activity.mentorMentees.map((mentee, index) => (
+                                        <React.Fragment key={mentee.Participant.id}>
+                                            {mentee.Participant.FirstName} {mentee.Participant.LastName}{", "}
+                                        </React.Fragment>
+                                    ))}
+                                    {activity.mentorMentees[0].Mentor.FirstName} {activity.mentorMentees[0].Mentor.LastName}
+                                    </span>
+                                ) : (
+                                    <span>All</span>
+                                )
+                            }
                         </div>
                         </div>
                             <div className="container" style={{ 
