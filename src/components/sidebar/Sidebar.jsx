@@ -60,7 +60,7 @@ const Sidebar = () => {
                     </div> 
                 </NavLink>
                 }
-                {role && role.includes("mentee") &&
+                {role && role.includes("participant") &&
                 <NavLink to={`/evaluations/${getCurrentUser().ID}`} activeclassname="active">
                     <div className="mt-1 navbar-div-item" >
                         <li>

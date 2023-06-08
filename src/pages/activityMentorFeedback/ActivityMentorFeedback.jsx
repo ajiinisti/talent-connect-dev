@@ -11,7 +11,7 @@ const MentorFeedback = () => {
 
     return(
         <div className="container py-5 px-5 mb-5">
-            <h1 className="mt-2"><b>SMM ITDP Batch 3</b></h1>
+            <h2 className="mt-2"><b>SMM ITDP Batch 3</b></h2>
             <hr/>
             <div className="row">
                 <div className="col-md-9 mr-3">      

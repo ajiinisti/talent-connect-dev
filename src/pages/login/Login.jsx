@@ -3,10 +3,6 @@ import useLogin from "./useLogin";
 
 const Login = () => {
     const {payload, loginHandler, onChangeHandler} = useLogin()
-
-    const validate = () => {
-
-    }
     return (
         <div className="container-fluid" style={{ height: "100vh" }}>
             <div className="row h-100">

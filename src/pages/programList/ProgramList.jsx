@@ -76,70 +76,70 @@ const ProgramList = () => {
 
     return(
         <>
-        <div className="container py-5 px-5 mb-5">
-            <h1><b>Hello, {name}!</b></h1>
-            <SearchBar/>
-            <div className="mt-4 mb-4">
-                <Button title={" + Add Program "} navigate={() => navigate('/program/program-form')}/>
-            </div>
-            {program?.admin ? 
-            <>
-            {program.admin.map((v)=>(<ProgramCard key={`admin${v.ID}`} title={v.Name} styling={cardStyle} programId={v.ID} isAdmin={true} toogleModalUpdate={toggleShow}/>))}
-            </>
-             : <></>}
-            {program?.panelist ? 
-            <>
-            <h2 style={{ marginTop: "2rem"}}>Panelist</h2>
-            {program.panelist.map((v)=>(<ProgramCard key={`panelist${v.ID}`} title={v.Name} styling={cardStyle} isJudge={true} programId={v.ID} toogleModalUpdate={toggleShow}/>))}
-            </>
-             : <></>}
-            {program?.mentor ? 
-            <>
-            <h2 style={{ marginTop: "2rem"}}>Mentor</h2>
-            {program.mentor.map((v)=>(<ProgramCard key={`mentor${v.ID}`} title={v.Name} styling={cardStyle} programId={v.ID} toogleModalUpdate={toggleShow}/>))}
-            </>
-             : <></>}
-            {program?.participant ? 
-            <>
-            <h2 style={{ marginTop: "2rem"}}>Mentee</h2>
-            {program.participant.map((v)=>(<ProgramCard key={`participant${v.ID}`} title={v.Name} styling={cardStyle} programId={v.ID} toogleModalUpdate={toggleShow}/>)) }
-            </>
-            : <></>}
-        </div>
-
-    <MDBModal show={isModalOut} setShow={setIsModalOut} >
-        <MDBModalDialog>
-            <MDBModalContent>
-            <MDBModalHeader>
-                <div className="container" style={{ alignContent: 'flex-start'}}>
-                    <div style={{ display: 'flex', flexDirection: 'column' }}>
-                        <h4 style={{ marginBottom: '1.5rem' }}>Add Participant</h4>
-                        {
-                            allSelectedParticipants && participants.map((participant, index)=> (
-                                <div style={{ display: 'flex', alignItems: 'center' }}>
-                                    <label style={{ marginRight: '10px' }}>
-                                        <input
-                                        type="checkbox"
-                                        checked={allSelectedParticipants[index]?.selected || false}
-                                        onChange={() => handleCheckboxChange(index)}
-                                        style={{marginRight:'10px'}}
-                                        />
-                                        <img src={participant.profilePicture} alt="Profile Icon" /> <span>{participant.name}</span>
-                                    </label>
-                                    <hr/>
-                                </div>
-                            ))
-                        }
-                    </div>
+            <div className="container py-5 px-5 mb-5">
+                <h2><b>Hello, {name}!</b></h2>
+                <SearchBar/>
+                <div className="mt-4 mb-4">
+                    <Button title={" + Add Program "} navigate={() => navigate('/program/program-form')}/>
                 </div>
-            </MDBModalHeader>
-            <MDBModalFooter>
-                <Button title={"Cancel"} navigate={(e)=> toggleShow(e)} styling={buttonCancelStyle}/>
-                <Button title={"Confirm"} navigate={(e)=> assignParticipantToProgram(e)}/>
-            </MDBModalFooter>
-        </MDBModalContent>
-    </MDBModalDialog>
-</MDBModal>
+                {program?.admin ? 
+                <>
+                {program.admin.map((v)=>(<ProgramCard key={`admin${v.ID}`} title={v.Name} styling={cardStyle} programId={v.ID} isAdmin={true} toogleModalUpdate={toggleShow}/>))}
+                </>
+                : <></>}
+                {program?.panelist ? 
+                <>
+                <h3 style={{ marginTop: "2rem"}}>Panelist</h3>
+                {program.panelist.map((v)=>(<ProgramCard key={`panelist${v.ID}`} title={v.Name} styling={cardStyle} isJudge={true} programId={v.ID} toogleModalUpdate={toggleShow}/>))}
+                </>
+                : <></>}
+                {program?.mentor ? 
+                <>
+                <h3 style={{ marginTop: "2rem"}}>Mentor</h3>
+                {program.mentor.map((v)=>(<ProgramCard key={`mentor${v.ID}`} title={v.Name} styling={cardStyle} programId={v.ID} toogleModalUpdate={toggleShow}/>))}
+                </>
+                : <></>}
+                {program?.participant ? 
+                <>
+                <h3 style={{ marginTop: "2rem"}}>Mentee</h3>
+                {program.participant.map((v)=>(<ProgramCard key={`participant${v.ID}`} title={v.Name} styling={cardStyle} programId={v.ID} toogleModalUpdate={toggleShow}/>)) }
+                </>
+                : <></>}
+            </div>
+
+            <MDBModal show={isModalOut} setShow={setIsModalOut} >
+                <MDBModalDialog>
+                    <MDBModalContent>
+                        <MDBModalHeader>
+                            <div className="container" style={{ alignContent: 'flex-start'}}>
+                                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                    <h4 style={{ marginBottom: '1.5rem' }}>Add Participant</h4>
+                                    {
+                                        allSelectedParticipants && participants.map((participant, index)=> (
+                                            <div style={{ display: 'flex', alignItems: 'center' }}>
+                                                <label style={{ marginRight: '10px' }}>
+                                                    <input
+                                                    type="checkbox"
+                                                    checked={allSelectedParticipants[index]?.selected || false}
+                                                    onChange={() => handleCheckboxChange(index)}
+                                                    style={{marginRight:'10px'}}
+                                                    />
+                                                    <img src={participant.profilePicture} alt="Profile Icon" /> <span>{participant.name}</span>
+                                                </label>
+                                                <hr/>
+                                            </div>
+                                        ))
+                                    }
+                                </div>
+                            </div>
+                        </MDBModalHeader>
+                        <MDBModalFooter>
+                            <Button title={"Cancel"} navigate={(e)=> toggleShow(e)} styling={buttonCancelStyle}/>
+                            <Button title={"Confirm"} navigate={(e)=> assignParticipantToProgram(e)}/>
+                        </MDBModalFooter>
+                    </MDBModalContent>
+                </MDBModalDialog>
+            </MDBModal>
         </>
     )
 }

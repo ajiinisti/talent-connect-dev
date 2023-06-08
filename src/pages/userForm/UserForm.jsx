@@ -28,11 +28,11 @@ const UserForm = () => {
 
     return(
         <div className="container py-5 px-5 mb-5">
-            <h1><ArrowButton/><b>
+            <h2><ArrowButton/><b>
                 {
                     isUpdate ? " Edit User": " Add User"
                 }
-            </b></h1>
+            </b></h2>
             <form className="mt-4 px-4 py-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}} onSubmit={(e)=> handleSubmit(e, isUpdate)}>
                 <div className="mb-4">
                     <label htmlFor="name" className="form-label">Name</label>
