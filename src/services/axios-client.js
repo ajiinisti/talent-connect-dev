@@ -2,8 +2,9 @@ import axios from "axios"
 import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react'
+import { toast } from "react-toastify";
 
-const instance = axios.create({
+const axiosInstance = axios.create({
   baseURL: "/api",
 });
 const AxiosInterceptor = ({ children }) => {
@@ -22,14 +23,24 @@ const AxiosInterceptor = ({ children }) => {
 
             if (error.response.status === 401) {
                 logout()
+                toast.error("Login expired",{
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light"})
+                return Promise.resolve(error)
             }
 
             return Promise.reject(error);
         }
 
 
-        const ResInterceptor = instance.interceptors.response.use(resInterceptor, errInterceptor);
-        const ReqInterceptor = instance.interceptors.request.use((config) => {
+        const ResInterceptor = axiosInstance.interceptors.response.use(resInterceptor, errInterceptor);
+        const ReqInterceptor = axiosInstance.interceptors.request.use((config) => {
           const token = localStorage.getItem('token')
           if (token) {
               config.headers["Authorization"] = `Bearer ${token}`
@@ -39,12 +50,12 @@ const AxiosInterceptor = ({ children }) => {
       
     setIsSet(true)
 
-        return () => instance.interceptors.response.eject(ResInterceptor, ReqInterceptor);
+        return () => axiosInstance.interceptors.response.eject(ResInterceptor, ReqInterceptor);
 
-    }, [navigate])
+    }, [navigate, logout])
 
     return isSet && children
 }
 
-export default instance;
+export default axiosInstance;
 export { AxiosInterceptor }

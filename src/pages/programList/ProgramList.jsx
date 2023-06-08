@@ -11,17 +11,18 @@ import {
     MDBModalHeader,
     MDBModalFooter,
 } from 'mdb-react-ui-kit'
-import axiosInstance from "../../services/axios-client"
 import { useAuth } from "../../hooks/useAuth"
+import useProgram from "./useProgram"
+import useParticipant from "../../services/useParticipant"
 
 const ProgramList = () => {
     const navigate = useNavigate()
-    const [program,setProgram] = useState([])
+    const {program, getPrograms} = useProgram()
+    const {getParticipantList, participants} = useParticipant()
     const [name, setName] = useState("")
     const {getCurrentUser} = useAuth()
     const [isModalOut, setIsModalOut] = useState(false)
-    const [allParticipantList, setAllParticipantList] = useState([])
-    const [allSelectedParticipants, setAllSelectedParticipants] = useState(null);
+    const [allSelectedParticipants, setAllSelectedParticipants] = useState([]);
 
     const toggleShow = () => {
         setIsModalOut(!isModalOut)
@@ -53,22 +54,25 @@ const ProgramList = () => {
     }
 
     useEffect(()=>{
-          const getPrograms = async () => {
-              let res = await axiosInstance.get("auth/programs")
-              if (res.status === 200) {
-                setProgram(res.data.data)
-              } else if (res.status === 401) {
-                navigate("/login", {replace:true})
-              }
-          }
           getPrograms()
-          setName(getCurrentUser().FirstName)
-          setAllParticipantList([
-              { name: "Aji Inisti", profilePicture: DefaultProfileIcon},
-              { name: "Alwin Ihza", profilePicture: DefaultProfileIcon},
-              { name: "Ariel Nathania", profilePicture: DefaultProfileIcon},
-          ])
     }, [])
+
+    useEffect(()=>{  
+        setName(getCurrentUser().FirstName)
+    }, [getCurrentUser])
+
+    useEffect(() => { 
+        getParticipantList("participant")
+    }, [])
+
+    useEffect(() => {
+        const initialParticipant = participants.map((participant) => ({
+          ...participant,
+          selected: false,
+        }));
+        setAllSelectedParticipants(initialParticipant);
+    }, [participants]);
+
 
     return(
         <>
@@ -111,7 +115,7 @@ const ProgramList = () => {
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
                     <h4 style={{ marginBottom: '1.5rem' }}>Add Participant</h4>
                     {
-                        allSelectedParticipants && allParticipantList.map((participant, index)=> (
+                        allSelectedParticipants && participants.map((participant, index)=> (
                             <div style={{ display: 'flex', alignItems: 'center' }}>
                                 <label style={{ marginRight: '10px' }}>
                                     <input
