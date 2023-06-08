@@ -14,10 +14,13 @@ import {
     UserManagementIconNonActive
 } from "../../assets"
 import { useEffect, useState } from "react";
+import { useAuth } from "../../hooks/useAuth";
 
 const Sidebar = () => {
     const location = useLocation();
     const [activeNavLink, setActiveNavLink] = useState('');
+    const {logout, getCurrentRole} = useAuth()
+    const role = getCurrentRole()
     
     useEffect(() => {
         setActiveNavLink(location.pathname);
@@ -37,6 +40,7 @@ const Sidebar = () => {
                         </li>
                     </div>
                 </NavLink>
+                {role.includes("admin") &&
                 <NavLink to="/user-management" activeclassname="active" >
                     <div className="mt-1 navbar-div-item" >
                         <li>
@@ -45,6 +49,8 @@ const Sidebar = () => {
                         </li>
                     </div>
                 </NavLink>
+                }
+                {role.includes("participant") &&
                 <NavLink to="/evaluation-scoring" activeclassname="active">
                     <div className="mt-1 navbar-div-item" >
                         <li>
@@ -53,6 +59,8 @@ const Sidebar = () => {
                         </li>
                     </div> 
                 </NavLink>
+                }
+                {role.includes("panelist") &&
                 <NavLink to="/evaluations/id" activeclassname="active">
                     <div className="mt-1 navbar-div-item" >
                         <li>
@@ -61,6 +69,7 @@ const Sidebar = () => {
                         </li>
                     </div> 
                 </NavLink>
+                }
                 <NavLink to="/settings" activeclassname="active">
                     <div className="mt-1 navbar-div-item" >
                         <li>
