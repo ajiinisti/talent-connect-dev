@@ -5,9 +5,13 @@ const useParticipantEvaluation = () => {
     const [data, setData] = useState({})
     
     const getParticipantEvaluation = async (id) => {
-        let res = await axiosInstance.get("/participants/evaluation/"+id)
-        if(res.status === 200) {
-            setData(res.data.data)
+        try {
+            let res = await axiosInstance.get("/participants/evaluation/"+id)
+            if(res.status === 200) {
+                setData(res.data.data)
+            }
+        } catch (error) {
+            console.log(error);
         }
     }
 
