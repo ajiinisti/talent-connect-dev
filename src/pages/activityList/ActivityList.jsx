@@ -2,8 +2,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { DefaultProfileIcon } from "../../assets"
 import Button from "../../components/button/Button"
 import ActivityCard from "./ActivityCard"
-import { useEffect, useState } from "react"
-import axiosInstance from "../../services/axios-client"
+import { useEffect } from "react"
 import useActivityList from "./useActivityList"
 import { useAuth } from "../../hooks/useAuth"
 
@@ -48,16 +47,14 @@ const ActivityList = () => {
                         <Button title={"+ Add Activity"} navigate={() => navigate(`/program/${params.programId}/activity-form`)}/>
                     </div>
                     
-                    {activities?.map((activity)=>(
+                    {!role.includes("mentor") && activities?.map((activity)=>(
                         <div key={activity.Date}>
-                        <h4 className="mt-4">{activity.Date}</h4>
-
-                        {activity.Activities?.map((v)=>(
-                            <div style={{ marginTop: "1.5rem" }}>
-                                <ActivityCard title={v.Name} styling={cardStyle} activity={v} programId={params.programId} isMentoring={false}/>
-                            </div>
-                        ))}
-
+                            <h4 className="mt-4">{activity.Date}</h4>
+                            {activity.Activities?.map((v)=>(
+                                <div style={{ marginTop: "1.5rem" }}>
+                                    <ActivityCard title={v.Name} styling={cardStyle} activity={v} programId={params.programId} isMentoring={false}/>
+                                </div>
+                            ))}
                         </div>
                     ))}
 

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import DeleteModal from '../../components/modal/DeleteModal';
 import React from 'react';
+import useActivityList from './useActivityList';
 
 const ActivityCard = ({title, styling, activity, programId, isMentoring}) => {
     const navigate = useNavigate()
@@ -11,8 +12,8 @@ const ActivityCard = ({title, styling, activity, programId, isMentoring}) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [isDeleteModalOut, setIsDeleteModalOut] = useState(false)
     const toggleShowDeleteModal = () => setIsDeleteModalOut(!isDeleteModalOut);
-    // const isMentor = false
-    // const isMentee = true
+    const { deleteActivity, deleteMentoringSchedule} = useActivityList()
+    const deleteButton = isMentoring ? deleteMentoringSchedule: deleteActivity
 
     const handleItemClick = (type) => {
         if (type === "update") {
@@ -34,14 +35,10 @@ const ActivityCard = ({title, styling, activity, programId, isMentoring}) => {
         }
     };
 
-    const handleDeleteFunction = (event) => {
-        event.preventDefault()
+    const handleDeleteFunction = () => {
+        deleteButton(activity.ID)
+        window.location.reload()
     }
-
-    // const feedbackButton = {
-    //     color: '#A684F2',
-    //     backgroundColor: 'white'
-    // }
 
     useEffect(() => {
         document.addEventListener('click', handleClickOutside);
