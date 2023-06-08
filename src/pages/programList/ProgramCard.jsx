@@ -4,17 +4,16 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import DeleteModal from '../../components/modal/DeleteModal';
 
-const ProgramCard = ({title,styling,toogleModalUpdate}) => {
+const ProgramCard = ({title,styling, isJudge, programId, toogleModalUpdate, isAdmin}) => {
     const navigate = useNavigate()
     const dropdownRef = useRef(null);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const isJudge = false
     const [isDeleteModalOut, setIsDeleteModalOut] = useState(false)
     const toggleShowDeleteModal = () => setIsDeleteModalOut(!isDeleteModalOut);
 
     const handleItemClick = (id, type) => {
         console.log(id,type)
-        if (type === "update") {
+        if (type === "edit") {
           navigate(`/program/program-form/${id}`)
         } else if (type === "delete") {
           toggleDropdown()
@@ -62,10 +61,10 @@ const ProgramCard = ({title,styling,toogleModalUpdate}) => {
                   </div>
                   {
                     isJudge ? 
-                    <Link to={'/program/evaluate-participant/id'}>
+                    <Link to={`/program/evaluate-participant/${programId}`}>
                       <h5 style={{ marginRight: 'auto', marginTop: '0.5rem' }}>{title}</h5>
                     </Link> :
-                    <Link to={'/program/activity-list'}>
+                    <Link to={`/program/${programId}`}>
                       <h5 style={{ marginRight: 'auto', marginTop: '0.5rem' }}>{title}</h5>
                     </Link> 
                   }
@@ -75,7 +74,7 @@ const ProgramCard = ({title,styling,toogleModalUpdate}) => {
                     <BsPeople style={{ marginLeft: '0.2rem', marginBottom: '0.2rem', fontSize: '1.3rem'}} />
                   </div>
                   <span style={{ marginRight: '0.5rem', fontSize: '0.9rem'}}>23</span>
-                  <div className="dropdown" ref={dropdownRef}>
+                  {isAdmin && <div className="dropdown" ref={dropdownRef}>
                     <label htmlFor="dropdown-toggle" className="dropdown-icon" onClick={toggleDropdown}>
                       <FaEllipsisV style={{ marginBottom: '0.2rem'}}/>
                     </label>
@@ -84,15 +83,15 @@ const ProgramCard = ({title,styling,toogleModalUpdate}) => {
                           <button className="dropdown-item" onClick={() => handleItemClick('Item 1', "add")}>
                           Add Participant
                           </button>
-                          <button className="dropdown-item" onClick={() => handleItemClick('Item 2', "update")}>
-                          Update Program
+                          <button className="dropdown-item" onClick={() => handleItemClick('Item 2', "edit")}>
+                          Edit Program
                           </button>
                           <button className="dropdown-item" onClick={() => handleItemClick('Item 3', "delete")}>
                           Delete Program
                           </button>
                         </div>
                     )}
-                  </div>
+                  </div>}
                 </div>
             </div>
           </ul>

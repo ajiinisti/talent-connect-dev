@@ -6,8 +6,8 @@ const DropdownEval = ({id, isAspect, toogleModal}) => {
     const navigate = useNavigate()
     const dropdownRef = useRef(null);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const handleItemClick = (id, isAspect, type) => {
-        console.log(id,isAspect,type)
+    const handleItemClick = (isAspect, type) => {
+        console.log(isAspect,type)
         if (isAspect) {
           if (type === "update") {
             navigate(`/evaluation-scoring/evaluation-aspect-form/${id}`)
@@ -20,7 +20,7 @@ const DropdownEval = ({id, isAspect, toogleModal}) => {
             toggleDropdown()
           } else{
             toggleDropdown()
-            toogleModal("id","Category Name")
+            toogleModal()
           }
         }
         setIsDropdownOpen(false);
@@ -51,10 +51,10 @@ const DropdownEval = ({id, isAspect, toogleModal}) => {
             { 
                 isDropdownOpen && isAspect ?
                 <div className="dropdown-menu">
-                    <button className="dropdown-item" onClick={() => handleItemClick('Item 2', true, "update")}>
+                    <button className="dropdown-item" onClick={() => handleItemClick( true, "update")}>
                     Edit Evaluation Aspect
                     </button>
-                    <button className="dropdown-item" onClick={() => handleItemClick('Item 3', true, "delete")}>
+                    <button className="dropdown-item" onClick={() => handleItemClick(true, "delete")}>
                     Delete Evaluation Aspect
                     </button>
                 </div>:
@@ -63,13 +63,13 @@ const DropdownEval = ({id, isAspect, toogleModal}) => {
             {
                 isDropdownOpen && !isAspect ?
                 <div className="dropdown-menu">
-                    <button className="dropdown-item" onClick={() => handleItemClick('Item 2', false, "update")}>
+                    <button className="dropdown-item" onClick={() => handleItemClick( false, "update")}>
                     Edit Evaluation Category
                     </button>
-                    <button className="dropdown-item" onClick={() => handleItemClick('Item 3', false, "delete")}>
+                    <button className="dropdown-item" onClick={() => handleItemClick(false, "delete")}>
                     Delete Evaluation Category
                     </button>
-                    <button className="dropdown-item" onClick={() => handleItemClick('Item 1', false, "add")}>
+                    <button className="dropdown-item" onClick={() => handleItemClick( false, "add")}>
                     Assign to Program
                     </button>
                 </div> :

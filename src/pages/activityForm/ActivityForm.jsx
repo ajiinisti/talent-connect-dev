@@ -1,8 +1,9 @@
-import { BsArrowLeft } from "react-icons/bs"
 import Button from "../../components/button/Button"
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import Select from 'react-select';
+import ArrowButton from "../../components/button/ArrowButton";
+import CancelButton from "../../components/button/CancelButton";
 
 const ActivityForm = () => {
     const params = useParams()
@@ -15,16 +16,6 @@ const ActivityForm = () => {
         {value: "ID3", label:"Aji Wijaya"},
     ]
 
-    const buttonCancelStyle = {
-        borderRadius : '5px',
-        height: '40px',
-        backgroundColor: 'white',
-        color: 'black',
-        border: '0.5px solid #d3d3d3',
-        outline: 'gray',
-        marginLeft: '1rem'
-    }
-
     useEffect(()=> {
         if(params.id) {
             setUpdate(true)
@@ -32,11 +23,11 @@ const ActivityForm = () => {
     },[params.id])
 
     return(
-        <div className="container py-3 px-5">
+        <div className="container py-5 px-5 mb-5">
             <h1 className="mt-2"><b>SMM ITDP Batch 3</b></h1>
             <hr/>
             <div className="row mt-4 px-3">
-                <h4><BsArrowLeft/> 
+                <h4><ArrowButton/>
                 {
                     isUpdate ? " Edit Activity": " Add Activity"
                 }
@@ -44,7 +35,7 @@ const ActivityForm = () => {
                 <form className="mt-4 px-4 py-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}}>
                     <div className="mb-4">
                         <label htmlFor="activityTitle" className="form-label">Title</label>
-                        <input type="email" className="form-control" id="activityTitle" placeholder="Enter title"/>
+                        <input type="text" className="form-control" id="activityTitle" placeholder="Enter title"/>
                     </div>
                     <div className="mb-4">
                         <label htmlFor="link" className="form-label">Link</label>
@@ -82,11 +73,11 @@ const ActivityForm = () => {
                     isUpdate ? 
                     <>
                         <Button title={"Save Changes"} navigate={() => (0)}/>
-                        <Button title={"Cancel"} navigate={() => (0)} styling={buttonCancelStyle}/>
+                        <CancelButton/>
                     </>: 
                     <>
                         <Button title={"Add Activity"} navigate={() => (0)}/>
-                        <Button title={"Cancel"} navigate={() => (0)} styling={buttonCancelStyle}/>
+                        <CancelButton/>
                     </>
                 }
                 </form>

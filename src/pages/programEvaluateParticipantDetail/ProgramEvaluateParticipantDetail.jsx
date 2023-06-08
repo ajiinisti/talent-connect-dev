@@ -1,13 +1,16 @@
-import { BsArrowLeft } from "react-icons/bs"
 import Button from "../../components/button/Button"
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import Select from 'react-select'
 import { CFormCheck } from '@coreui/react'
+import ArrowButton from "../../components/button/ArrowButton"
+import CancelButton from "../../components/button/CancelButton"
+import useEvaluate from "./useEvaluate"
 
 const ProgramEvaluateParticipantDetail = () => {
     const params = useParams()
-    const [isUpdate, setUpdate] = useState(false)
+    const {questions, payload, onInputChange, onSubmit, getQuestions} = useEvaluate()
+    const [isDetail, setDetail] = useState(false)
 
     const evaluationPeriod = [
         { value: 'mid', label: 'Mid Evaluation' },
@@ -28,45 +31,71 @@ const ProgramEvaluateParticipantDetail = () => {
         outline: 'gray',
         marginLeft: '1rem'
     }
-
     useEffect(()=> {
         if(params.id) {
-            setUpdate(true)
+            setDetail(true)
         }
     },[params.id])
 
+    useEffect(()=> {
+        getQuestions(params.programId, params.evalId)
+    }, [getQuestions, params.programId, params.evalId])
+
+    const createOption = (question, num, v, i, j) => {
+        const rows = []
+        for (let index = 0; index < num; index++) {
+            rows.push(<CFormCheck key={index} inline type="radio" name={`qes-${v.ID}-${question.ID}`} id={`qes-${v.ID}-${question.ID}-${index}`} value={index+1} label={index+1} onChange={
+                (e) => {
+                   onInputChange(e, i, j)
+            }} checked={payload.QuestionCategories[i].QuestionList[j].Answer == index+1}/>)     
+        }
+        return (rows)
+    }
+
     return(
-        <div className="container py-3 px-5 mb-5">
-            { isUpdate }
+        <div className="container py-5 px-5 mb-5">
+            { isDetail }
             <h1 className="mt-2"><b>SMM ITDP Batch 3</b></h1>
             <hr/>
             <div className="row mt-4 px-3">
-                <h4><BsArrowLeft/> Ariel Nathania </h4>
+                <h4><ArrowButton/> Ariel Nathania </h4>
                 <form className="mt-4 px-4 py-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}}>
                     <div className="mb-4">
                         <label htmlFor="evaluationPeriod" className="form-label">Evaluation Period</label>
                         <Select options={evaluationPeriod} id="evaluationPeriod"/>
                     </div>
-                    <div className="mb-4">
-                        <label htmlFor="description" className="form-label">Feature</label>
-                        <textarea name="Text1" rows="5" id="description" className="form-control">Feature</textarea>
-                    </div>  
-                    <div className="mb-4">
-                        <label htmlFor="link" className="form-label m">Security</label>
-                        <div>
-                            <CFormCheck inline type="radio" name="inlineRadioOptions" id="inlineCheckbox1" value="option1" label="1"/>
-                            <CFormCheck inline type="radio" name="inlineRadioOptions" id="inlineCheckbox2" value="option2" label="2"/>
-                            <CFormCheck inline type="radio" name="inlineRadioOptions" id="inlineCheckbox3" value="option3" label="3"/>
-                            <CFormCheck inline type="radio" name="inlineRadioOptions" id="inlineCheckbox4" value="option4" label="4"/>
-                            <CFormCheck inline type="radio" name="inlineRadioOptions" id="inlineCheckbox5" value="option5" label="5"/>
+                    {questions.map((v, i)=>(
+                        <div key={v.ID}>
+                            <h2>{v.QuestionCategory.Name}</h2>
+                            <p style={{fontSize:'11pt'}}>{v.QuestionCategory.Description}</p>
+                            {v.QuestionCategory.questions.map((question, j) =>(
+                            <div key={question.ID} className="mb-4">
+                                <label htmlFor={`qes-${v.ID}-${question.ID}`} className="form-label">{question.Question}</label>
+                                {question.Type === "rating" ? (
+                                <div>
+                                    {createOption(question, question.Option, v, i, j)}
+                                </div>
+                                ) : (
+                                    <textarea rows="5" name={`qes-${v.CategoryID}-${question.ID}`} className="form-control" onChange={(e)=>onInputChange(e,i,j)}></textarea>
+                                )}
+                                
+                            </div>  
+                            )
+
+                            )}
+
                         </div>
-                    </div>
+
+                    ))}
                     <div className="mb-4">
                         <label htmlFor="evaluationResult" className="form-label">Evaluation Period</label>
                         <Select options={evaluationResult} id="evaluationResult"/>
-                    </div>           
-                    <Button title={"Add Evaluation"} navigate={() => (0)}/>
-                    <Button title={"Cancel"} navigate={() => (0)} styling={buttonCancelStyle}/>
+                    </div> 
+                    <Button title={"Add Evaluation"} navigate={(e) => {
+                        e.preventDefault()
+                        onSubmit()
+                        }}/>
+                        <CancelButton/>
                 </form>
             </div>
         </div>
