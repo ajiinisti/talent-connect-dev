@@ -70,7 +70,7 @@ const EvaluationCategoryForm = () => {
                 <form className="mt-4 px-4 py-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}} onSubmit={(e)=>handleSubmit(e,isUpdate,aspectList)}>
                     <div className="mb-4">
                         <label htmlFor="evaluationAspectTitle" className="form-label">Title</label>
-                        <input type="text" className="form-control evaluation-aspect-form " id="evaluationAspectTitle" name="Name" value={payload?.Name}  placeholder="Enter title" onChange={(e)=>handleOnChange(e)}/>
+                        <input required type="text" className="form-control evaluation-aspect-form " id="evaluationAspectTitle" name="Name" value={payload?.Name}  placeholder="Enter title" onChange={(e)=>handleOnChange(e)}/>
                     </div>
                     <div className="mb-4" style={{display: 'flex', justifyContent: 'space-between'}}>
                         <label htmlFor="description" className="form-label">Aspect</label>

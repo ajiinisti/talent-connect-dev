@@ -36,15 +36,15 @@ const UserForm = () => {
             <form className="mt-4 px-4 py-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}} onSubmit={(e)=> handleSubmit(e, isUpdate)}>
                 <div className="mb-4">
                     <label htmlFor="name" className="form-label">Name</label>
-                    <input type="text" className="form-control evaluation-aspect-form " value={payload.Name} onChange={(e)=>onChangeHandle(e)} id="name" name="Name" placeholder="Enter name"/>
+                    <input required type="text" className="form-control evaluation-aspect-form " value={payload.Name} onChange={(e)=>onChangeHandle(e)} id="name" name="Name" placeholder="Enter name"/>
                 </div>
                 <div className="mb-4">
                     <label htmlFor="email" className="form-label">Email</label>
-                    <input type="email" className="form-control evaluation-aspect-form " value={payload.Email} onChange={(e)=>onChangeHandle(e)} id="email" name="Email" placeholder="Enter email"/>
+                    <input required type="email" className="form-control evaluation-aspect-form " value={payload.Email} onChange={(e)=>onChangeHandle(e)} id="email" name="Email" placeholder="Enter email"/>
                 </div>
                 <div className="mb-4">
                     <label htmlFor="role" className="form-label">Role</label>
-                    <Select options={options} id="role" value={selectedOption} placeholder="Select role" onChange={(e)=>onSelectChange(e) }/>
+                    <Select required options={options} id="role" value={selectedOption} placeholder="Select role" onChange={(e)=>onSelectChange(e) }/>
                 </div>
                     <Button title={ isUpdate ? "Save Changes" : "Add User"}/>
                     <CancelButton/>

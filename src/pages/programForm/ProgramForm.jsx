@@ -46,6 +46,7 @@ const ProgramForm = () => {
                 <div className="mb-4">
                     <label htmlFor="programTitle" className="form-label">Title</label>
                     <input 
+                        required
                         type="text" 
                         name="name"
                         className="form-control program-form " 
@@ -57,6 +58,7 @@ const ProgramForm = () => {
                 <div className="mb-4">
                     <label htmlFor="startDate" className="form-label">Start Date</label>
                     <input 
+                        required
                         type="date" 
                         name="startDate"
                         className="form-control program-form " 
@@ -68,6 +70,7 @@ const ProgramForm = () => {
                 <div className="mb-4">
                     <label htmlFor="endDate" className="form-label">End Date</label>
                     <input 
+                        required
                         type="date" 
                         name="endDate"
                         className="form-control program-form " 

@@ -77,6 +77,7 @@ const ActivityForm = () => {
                     <div className="mb-4">
                         <label htmlFor="activityTitle" className="form-label">Title</label>
                         <input 
+                            required
                             type="text" 
                             name="name"
                             className="form-control" 
@@ -89,6 +90,7 @@ const ActivityForm = () => {
                     <div className="mb-4">
                         <label htmlFor="link" className="form-label">Link</label>
                         <input 
+                            required
                             type="link" 
                             name="link" 
                             className="form-control" 
@@ -101,6 +103,7 @@ const ActivityForm = () => {
                     <div className="mb-4">
                         <label htmlFor="date" className="form-label">Start Date</label>
                         <input type="datetime-local" 
+                            required
                             className="form-control" id="date" 
                             name="startDate"
                             placeholder="DD/MM/YYYY"
@@ -120,6 +123,7 @@ const ActivityForm = () => {
                         <div className="mb-4">
                             <label htmlFor="participant" className="form-label">Participant</label>
                             <Select
+                                required
                                 isMulti
                                 name="participant"
                                 options={participants}
@@ -133,6 +137,7 @@ const ActivityForm = () => {
                     <div className="mb-4">
                         <label htmlFor="description" className="form-label">Description</label>
                         <textarea 
+                            required
                             rows="5" 
                             id="description" 
                             name="description" 
