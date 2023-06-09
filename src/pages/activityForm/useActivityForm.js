@@ -1,6 +1,7 @@
 import { useState } from "react"
 import axiosInstance from "../../services/axios-client"
 import { useNavigate } from "react-router-dom"
+import { toast } from "react-toastify"
 
 const useActivityForm = () => {
     const navigate = useNavigate()
@@ -24,11 +25,15 @@ const useActivityForm = () => {
 
     // Fetch Mentor Mentee (mentoring schedule)
     const getMentee = async (id) => {
-        let res = await axiosInstance.get("/mentor-mentees/"+id)
-        if(res.status === 200) {
-            return res.data.data
+        try {
+            let res = await axiosInstance.get("/mentor-mentees/"+id)
+            if(res.status === 200) {
+                return res.data.data
+            }
+            return 
+        } catch (error) {
+            toast.error(error.response.data.status.description)
         }
-        return 
     }
 
     const fetchMentorMentee = async(id) => {
@@ -61,11 +66,15 @@ const useActivityForm = () => {
 
     // Fetch Mentoring Schedule Update Form
     const getMentoringScheduleById = async(id) => {
-        let res = await axiosInstance.get("/mentoring-schedules/"+id)
-        if(res.status === 200) {
-            return res.data.data
+        try {
+            let res = await axiosInstance.get("/mentoring-schedules/"+id)
+            if(res.status === 200) {
+                return res.data.data
+            }
+            return 
+        } catch (error) {
+            toast.error(error.response.data.status.description)
         }
-        return 
     }
 
     const fetchActivityMentoring = async(id) => {
@@ -94,11 +103,16 @@ const useActivityForm = () => {
 
     // Fetch Activity Update Form
     const getActivityById = async (id) => {
-        let res = await axiosInstance.get("/activities/"+id)
-        if(res.status === 200) {
-            return res.data.data
+        try {
+            let res = await axiosInstance.get("/activities/"+id)
+            if(res.status === 200) {
+                return res.data.data
+            }
+            return 
+            
+        } catch (error) {
+            toast.error(error.response.data.status.description)
         }
-        return 
     }
 
     const fetchActivityProgram = async(id) => {
@@ -130,40 +144,59 @@ const useActivityForm = () => {
     }
 
     const postMentoringSchedule = async(data, programId) => {
-        const newData = preProcessingData(data)
-        let res = await axiosInstance.post("/mentoring-schedules", newData)
-        if(res.status === 200) {
-            navigate(-1)
+        try {
+            const newData = preProcessingData(data)
+            let res = await axiosInstance.post("/mentoring-schedules", newData)
+            if(res.status === 200) {
+                navigate(-1)
+            }
+            
+        } catch (error) {
+            toast.error(error.response.data.status.description)
         }
     }
 
     const postActivity = async(data, programId) => {
-        const newData = preProcessingData(data)
-        let res = await axiosInstance.post("/activities", {
-            ...newData,
-            ProgramID : programId
-        })
-        if(res.status === 200) {
-            navigate(-1)
+        try {
+            const newData = preProcessingData(data)
+            let res = await axiosInstance.post("/activities", {
+                ...newData,
+                ProgramID : programId
+            })
+            console.log(res)
+            if(res.status === 200) {
+                navigate(-1)
+            }
+            
+        } catch (error) {
+            toast.error(error.response.data.status.description)
         }
     }
 
     const putMentoringSchedule = async(data, programId) => {
-        const newData = preProcessingData(data)
-        let res = await axiosInstance.put("/mentoring-schedules", newData)
-        if(res.status === 200) {
-            navigate(-1)
+        try {
+            const newData = preProcessingData(data)
+            let res = await axiosInstance.put("/mentoring-schedules", newData)
+            if(res.status === 200) {
+                navigate(-1)
+            }
+        } catch (error) {
+            toast.error(error.response.data.status.description)
         }
     }
 
     const putActivity = async(data, programId) => {
-        let res = await axiosInstance.put("/activities", {
-            ...data,
-            ProgramID : programId,
-            startDate: new Date(data.startDate).toISOString(),
-        })
-        if(res.status === 200) {
-            navigate(-1)
+        try {
+            let res = await axiosInstance.put("/activities", {
+                ...data,
+                ProgramID : programId,
+                startDate: new Date(data.startDate).toISOString(),
+            })
+            if(res.status === 200) {
+                navigate(-1)
+            }
+        } catch (error) {
+            toast.error(error.response.data.status.description)
         }
     }
 

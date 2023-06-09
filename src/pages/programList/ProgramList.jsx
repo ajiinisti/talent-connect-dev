@@ -14,22 +14,48 @@ import {
 import { useAuth } from "../../hooks/useAuth"
 import useProgram from "./useProgram"
 import useParticipant from "../../services/useParticipant"
+import axiosInstance from "../../services/axios-client"
+import { toast } from "react-toastify"
 
 const ProgramList = () => {
     const navigate = useNavigate()
-    const {program, getPrograms} = useProgram()
+    const {program, getPrograms, participantId} = useProgram()
     const {getParticipantList, participants} = useParticipant()
     const [name, setName] = useState("")
     const {getCurrentUser} = useAuth()
     const [isModalOut, setIsModalOut] = useState(false)
     const [allSelectedParticipants, setAllSelectedParticipants] = useState([]);
+    const [index, setIndex] = useState(0)
 
-    const toggleShow = () => {
+    const toggleShow = (i) => {
         setIsModalOut(!isModalOut)
+        setIndex(i)
+        
+        const initialParticipant = participants.filter((participant) => 
+            !participantId[i]?.includes(participant.id)
+        );
+          setAllSelectedParticipants(initialParticipant)
     }
 
-    const assignParticipantToProgram = (e) => {
+    const assignParticipantToProgram = async (e) => {
         e.preventDefault()
+        let selected = allSelectedParticipants.filter((v)=>v.selected)
+        for (const select of selected) {
+            try {
+                let payload = {
+                    ProgramId: program.admin[index].ID,
+                    UserId : select.id
+                }
+                let res = await axiosInstance.post("participants", payload)
+                if (res.status === 200){
+                    toast(`${select.name} successfully added to ${program.admin[index].Name}`)
+                }
+            } catch (error) {
+                toast.error(error.response.data.status.description)
+            }
+        }
+        toggleShow(0)
+        await getPrograms()
     }
 
     const handleCheckboxChange = (index) => {
@@ -84,25 +110,25 @@ const ProgramList = () => {
                 </div>
                 {program?.admin ? 
                 <>
-                {program.admin.map((v)=>(<ProgramCard key={`admin${v.ID}`} title={v.Name} styling={cardStyle} programId={v.ID} isAdmin={true} toogleModalUpdate={toggleShow}/>))}
+                {program.admin.map((v, i)=>(<ProgramCard key={`admin${v.ID}`} title={v.Name} styling={cardStyle} programId={v.ID} isAdmin={true} toogleModalUpdate={()=>toggleShow(i)} participant={v.participants}/>))}
                 </>
                 : <></>}
                 {program?.panelist ? 
                 <>
                 <h3 style={{ marginTop: "2rem"}}>Panelist</h3>
-                {program.panelist.map((v)=>(<ProgramCard key={`panelist${v.ID}`} title={v.Name} styling={cardStyle} isJudge={true} programId={v.ID} toogleModalUpdate={toggleShow}/>))}
+                {program.panelist.map((v)=>(<ProgramCard key={`panelist${v.ID}`} title={v.Name} styling={cardStyle} isJudge={true} programId={v.ID} participant={v.participants} toogleModalUpdate={toggleShow}/>))}
                 </>
                 : <></>}
                 {program?.mentor ? 
                 <>
                 <h3 style={{ marginTop: "2rem"}}>Mentor</h3>
-                {program.mentor.map((v)=>(<ProgramCard key={`mentor${v.ID}`} title={v.Name} styling={cardStyle} programId={v.ID} toogleModalUpdate={toggleShow}/>))}
+                {program.mentor.map((v)=>(<ProgramCard key={`mentor${v.ID}`} title={v.Name} styling={cardStyle} programId={v.ID} participant={v.participants} toogleModalUpdate={toggleShow}/>))}
                 </>
                 : <></>}
                 {program?.participant ? 
                 <>
                 <h3 style={{ marginTop: "2rem"}}>Mentee</h3>
-                {program.participant.map((v)=>(<ProgramCard key={`participant${v.ID}`} title={v.Name} styling={cardStyle} programId={v.ID} toogleModalUpdate={toggleShow}/>)) }
+                {program.participant.map((v)=>(<ProgramCard key={`participant${v.ID}`} title={v.Name} styling={cardStyle} programId={v.ID} participant={v.participants} toogleModalUpdate={toggleShow}/>)) }
                 </>
                 : <></>}
             </div>
@@ -115,7 +141,7 @@ const ProgramList = () => {
                                 <div style={{ display: 'flex', flexDirection: 'column' }}>
                                     <h4 style={{ marginBottom: '1.5rem' }}>Add Participant</h4>
                                     {
-                                        allSelectedParticipants && participants.map((participant, index)=> (
+                                        allSelectedParticipants && allSelectedParticipants.map((participant, index)=> (
                                             <div style={{ display: 'flex', alignItems: 'center' }}>
                                                 <label style={{ marginRight: '10px' }}>
                                                     <input

@@ -1,5 +1,6 @@
 import { useState } from "react"
 import axiosInstance from "../../services/axios-client"
+import { toast } from "react-toastify"
 
 const useUserAssign = () => {
     const [programs, setProgram] = useState([])
@@ -11,7 +12,7 @@ const useUserAssign = () => {
                 setProgram(res.data.data)
             }
         } catch (error) {
-            
+            toast.error(error.response.data.status.description)
         }
     }
 

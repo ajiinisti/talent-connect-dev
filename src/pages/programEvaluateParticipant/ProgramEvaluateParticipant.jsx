@@ -49,8 +49,8 @@ const ProgramEvaluateParticipant = () => {
                         }} type="button" title={<h6>Final Evaluation</h6>} styling={buttonEvalStyle}/>
                 </div>
             </div>
-            <span className={active == "Mid" ? "line-evaluation-purple" : "line-evaluation"}/>
-            <span className={active == "Final" ? "line-evaluation-purple" : "line-evaluation"}/>
+            <span className={active==="Mid" ? "line-evaluation-purple" : "line-evaluation"}/>
+            <span className={active==="Final" ? "line-evaluation-purple" : "line-evaluation"}/>
             <span className="line-rest"/>
 
             <h4 className="mt-4">Need to be Evaluated</h4>

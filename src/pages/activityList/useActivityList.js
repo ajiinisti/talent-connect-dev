@@ -1,6 +1,7 @@
 import { useState } from "react"
 import moment from "moment"
 import axiosInstance from "../../services/axios-client"
+import { toast } from "react-toastify"
 
 const useActivityList = () => {
     const [programs, setPrograms] = useState({})
@@ -14,8 +15,8 @@ const useActivityList = () => {
                 setPrograms(res.data.data.Program)
                 setActivities(res.data.data.Activity)
             }
-        } catch(e) {
-            console.log(e);
+        } catch(error) {
+            toast.error(error.response.data.status.description)
         }
     }
 
@@ -31,7 +32,7 @@ const useActivityList = () => {
             })
             setMentoring(mentoringUpdated)
         } catch (error) {
-            console.log(error)
+            toast.error(error.response.data.status.description)
         }
     }
 
@@ -47,7 +48,7 @@ const useActivityList = () => {
             })
             setMentoring(mentoringUpdated)
         } catch (error) {
-            console.log(error)
+            toast.error(error.response.data.status.description)
         }
     }
 
@@ -56,7 +57,7 @@ const useActivityList = () => {
             let res = await axiosInstance.delete(`/activities/${id}`)
             console.log(res)
         } catch (error) {
-            console.log(error)
+            toast.error(error.response.data.status.description)
         }
     }
 
@@ -65,7 +66,7 @@ const useActivityList = () => {
             let res = await axiosInstance.delete(`/mentoring-schedules/${id}`)
             console.log(res)
         } catch (error) {
-            console.log(error)
+            toast.error(error.response.data.status.description)
         }
     }
 

@@ -1,5 +1,6 @@
 import { useState } from "react"
 import axiosInstance from "../../services/axios-client"
+import { toast } from "react-toastify"
 
 const useParticipantEvaluation = () => {
     const [data, setData] = useState({})
@@ -11,7 +12,7 @@ const useParticipantEvaluation = () => {
                 setData(res.data.data)
             }
         } catch (error) {
-            console.log(error);
+            toast.error(error.response.data.status.description)
         }
     }
 
