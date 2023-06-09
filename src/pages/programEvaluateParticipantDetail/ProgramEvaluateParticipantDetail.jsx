@@ -63,10 +63,10 @@ const ProgramEvaluateParticipantDetail = () => {
             <div className="row mt-4 px-3">
                 <h4><ArrowButton/> {mentee.name} </h4>
                 <form className="mt-4 px-4 py-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}}>
-                    <div className="mb-4">
+                    {/* <div className="mb-4">
                         <label htmlFor="evaluationPeriod" className="form-label">Evaluation Period</label>
-                        <Select options={evaluationPeriod} isDisabled value={period} id="evaluationPeriod"/>
-                    </div>
+                        <Select options={evaluationPeriod} id="evaluationPeriod"/>
+                    </div> */}
                     {questions.map((v, i)=>(
                         <div key={v.ID}>
                             <h2>{v.QuestionCategory.Name}</h2>
