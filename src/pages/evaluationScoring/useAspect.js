@@ -10,12 +10,14 @@ const useAspect = () => {
     const getProgram = async () => {
         
         try {
-            let res = await axiosInstance.get("/programs")
+            let res = await axiosInstance.get("/auth/programs")
             if (res.status === 200) {
-                setAllProgram(res.data.data.map((v)=>({value: v.ID, label: v.Name})))
+                const newData = res.data.data.admin.map((v)=>({value: v.ID, label: v.Name}))
+                setAllProgram(newData)
             }
         } catch (error) {
-            console.log(error);
+            console.log(error)
+            toast.error("Cannot get programs")
         }
     }
 
@@ -24,7 +26,7 @@ const useAspect = () => {
             let res = await axiosInstance.get("/questions")
             if (res.status === 200) setAspect(res.data.data)
         } catch (error) {
-            console.log(error);
+            toast.error(error.response.data.status.description)
         }
     }
     const getCategory = async () =>{
@@ -35,7 +37,7 @@ const useAspect = () => {
                 return {}
             }
         } catch (error) {
-            console.log(error);
+            toast.error(error.response.data.status.description)
         }
     }
 
@@ -56,7 +58,7 @@ const useAspect = () => {
             let res = await axiosInstance.delete(`/questions/${id}`)
             console.log(res)
         } catch (error) {
-            console.log(error)
+            toast.error(error.response.data.status.description)
         }
     }
 
@@ -65,7 +67,7 @@ const useAspect = () => {
             let res = await axiosInstance.delete(`/category/questions/${id}`)
             console.log(res)
         } catch (error) {
-            console.log(error)
+            toast.error(error.response.data.status.description)
         }
     }
 

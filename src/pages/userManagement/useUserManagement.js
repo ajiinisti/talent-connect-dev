@@ -1,5 +1,6 @@
 import { useState } from "react"
 import axiosInstance from "../../services/axios-client"
+import { toast } from "react-toastify"
 
 const useUserManagement = () => {
     const [users, setUsers] = useState([])
@@ -12,7 +13,7 @@ const useUserManagement = () => {
                 setUsers(data)
             }
         } catch (error) {
-            
+            toast.error(error.response.data.status.description)
         }
     }
     return {

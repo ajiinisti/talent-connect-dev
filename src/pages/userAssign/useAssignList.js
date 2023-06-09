@@ -13,7 +13,7 @@ const useAssignList = () => {
     
 
     const checkSelected = (selected, v) => {
-        let sel = selected.find((w) => w.id == v.id)
+        let sel = selected.find((w) => w.id===v.id)
         if (sel) return true
         return false
     }

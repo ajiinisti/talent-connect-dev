@@ -14,7 +14,7 @@ const useAspectForm = () => {
     const getQuestions = async (id) => {
         try {
             let res = await axiosInstance.get("questions/"+id)
-            if (res.status == 200) {
+            if (res.status===200) {
                 let pay = {}
                 let select = {}
                 let data = res.data.data
@@ -33,7 +33,7 @@ const useAspectForm = () => {
             }
             
         } catch (error) {
-            toast.error(error)
+            toast.error(error.response.data.status.description)
         }
     }
 
@@ -74,7 +74,7 @@ const useAspectForm = () => {
             }
             }
         } catch (error) {
-            toast.error(error.response)
+            toast.error(error.response.data.status.description)
         }
     }
     return {

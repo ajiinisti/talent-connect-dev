@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useAuth } from "../../hooks/useAuth"
 import axiosInstance from "../../services/axios-client"
+import { toast } from "react-toastify"
 
 const useLogin = () => {
     
@@ -16,12 +17,13 @@ const useLogin = () => {
         e.preventDefault()
         try {
             let res = await axiosInstance.post("/login", payload)
-            if (res.status == 200){
+            if (res.status===200){
                 login(res.data.data.AccessToken, JSON.stringify(res.data.data.TokenModel) )
             } else {
                 // insert notif
             }
         } catch (error) {
+            toast.error(error.response.data.status.description)
         }
             
     }

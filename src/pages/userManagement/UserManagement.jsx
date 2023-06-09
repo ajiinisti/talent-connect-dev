@@ -11,9 +11,10 @@ const UserManagement = () => {
     useEffect(()=>{
         getUser()
     }, [])
+    
     return(
         <div className="py-5 px-5 mb-5">
-            <h2><b>User Management</b></h2>
+            <h2 className='mb-4'><b>User Management</b></h2>
             <Button title={"+ Add User"} navigate={() => navigate('/user-management/user-form')}/>
             <div className="mt-4 px-3" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}}>
                 <div className="row mt-4 px-4 py-3">
@@ -39,7 +40,7 @@ const UserManagement = () => {
                     users.map((v)=>(
                         <UserCard name={v.FirstName + " " + v.LastName} email={v.Email} role={v.Roles[0].Name} id={v.ID}/>
                     ))
-                }
+                } 
             </div>
         </div>
     )
