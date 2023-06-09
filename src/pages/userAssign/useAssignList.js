@@ -100,7 +100,7 @@ const useAssignList = () => {
                     participantId: user.participantId,
                     panelistId: panelistId
                 }
-                let res = await axiosInstance.post("evaluations", payload)
+                let res = await axiosInstance.post("evaluation", payload)
                 if (res.status === 200) {
                     toast(`Add ${user.name} Success`)
                 } 
