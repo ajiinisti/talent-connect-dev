@@ -63,11 +63,12 @@ const useProgramForm = () => {
     const fetchData = async(id) => {
         const getData = await getProgramById(id)
         setData({
-            id: getData.ID,
-            name: getData.Name,
-            startDate: getData.StartDate,
-            endDate: getData.EndDate
+            id: getData.Program.ID,
+            name: getData.Program.Name,
+            startDate: getData.Program.startDate,
+            endDate: getData.Program.endDate
         })
+        console.log(getData)
     }
 
     return {

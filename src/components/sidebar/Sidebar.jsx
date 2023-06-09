@@ -40,7 +40,7 @@ const Sidebar = () => {
                         </li>
                     </div>
                 </NavLink>
-                {role && role.includes("admin") &&
+                {role?.includes("admin") &&
                 <NavLink to="/user-management" activeclassname="active" >
                     <div className="mt-1 navbar-div-item" >
                         <li>

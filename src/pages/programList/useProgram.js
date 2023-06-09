@@ -4,16 +4,25 @@ import { toast } from "react-toastify"
 
 const useProgram = () => {
     const [program, setProgram] = useState([])
+    const [participantId, setParticipantId] = useState([])
     
     const getPrograms = async () => {
         try {
             let res = await axiosInstance.get("auth/programs")
             if (res.status === 200) {
-                console.log(res.data.data)
-                setProgram(res.data.data)
+              const data = res.data.data
+              setProgram(data)
+              if(data.admin){
+                  let da = data.admin.map((d)=> {
+                    if (!d.participants) return []
+                    return d.participants.map((v)=>(v.UserID)
+                    )
+                })
+                setParticipantId(da)
+              }
             }
         } catch (error) {
-            toast.error(error.response.data.status.description)
+            console.log(error)
         }
     }
     const deleteProgram = async(id) => {
@@ -29,6 +38,7 @@ const useProgram = () => {
         program,
         getPrograms,
         deleteProgram,
+        participantId
     }
 }
 

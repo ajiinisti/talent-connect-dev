@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import DeleteModal from '../../components/modal/DeleteModal';
 import useProgram from './useProgram';
 
-const ProgramCard = ({title, styling, isJudge, programId, toogleModalUpdate, isAdmin}) => {
+const ProgramCard = ({title, styling, isJudge, programId, toogleModalUpdate, isAdmin, participant}) => {
   const navigate = useNavigate()
   const dropdownRef = useRef(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -14,7 +14,6 @@ const ProgramCard = ({title, styling, isJudge, programId, toogleModalUpdate, isA
   const {deleteProgram} = useProgram()
 
   const handleItemClick = (id, type) => {
-    console.log(id,type)
     if (type === "edit") {
       navigate(`/program/program-form/${programId}`)
     } else if (type === "delete") {
@@ -76,7 +75,7 @@ const ProgramCard = ({title, styling, isJudge, programId, toogleModalUpdate, isA
                 <div className="mirror-icon">
                   <BsPeople style={{ marginLeft: '0.2rem', marginBottom: '0.2rem', fontSize: '1.3rem'}} />
                 </div>
-                <span style={{ marginRight: '0.5rem', fontSize: '0.9rem'}}>23</span>
+                <span style={{ marginRight: '0.5rem', fontSize: '0.9rem'}}>{participant ? participant.length : 0}</span>
                 {isAdmin && <div className="dropdown" ref={dropdownRef}>
                   <label htmlFor="dropdown-toggle" className="dropdown-icon" onClick={toggleDropdown}>
                     <FaEllipsisV style={{ marginBottom: '0.2rem'}}/>
