@@ -13,7 +13,7 @@ const UserManagement = () => {
     }, [])
     return(
         <div className="py-5 px-5 mb-5">
-            <h2>User Management</h2>
+            <h2><b>User Management</b></h2>
             <Button title={"+ Add User"} navigate={() => navigate('/user-management/user-form')}/>
             <div className="mt-4 px-3" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}}>
                 <div className="row mt-4 px-4 py-3">

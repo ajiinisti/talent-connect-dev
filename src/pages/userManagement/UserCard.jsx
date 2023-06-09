@@ -8,9 +8,6 @@ const UserCard = ({id, name, email, role}) => {
     const navigate = useNavigate()
     const dropdownRef = useRef(null)
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-    
-    const [isDeleteModalOut, setIsDeleteModalOut] = useState(false)
-    const toggleShowDeleteModal = () => setIsDeleteModalOut(!isDeleteModalOut);
 
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
@@ -19,9 +16,6 @@ const UserCard = ({id, name, email, role}) => {
     const handleItemClick = (type) => {
         if (type === "edit") {
             navigate(`/user-management/user-form/${id}`)
-        } else if (type === "delete"){
-            toggleDropdown()
-            toggleShowDeleteModal()
         } else{
             navigate(`/user-management/assign-user/${role}/${id}`)
         } 
@@ -37,10 +31,6 @@ const UserCard = ({id, name, email, role}) => {
         setIsDropdownOpen(false);
         }
     };
-
-    const handleDeleteFunction = (event) => {
-        event.preventDefault()
-    }
 
     useEffect(() => {
         document.addEventListener('click', handleClickOutside);
@@ -77,9 +67,6 @@ const UserCard = ({id, name, email, role}) => {
                             <button className="dropdown-item" onClick={() => handleItemClick("edit")}>
                                 Edit User
                             </button>
-                            <button className="dropdown-item" onClick={() => handleItemClick("delete")}>
-                                Delete User
-                            </button>
                             {
                                 role === "mentor" ?
                                 <button className="dropdown-item" onClick={() => handleItemClick("mentorMentee")}>
@@ -102,15 +89,6 @@ const UserCard = ({id, name, email, role}) => {
             <div className="px-3">
                 <hr/>
             </div>
-
-            <DeleteModal 
-                title={name} 
-                type={'user'} 
-                isModalOut={isDeleteModalOut} 
-                setIsModalOut={setIsDeleteModalOut} 
-                toggleShow={toggleShowDeleteModal}
-                deleteFunction={handleDeleteFunction}
-            />
         </>
     )
 }
