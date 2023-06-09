@@ -1,5 +1,6 @@
 import { useState } from "react"
 import axiosInstance from "../../services/axios-client"
+import { toast } from "react-toastify"
 
 const useEvaluate = () => {
     
@@ -11,7 +12,7 @@ const useEvaluate = () => {
         newState.QuestionCategories = newState.QuestionCategories.map((v, index)=>{
             if(index === i) {
                 let questionList = v.QuestionList.map((question, jndex)=> {
-                    if (jndex == j)
+                    if (jndex===j)
                     return {...question, Answer : event.target.value}
                     return question
                 })
@@ -27,7 +28,7 @@ const useEvaluate = () => {
         try {
             await axiosInstance.post(`/answer`, payload)  
         } catch (error) {
-            console.log(error);
+            toast.error(error.response.data.status.description)
         }
     }
 
@@ -50,7 +51,7 @@ const useEvaluate = () => {
             })
             setPayload(data)
         } catch (error) {
-            console.log(error);
+            toast.error(error.response.data.status.description)
         }
     }
 

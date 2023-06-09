@@ -12,7 +12,7 @@ const useParticipant = () => {
         try {
             let res = await axiosInstance.get(url)
             let data = res.data.data.map((v)=>(
-                {name: v.FirstName+" "+v.LastName, profilePicture: DefaultProfileIcon}
+                {id:v.ID, name: v.FirstName+" "+v.LastName, profilePicture: DefaultProfileIcon}
             ))
             setParticipants(data)
         } catch (error) {
