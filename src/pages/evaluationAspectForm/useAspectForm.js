@@ -21,9 +21,9 @@ const useAspectForm = () => {
                 pay.type = data.Type
                 pay.question = data.Question
                 if(pay.type === 'rating'){
-                    let option = data.options.length
+                    let option = data.Option
                     setShow(true)
-                    pay.option = data.options.length
+                    pay.option = option
                     select.option ={value:  option, label: `1-${option}`}
                 }
                 pay.ID = data.ID
