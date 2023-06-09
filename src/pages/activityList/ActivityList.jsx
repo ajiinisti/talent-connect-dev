@@ -5,6 +5,7 @@ import ActivityCard from "./ActivityCard"
 import { useEffect } from "react"
 import useActivityList from "./useActivityList"
 import { useAuth } from "../../hooks/useAuth"
+import ArrowButton from "../../components/button/ArrowButton"
 
 // TODO : ActivityList Group By Date
 const ActivityList = () => {
@@ -39,7 +40,7 @@ const ActivityList = () => {
 
     return(
         <div className="container py-5 px-5 mb-5">
-            <h2 className="mt-2"><b>{programs?.Name}</b></h2>
+            <h2 className="mt-2"><ArrowButton/><b>{programs?.Name}</b></h2>
             <hr/>
             <div className="row">
                 <div className="col-md-9">      
