@@ -13,7 +13,7 @@ const useEvaluate = () => {
             if(index === i) {
                 let questionList = v.QuestionList.map((question, jndex)=> {
                     if (jndex===j)
-                    return {...question, Answer : event.target.value}
+                        return {...question, Answer : event.target.value}
                     return question
                 })
                 return {...v, QuestionList: questionList}
