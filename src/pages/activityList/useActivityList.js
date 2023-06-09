@@ -51,13 +51,33 @@ const useActivityList = () => {
         }
     }
 
+    const deleteActivity = async(id) => {
+        try {
+            let res = await axiosInstance.delete(`/activities/${id}`)
+            console.log(res)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const deleteMentoringSchedule = async(id) => {
+        try {
+            let res = await axiosInstance.delete(`/mentoring-schedules/${id}`)
+            console.log(res)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return {
         getPrograms,
         programs,
         activities,
         getMentoringActivityByMentorId,
         getMentoringActivityByMenteeId,
-        mentoring
+        mentoring,
+        deleteActivity,
+        deleteMentoringSchedule
     }
 }
 

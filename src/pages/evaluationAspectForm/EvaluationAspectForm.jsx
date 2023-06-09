@@ -30,11 +30,11 @@ const EvaluationAspectForm = () => {
 
     return(
         <div className="container mt-4 py-5 px-5 mb-5">
-            <h1><ArrowButton/><b>
+            <h2><ArrowButton/><b>
                 {
                     isUpdate ? " Edit Evaluation Aspect": " Add Evaluation Aspect"
                 }
-            </b></h1>
+            </b></h2>
             <form className="mt-4 px-4 py-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}} onSubmit={(e)=>onSubmit(e)}>
                 <div className="mb-4">
                     <label htmlFor="evaluationAspectTitle" className="form-label">Title</label>
