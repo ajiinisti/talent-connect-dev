@@ -39,12 +39,12 @@ const ProgramEvaluateParticipantDetail = () => {
 
     useEffect(()=> {
         getQuestions(params.programId, params.evalId)
-    }, [getQuestions, params.programId, params.evalId])
+    }, [params.programId, params.evalId])
 
     const createOption = (question, num, v, i, j) => {
         const rows = []
         for (let index = 0; index < num; index++) {
-            rows.push(<CFormCheck key={index} inline type="radio" name={`qes-${v.ID}-${question.ID}`} id={`qes-${v.ID}-${question.ID}-${index}`} value={index+1} label={index+1} onChange={
+            rows.push(<CFormCheck key={index} inline type="radio" name={`qes-${i}-${j}`} id={`qes-${i}-${j}-${index}`} value={index+1} label={index+1} onChange={
                 (e) => {
                    onInputChange(e, i, j)
             }} checked={payload.QuestionCategories[i].QuestionList[j].Answer===index+1}/>)     
@@ -55,10 +55,10 @@ const ProgramEvaluateParticipantDetail = () => {
     return(
         <div className="container py-5 px-5 mb-5">
             { isDetail }
-            <h2 className="mt-2"><b>SMM ITDP Batch 3</b></h2>
+            <h2 className="mt-2"><b></b></h2>
             <hr/>
             <div className="row mt-4 px-3">
-                <h4><ArrowButton/> Ariel Nathania </h4>
+                <h4><ArrowButton/> </h4>
                 <form className="mt-4 px-4 py-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}}>
                     <div className="mb-4">
                         <label htmlFor="evaluationPeriod" className="form-label">Evaluation Period</label>
@@ -70,7 +70,7 @@ const ProgramEvaluateParticipantDetail = () => {
                             <p style={{fontSize:'11pt'}}>{v.QuestionCategory.Description}</p>
                             {v.QuestionCategory.questions.map((question, j) =>(
                             <div key={question.ID} className="mb-4">
-                                <label htmlFor={`qes-${v.ID}-${question.ID}`} className="form-label">{question.Question}</label>
+                                <label htmlFor={`qes-${i}-${j}`} className="form-label">{question.Question}</label>
                                 {question.Type === "rating" ? (
                                 <div>
                                     {createOption(question, question.Option, v, i, j)}

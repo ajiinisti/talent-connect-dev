@@ -28,7 +28,7 @@ const UserManagement = () => {
                     <span style={{color:'gray'}}>Role</span>
                     </div>
                     <div className="col-2">
-                    <span style={{color:'gray'}}>Active</span>
+                    {/* <span style={{color:'gray'}}>Active</span> */}
                     </div>
                     <div className="col-1">
                     </div>

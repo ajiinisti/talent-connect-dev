@@ -35,6 +35,12 @@ const ProgramForm = () => {
         }
     },[params.id])
 
+    useEffect(()=> {
+        if(params.id) {
+            setUpdate(true)
+        }
+    },[params.id])
+
     return(
         <div className="container mt-4 px-4">
             <h2><ArrowButton/><b>

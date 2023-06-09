@@ -52,10 +52,10 @@ const UserCard = ({id, name, email, role}) => {
                     {capitalizeFirstLetter(role)}
                 </div>
                 <div className="col-2 py-1">
-                    <div class="form-check form-switch">
+                    {/* <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" id="customSwitch2"/>
                         <label class="form-check-label" for="customSwitch2"></label>
-                    </div>
+                    </div> */}
                 </div>
                 <div className="col-1 py-1">
                     <div className="dropdown" ref={dropdownRef} style={{ position: 'relative'}}>
