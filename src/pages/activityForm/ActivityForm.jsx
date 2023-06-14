@@ -12,10 +12,10 @@ const ActivityForm = () => {
     const [isUpdate, setUpdate] = useState(false)
     const {getCurrentRole, getCurrentUser} = useAuth()
     const role = getCurrentRole()
-    // const isAdmin = role.includes("admin")
-    // const isMentor = role.includes("mentor")
-    const isAdmin = true
-    const isMentor = false
+    const isAdmin = role.includes("admin")
+    const isMentor = role.includes("mentor")
+    // const isAdmin = true
+    // const isMentor = false
 
     const {
         activity,
