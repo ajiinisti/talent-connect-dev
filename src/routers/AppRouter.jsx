@@ -32,7 +32,7 @@ function AppRouter() {
             <Route path='program/mentor-feedback/:id' element={<MentorFeedback />} />
             <Route path='program/:programId/activity-form' element={<ActivityForm />} />
             <Route path='program/:programId/activity-form/:id' element={<ActivityForm />} />
-            <Route path='program/activity-detail/:id' element={<ActivityDetail/>} />
+            <Route path='program/activity-detail/:isMentoring/:id/:programId' element={<ActivityDetail/>} />
             <Route path='program/evaluate-participant/:id' element={<ProgramEvaluateParticipant/>} />
             <Route path='program/evaluate-participant/:programId/:evalIid' element={<ProgramEvaluateParticipantDetail/>} />
             <Route path='management' element={<ProgramList/>}/>

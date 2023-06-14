@@ -6,6 +6,7 @@ import { useEffect } from "react"
 import useActivityList from "./useActivityList"
 import { useAuth } from "../../hooks/useAuth"
 import ArrowButton from "../../components/button/ArrowButton"
+import Participants from "../../components/participants/Participants"
 
 // TODO : ActivityList Group By Date
 const ActivityList = () => {
@@ -48,7 +49,7 @@ const ActivityList = () => {
                         <Button title={"+ Add Activity"} navigate={() => navigate(`/program/${params.programId}/activity-form`)}/>
                     </div>
                     
-                    {!role.includes("mentor") && activities?.map((activity)=>(
+                    {activities?.map((activity)=>(
                         <div key={activity.Date}>
                             <h4 className="mt-4">{activity.Date}</h4>
                             {activity.Activities?.map((v)=>(
@@ -72,18 +73,7 @@ const ActivityList = () => {
                         ))}
                     </div>
                 </div>
-                <div className="col-md-3">
-                    <h5 className="mt-4 mb-4">Participants ({programs?.participants ? programs.participants.length : 0})</h5>
-                    {programs?.participants ?
-                    programs.participants.map((v) => ( 
-                    <div className="mt-3">
-                        <img src={DefaultProfileIcon} alt="Profile Icon" /> <span>{v.User.FirstName} {v.User.LastName}</span>
-                    </div>)) : <></>
-                    }
-                    {/* <div className="mt-3 align-item-center">
-                        <button className="add-participant-button">+  Add Participant</button>
-                    </div>  */}
-                </div>
+                <Participants participants={programs?.participants}/>
             </div>
         </div>
     )

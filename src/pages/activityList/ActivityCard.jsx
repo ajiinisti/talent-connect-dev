@@ -5,6 +5,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import DeleteModal from '../../components/modal/DeleteModal';
 import React from 'react';
 import useActivityList from './useActivityList';
+import { useAuth } from '../../hooks/useAuth';
+import Button from '../../components/button/Button';
 
 const ActivityCard = ({title, styling, activity, programId, isMentoring}) => {
     const navigate = useNavigate()
@@ -13,8 +15,21 @@ const ActivityCard = ({title, styling, activity, programId, isMentoring}) => {
     const [isDeleteModalOut, setIsDeleteModalOut] = useState(false)
     const toggleShowDeleteModal = () => setIsDeleteModalOut(!isDeleteModalOut);
     const { deleteActivity, deleteMentoringSchedule} = useActivityList()
+    
     const deleteButton = isMentoring ? deleteMentoringSchedule: deleteActivity
     const type = isMentoring ? "mentoring" : "activity"
+
+    const {getCurrentRole} = useAuth()
+    const role = getCurrentRole()
+    const isMentor = role.includes("mentor")
+    const isMentee = role.includes("participant")
+    // const isMentor = false
+    // const isMentee = true
+
+    const feedbackButton = {
+        color: '#A684F2',
+        backgroundColor: 'white'
+    }
 
     const handleItemClick = (type) => {
         if (type === "update") {
@@ -57,7 +72,7 @@ const ActivityCard = ({title, styling, activity, programId, isMentoring}) => {
                     style={{ height: '10vh'}}
                     >
                         <div className="d-flex flex-column">
-                        <Link to={'/program/activity-detail/'+activity.ID}>
+                        <Link to={`/program/activity-detail/${isMentoring}/${activity.ID}/${programId}`}>
                             <h5 style={{ marginBottom: 'auto' }}>{title}</h5>
                         </Link>
                         <span style={{marginTop: '0.2rem', width: '20rem'}}>{activity.StartDate.slice(11,16)}</span>
@@ -102,20 +117,20 @@ const ActivityCard = ({title, styling, activity, programId, isMentoring}) => {
                                 </div>
                                 )}
                             </div>
-                            {/* {
-                                isMentor ?
+                            {
+                                isMentoring && isMentor ?
                                 <div>
                                     <Button title={"Write Feedback"} styling={{ marginRight: '0' }} />
                                 </div>:
                                 <></>
                             }
                             {
-                                isMentee ?
+                                isMentoring && isMentee ?
                                 <div>
                                     <Button title={"See Mentor's Feedback"} styling={feedbackButton} navigate={()=> navigate('/program/mentor-feedback/idd')}/>
                                 </div>:
                                 <></>
-                            } */}
+                            }
                         </div>
                     </div>
                 </ul>

@@ -11,6 +11,7 @@ const useActivityList = () => {
     const getPrograms = async (id) => {
         try{
             let res = await axiosInstance.get(`/programs/${id}`)
+            console.log(res.data.data)
             if (res.status === 200) {
                 setPrograms(res.data.data.Program)
                 setActivities(res.data.data.Activity)
