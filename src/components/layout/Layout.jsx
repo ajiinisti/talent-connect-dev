@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom"
 import Sidebar from "../sidebar/Sidebar"
+import ProtectedRoute from "../../routers/ProtectedRouter"
 
 const Layout = () => {
     return(
@@ -11,7 +12,7 @@ const Layout = () => {
                 </div>
                 </div>
                 <div className="col py-3" style={{ flex: '1 1 auto' }}>
-                    <Outlet/>
+                    <ProtectedRoute/>
                 </div>
             </div>
         </div>

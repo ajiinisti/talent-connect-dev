@@ -1,59 +1,60 @@
-// import { useNavigate } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { DefaultProfileIcon } from "../../assets"
+import { useEffect, useState } from "react"
 import ArrowButton from "../../components/button/ArrowButton"
+import useActivityDetail from "./useActivityDetail"
+import Participants from "../../components/participants/Participants"
 
 const ActivityDetail = () => {
-    // const navigate = useNavigate()
-    // const buttonStyle = {
-    //     borderRadius : '5px'
-    // }
+    const params = useParams()
+    const {activity, getDetailActivity, getDetailMonitoring, getPrograms, participants, programName} = useActivityDetail()
 
-    // const cardStyle = {
-    //     top : '1.5rem',
-    //     bot : '1.5rem'
-    // }
+    useEffect(()=>{
+        if(params.programId){
+            getPrograms(params.programId)
+        }
+        if (params.isMentoring === "true") {
+            getDetailMonitoring(params.id)
+        } else{
+            getDetailActivity(params.id)
+        }
+    }, [])
 
     return(
         <div className="container py-5 px-5 mb-5">
-            <h1 className="mt-2"><b>SMM ITDP Batch 3</b></h1>
+            <h2 className="mt-2"><b>{activity.program?.Name ? activity.program?.Name : programName}</b></h2>
             <hr/>
             <div className="row">
                 <div className="col-md-9 mr-3">      
-                    <h4 className="mt-4 mb-4"><ArrowButton/>   KICK OFF ITDP BATCH 3</h4>
+                    <h4 className="mt-4 mb-4"><ArrowButton/>   {activity?.Name}</h4>
                     <div className="mt-4 px-4 py-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}}>
                         <div className="mb-4" style={{ display: 'flex', flexDirection: 'column'}}>
                             <label style={{ display: 'inline-block'}}>Link</label>
-                            <b><span>http://zoom.com</span></b>
+                            <b><span>{activity?.Link ? <a target="_blank" rel="noopener noreferrer" href={activity?.Link}> {activity?.Link}</a> : <div>-</div> } </span></b>
                         </div>
                         <div className="mb-4" style={{ display: 'flex', flexDirection: 'column'}}>
                             <label style={{ display: 'inline-block'}}>Date</label>
-                            <b><span>12/12/2023</span></b>
+                            <b><span>{new Date(activity?.StartDate).toLocaleString('id-ID')}</span></b>
                         </div>
-                        <div className="mb-4" style={{ display: 'flex', flexDirection: 'column'}}>
-                            <label style={{ display: 'inline-block'}}>Participants</label>
-                            <b><span>All</span></b>
-                        </div>
+                        {
+                            params.isMentoring === "true" ?
+                            <div className="mb-4" style={{ display: 'flex', flexDirection: 'column'}}>
+                                <label style={{ display: 'inline-block'}}>Participants</label>
+                                <b><span>{activity.Participants}</span></b>
+                            </div>
+                            :
+                            <div className="mb-4" style={{ display: 'flex', flexDirection: 'column'}}>
+                                <label style={{ display: 'inline-block'}}>Participants</label>
+                                <b><span>All</span></b>
+                            </div>
+                        }
                         <div className="mb-4" style={{ display: 'flex', flexDirection: 'column'}}>
                             <label style={{ display: 'inline-block'}}>Description</label>
-                            <b><span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia magni voluptatum quam sed pariatur labore alias dolores quod natus perspiciatis iure nobis doloribus quasi magnam et culpa est, animi voluptatibus.</span></b>
+                            <b><span>{activity?.Description}</span></b>
                         </div>
                     </div>
                 </div>
-                <div className="col-md-3">
-                    <h5 className="mt-4 mb-4">Participants (6)</h5>
-                    <div className="mt-3">
-                        <img src={DefaultProfileIcon} alt="Profile Icon" /> <span>Alwin Ihza</span>
-                    </div>
-                    <div className="mt-3">
-                        <img src={DefaultProfileIcon} alt="Profile Icon" /> <span>Ariel Nathania</span>
-                    </div>
-                    <div className="mt-3">
-                        <img src={DefaultProfileIcon} alt="Profile Icon" /> <span>Aji Inisti Udma Wijaya</span>
-                    </div>
-                    {/* <div className="mt-3 align-item-center">
-                        <button className="add-participant-button">+  Add Participant</button>
-                    </div> */}
-                </div>
+                <Participants participants={participants}/>
             </div>
         </div>
     )

@@ -14,10 +14,13 @@ import {
     UserManagementIconNonActive
 } from "../../assets"
 import { useEffect, useState } from "react";
+import { useAuth } from "../../hooks/useAuth";
 
 const Sidebar = () => {
     const location = useLocation();
     const [activeNavLink, setActiveNavLink] = useState('');
+    const {logout, getCurrentRole, getCurrentUser} = useAuth()
+    const role = getCurrentRole()
     
     useEffect(() => {
         setActiveNavLink(location.pathname);
@@ -37,6 +40,7 @@ const Sidebar = () => {
                         </li>
                     </div>
                 </NavLink>
+                {role?.includes("admin") &&
                 <NavLink to="/user-management" activeclassname="active" >
                     <div className="mt-1 navbar-div-item" >
                         <li>
@@ -45,6 +49,8 @@ const Sidebar = () => {
                         </li>
                     </div>
                 </NavLink>
+                }
+                {role && role.includes("admin") &&
                 <NavLink to="/evaluation-scoring" activeclassname="active">
                     <div className="mt-1 navbar-div-item" >
                         <li>
@@ -53,7 +59,9 @@ const Sidebar = () => {
                         </li>
                     </div> 
                 </NavLink>
-                <NavLink to="/evaluations/id" activeclassname="active">
+                }
+                {role && role.includes("participant") &&
+                <NavLink to={`/evaluations/${getCurrentUser().ID}`} activeclassname="active">
                     <div className="mt-1 navbar-div-item" >
                         <li>
                             <img src={activeNavLink.includes('/evaluations') ? EvaluationIconActive : EvaluationIconNonActive}
@@ -61,18 +69,19 @@ const Sidebar = () => {
                         </li>
                     </div> 
                 </NavLink>
-                <NavLink to="/settings" activeclassname="active">
+                }
+                {/* <NavLink to="/settings" activeclassname="active">
                     <div className="mt-1 navbar-div-item" >
                         <li>
                             <img src={activeNavLink.includes('/settings') ? ProfileSettingsIconActive : ProfileSettingsIconNonActive}
                             className="img-fluid" alt="Settings Icon" />
                         </li>
                     </div>
-                </NavLink>
+                </NavLink> */}
             </ul>
             <hr />
             <div className="pb-4">
-                <button className="btn" style={{backgroundColor: '#F1FAFB', border:'#1FAFB', outline: 'none', cursor:'pointer'}}>
+                <button className="btn" style={{backgroundColor: '#F1FAFB', border:'#1FAFB', outline: 'none', cursor:'pointer'}} onClick={()=> logout()}>
                     <img src={LogoutIcon} className="img-fluid" alt="Profile Icon"/>
                 </button>
             </div>

@@ -2,22 +2,38 @@ import { FaEllipsisH } from 'react-icons/fa';
 import { BsPeople } from 'react-icons/bs';
 import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-// import Button from '../../components/button/Button';
 import DeleteModal from '../../components/modal/DeleteModal';
+import React from 'react';
+import useActivityList from './useActivityList';
+import { useAuth } from '../../hooks/useAuth';
+import Button from '../../components/button/Button';
 
-const ActivityCard = ({title,styling}) => {
+const ActivityCard = ({title, styling, activity, programId, isMentoring}) => {
     const navigate = useNavigate()
     const dropdownRef = useRef(null);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [isDeleteModalOut, setIsDeleteModalOut] = useState(false)
     const toggleShowDeleteModal = () => setIsDeleteModalOut(!isDeleteModalOut);
+    const { deleteActivity, deleteMentoringSchedule} = useActivityList()
+    
+    const deleteButton = isMentoring ? deleteMentoringSchedule: deleteActivity
+    const type = isMentoring ? "mentoring" : "activity"
+
+    const {getCurrentRole} = useAuth()
+    const role = getCurrentRole()
+    const isMentor = role.includes("mentor")
+    const isMentee = role.includes("participant")
     // const isMentor = false
     // const isMentee = true
 
-    const handleItemClick = (id, type) => {
-        console.log(id,type)
+    const feedbackButton = {
+        color: '#A684F2',
+        backgroundColor: 'white'
+    }
+
+    const handleItemClick = (type) => {
         if (type === "update") {
-            navigate(`/program/activity-form/${id}`)
+            navigate(`/program/${programId}/activity-form/${activity.ID}`)
         } else {
             toggleDropdown()
             toggleShowDeleteModal()
@@ -35,14 +51,10 @@ const ActivityCard = ({title,styling}) => {
         }
     };
 
-    const handleDeleteFunction = (event) => {
-        event.preventDefault()
+    const handleDeleteFunction = () => {
+        deleteButton(activity.ID)
+        window.location.reload()
     }
-
-    // const feedbackButton = {
-    //     color: '#A684F2',
-    //     backgroundColor: 'white'
-    // }
 
     useEffect(() => {
         document.addEventListener('click', handleClickOutside);
@@ -60,15 +72,28 @@ const ActivityCard = ({title,styling}) => {
                     style={{ height: '10vh'}}
                     >
                         <div className="d-flex flex-column">
-                        <Link to={'/program/activity-detail/01'}>
+                        <Link to={`/program/activity-detail/${isMentoring}/${activity.ID}/${programId}`}>
                             <h5 style={{ marginBottom: 'auto' }}>{title}</h5>
                         </Link>
-                        <span style={{marginTop: '0.5rem'}}>12.00 - 13.00</span>
+                        <span style={{marginTop: '0.2rem', width: '20rem'}}>{activity.StartDate.slice(11,16)}</span>
                         <div style={{ marginTop: '0.5rem' }}>
                             <div className="mirror-icon">
                             <BsPeople style={{ marginLeft: '0.5rem', marginBottom:'0.2rem'}} />
                             </div>
-                            <span>All</span>
+                            {
+                                isMentoring ? (
+                                    <span>
+                                    {activity.mentorMentees.map((mentee, index) => (
+                                        <React.Fragment key={mentee.Participant.id}>
+                                            {mentee.Participant.FirstName} {mentee.Participant.LastName}{", "}
+                                        </React.Fragment>
+                                    ))}
+                                    {activity.mentorMentees[0].Mentor.FirstName} {activity.mentorMentees[0].Mentor.LastName}
+                                    </span>
+                                ) : (
+                                    <span>All</span>
+                                )
+                            }
                         </div>
                         </div>
                             <div className="container" style={{ 
@@ -83,29 +108,29 @@ const ActivityCard = ({title,styling}) => {
                                 </label>
                                 {isDropdownOpen && (
                                 <div className="dropdown-menu">
-                                    <button className="dropdown-item" onClick={() => handleItemClick('Item 1', "update")}>
+                                    <button className="dropdown-item" onClick={() => handleItemClick("update")}>
                                     Update Activity
                                     </button>
-                                    <button className="dropdown-item" onClick={() => handleItemClick('Item 2', "delete")}>
+                                    <button className="dropdown-item" onClick={() => handleItemClick("delete")}>
                                     Delete Activity
                                     </button>
                                 </div>
                                 )}
                             </div>
-                            {/* {
-                                isMentor ?
+                            {
+                                isMentoring && isMentor ?
                                 <div>
                                     <Button title={"Write Feedback"} styling={{ marginRight: '0' }} />
                                 </div>:
                                 <></>
                             }
                             {
-                                isMentee ?
+                                isMentoring && isMentee ?
                                 <div>
                                     <Button title={"See Mentor's Feedback"} styling={feedbackButton} navigate={()=> navigate('/program/mentor-feedback/idd')}/>
                                 </div>:
                                 <></>
-                            } */}
+                            }
                         </div>
                     </div>
                 </ul>
@@ -113,7 +138,7 @@ const ActivityCard = ({title,styling}) => {
 
             <DeleteModal 
                 title={title} 
-                type={'activity'} 
+                type={type} 
                 isModalOut={isDeleteModalOut} 
                 setIsModalOut={setIsDeleteModalOut} 
                 toggleShow={toggleShowDeleteModal}

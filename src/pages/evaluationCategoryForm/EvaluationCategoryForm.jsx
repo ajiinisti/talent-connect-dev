@@ -13,13 +13,12 @@ import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import ArrowButton from '../../components/button/ArrowButton'
 import CancelButton from '../../components/button/CancelButton'
+import useEvaluationCategory from './useEvaluationCategory'
 
 const EvaluationCategoryForm = () => {
     const params = useParams()
+    const { getAspectList, allAspectList, handleSubmit, payload, handleOnChange, getCategory, allSelectedAspects, setAllSelectedAspects, aspectList, setAspectList } = useEvaluationCategory()
     const [isUpdate, setUpdate] = useState(false)
-    const [aspectList, setAspectList] = useState([])
-    const [allAspectList, setAllAspectList] = useState([])
-    const [allSelectedAspects, setAllSelectedAspects] = useState([]);
     const [isModalOut, setIsModalOut] = useState(false)
     const toggleShow = (e) => {
         e.preventDefault()
@@ -45,46 +44,33 @@ const EvaluationCategoryForm = () => {
     const modalToForm = (e) => {
         e.preventDefault()
         const selectedAspects = allSelectedAspects.filter(aspect => aspect.selected);
-        setAspectList(prevList => prevList.concat(selectedAspects));
+        setAspectList(selectedAspects);
         setIsModalOut(!isModalOut)
     }
 
+    useEffect(() => {
+        getAspectList()
+    }, [])
+
     useEffect(()=> {
         if(params.id) {
+            getCategory(params.id)
             setUpdate(true)
         }
     },[params.id])
 
-    useEffect(() => {
-        const initialAspects = allAspectList.map((aspect) => ({
-          ...aspect,
-          selected: false,
-        }));
-        setAllSelectedAspects(initialAspects);
-    }, [allAspectList]);
-
-    useEffect(() => {
-        setAllAspectList(
-            [
-                { aspect: "Feature A", option: "Rating"},
-                { aspect: "Feature B", option: "Rating"},
-                { aspect: "Feature C", option: "Rating"},
-            ]
-        )
-    }, [])
-
     return(
         <>
             <div className="container py-5 px-5 mb-5">
-                <h1><ArrowButton/><b>
+                <h2><ArrowButton/><b>
                     {
                         isUpdate ? " Edit Evaluation Category": " Add Evaluation Category"
                     }
-                </b></h1>
-                <form className="mt-4 px-4 py-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}}>
+                </b></h2>
+                <form className="mt-4 px-4 py-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}} onSubmit={(e)=>handleSubmit(e,isUpdate,aspectList)}>
                     <div className="mb-4">
                         <label htmlFor="evaluationAspectTitle" className="form-label">Title</label>
-                        <input type="text" className="form-control evaluation-aspect-form " id="evaluationAspectTitle" placeholder="Enter title"/>
+                        <input required type="text" className="form-control evaluation-aspect-form " id="evaluationAspectTitle" name="Name" value={payload?.Name}  placeholder="Enter title" onChange={(e)=>handleOnChange(e)}/>
                     </div>
                     <div className="mb-4" style={{display: 'flex', justifyContent: 'space-between'}}>
                         <label htmlFor="description" className="form-label">Aspect</label>
@@ -94,7 +80,7 @@ const EvaluationCategoryForm = () => {
                     <div className="mb-4 px-4 py-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}}>
                         {
                             aspectList.map((aspect)=> (
-                                <div key={aspect}>
+                                <div key={aspect.id}>
                                     <h6>{aspect.aspect}</h6>
                                     <span style={{color: 'gray'}}>{aspect.option}</span>
                                     <hr/>
@@ -126,7 +112,7 @@ const EvaluationCategoryForm = () => {
                     <MDBModalBody style={{ alignContent: 'flex-start'}}>
                         {
                             allAspectList.map((aspect, index)=> (
-                                <div style={{ display: 'flex', alignItems: 'center' }}>
+                                <div key={index} style={{ display: 'flex', alignItems: 'center' }}>
                                     <label style={{ marginRight: '10px' }}>
                                         <input
                                         type="checkbox"

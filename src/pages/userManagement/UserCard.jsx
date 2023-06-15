@@ -4,23 +4,20 @@ import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import DeleteModal from "../../components/modal/DeleteModal"
 
-const UserCard = ({name, email, role}) => {
+const UserCard = ({id, name, email, role}) => {
     const navigate = useNavigate()
     const dropdownRef = useRef(null)
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-    
-    const [isDeleteModalOut, setIsDeleteModalOut] = useState(false)
-    const toggleShowDeleteModal = () => setIsDeleteModalOut(!isDeleteModalOut);
 
-    const handleItemClick = (id, type) => {
-        console.log(id,type)
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    const handleItemClick = (type) => {
         if (type === "edit") {
             navigate(`/user-management/user-form/${id}`)
-        } else if (type === "delete"){
-            toggleDropdown()
-            toggleShowDeleteModal()
         } else{
-            navigate(`/user-management/assign-user/${id}`)
+            navigate(`/user-management/assign-user/${role}/${id}`)
         } 
         setIsDropdownOpen(false);
     };
@@ -34,10 +31,6 @@ const UserCard = ({name, email, role}) => {
         setIsDropdownOpen(false);
         }
     };
-
-    const handleDeleteFunction = (event) => {
-        event.preventDefault()
-    }
 
     useEffect(() => {
         document.addEventListener('click', handleClickOutside);
@@ -56,13 +49,13 @@ const UserCard = ({name, email, role}) => {
                     <p>{email}</p>
                 </div>
                 <div className="col-2 py-1">
-                    {role}
+                    {capitalizeFirstLetter(role)}
                 </div>
                 <div className="col-2 py-1">
-                    <div class="form-check form-switch">
+                    {/* <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" id="customSwitch2"/>
                         <label class="form-check-label" for="customSwitch2"></label>
-                    </div>
+                    </div> */}
                 </div>
                 <div className="col-1 py-1">
                     <div className="dropdown" ref={dropdownRef} style={{ position: 'relative'}}>
@@ -71,22 +64,19 @@ const UserCard = ({name, email, role}) => {
                         </label>
                         {isDropdownOpen && (
                         <div className="dropdown-menu">
-                            <button className="dropdown-item" onClick={() => handleItemClick('Item 1', "edit")}>
+                            <button className="dropdown-item" onClick={() => handleItemClick("edit")}>
                                 Edit User
                             </button>
-                            <button className="dropdown-item" onClick={() => handleItemClick('Item 2', "delete")}>
-                                Delete User
-                            </button>
                             {
-                                role === "Mentor" ?
-                                <button className="dropdown-item" onClick={() => handleItemClick('Item 2', "mentorMentee")}>
+                                role === "mentor" ?
+                                <button className="dropdown-item" onClick={() => handleItemClick("mentorMentee")}>
                                     Assign Mentee to Mentor
                                 </button>:
                                 <></>
                             }
                             {
-                                role === "Judge" ?
-                                <button className="dropdown-item" onClick={() => handleItemClick('Item 2', "judgeMentee")}>
+                                role === "panelist" ?
+                                <button className="dropdown-item" onClick={() => handleItemClick("judgeMentee")}>
                                     Assign Mentee to Judge
                                 </button>:
                                 <></>
@@ -99,15 +89,6 @@ const UserCard = ({name, email, role}) => {
             <div className="px-3">
                 <hr/>
             </div>
-
-            <DeleteModal 
-                title={name} 
-                type={'user'} 
-                isModalOut={isDeleteModalOut} 
-                setIsModalOut={setIsDeleteModalOut} 
-                toggleShow={toggleShowDeleteModal}
-                deleteFunction={handleDeleteFunction}
-            />
         </>
     )
 }
