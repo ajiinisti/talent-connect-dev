@@ -2,7 +2,6 @@ import { DefaultProfileIcon } from "../../assets"
 import { FaEllipsisV } from 'react-icons/fa'
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import DeleteModal from "../../components/modal/DeleteModal"
 
 const UserCard = ({id, name, email, role}) => {
     const navigate = useNavigate()

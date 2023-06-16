@@ -22,15 +22,15 @@ const ProgramEvaluateParticipantDetail = () => {
         { value: 'failed', label: 'Failed' }
     ]
 
-    const buttonCancelStyle = {
-        borderRadius : '5px',
-        height: '40px',
-        backgroundColor: 'white',
-        color: 'black',
-        border: '0.5px solid #d3d3d3',
-        outline: 'gray',
-        marginLeft: '1rem'
-    }
+    // const buttonCancelStyle = {
+    //     borderRadius : '5px',
+    //     height: '40px',
+    //     backgroundColor: 'white',
+    //     color: 'black',
+    //     border: '0.5px solid #d3d3d3',
+    //     outline: 'gray',
+    //     marginLeft: '1rem'
+    // }
     useEffect(()=> {
         if(params.id) {
             setDetail(true)
@@ -47,7 +47,7 @@ const ProgramEvaluateParticipantDetail = () => {
             rows.push(<CFormCheck key={index} inline type="radio" name={`qes-${i}-${j}`} id={`qes-${i}-${j}-${index}`} value={index+1} label={index+1} onChange={
                 (e) => {
                    onInputChange(e, i, j)
-            }} checked={payload.QuestionCategories[i].QuestionList[j].Answer == index+1}/>)     
+            }} checked={payload.QuestionCategories[i].QuestionList[j].Answer === (index+1).toString()}/>)     
         }
         return (rows)
     }

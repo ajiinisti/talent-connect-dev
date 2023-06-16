@@ -1,5 +1,4 @@
 import { useNavigate, useParams } from "react-router-dom"
-import { DefaultProfileIcon } from "../../assets"
 import Button from "../../components/button/Button"
 import ActivityCard from "./ActivityCard"
 import { useEffect } from "react"

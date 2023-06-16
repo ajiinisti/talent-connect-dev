@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom"
-import { DefaultProfileIcon } from "../../assets"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import ArrowButton from "../../components/button/ArrowButton"
 import useActivityDetail from "./useActivityDetail"
 import Participants from "../../components/participants/Participants"

@@ -1,8 +1,15 @@
-import { GoogleLoginLogo, LoginLogo } from "../../assets";
+import { 
+    // GoogleLoginLogo, 
+    LoginLogo 
+} from "../../assets";
 import useLogin from "./useLogin";
 
 const Login = () => {
-    const {payload, loginHandler, onChangeHandler} = useLogin()
+    const {
+        // payload, 
+        loginHandler, 
+        onChangeHandler
+    } = useLogin()
     return (
         <div className="container-fluid" style={{ height: "100vh" }}>
             <div className="row h-100">
