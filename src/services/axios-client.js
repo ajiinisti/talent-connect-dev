@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { toast } from "react-toastify";
 
 const axiosInstance = axios.create({
-  baseURL: "/api",
+  baseURL: `${process.env.REACT_APP_BACKEND_API_URL}`,
 });
 const AxiosInterceptor = ({ children }) => {
 
