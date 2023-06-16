@@ -2,15 +2,14 @@ import { useState } from "react"
 import axiosInstance from "../../services/axios-client"
 import { toast } from "react-toastify"
 import { DefaultProfileIcon } from "../../assets"
-import { useNavigate } from "react-router-dom"
+// import { useNavigate } from "react-router-dom"
 
 const useAssignList = () => {
     const [participants, setParticipants] = useState([])
     const [assigned, setAssigned] = useState([])
     const [allSelectedParticipants, setAllSelectedParticipants] = useState([])
     const [program, setProgram] = useState({})
-    const navigate = useNavigate()
-    
+    // const navigate = useNavigate()
 
     const checkSelected = (selected, v) => {
         let sel = selected.find((w) => w.id===v.id)

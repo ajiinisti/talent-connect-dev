@@ -13,14 +13,14 @@ const ProgramEvaluateParticipant = () => {
         float: 'right'
     }
 
-    const buttonEvaluatedStyle = {
-        borderRadius : '5px',
-        backgroundColor: 'white',
-        color: 'black',
-        border: '0.5px solid #d3d3d3',
-        outline: 'gray',
-        float: 'right'
-    }
+    // const buttonEvaluatedStyle = {
+    //     borderRadius : '5px',
+    //     backgroundColor: 'white',
+    //     color: 'black',
+    //     border: '0.5px solid #d3d3d3',
+    //     outline: 'gray',
+    //     float: 'right'
+    // }
 
     const buttonEvalStyle = {
         borderRadius : '5px',

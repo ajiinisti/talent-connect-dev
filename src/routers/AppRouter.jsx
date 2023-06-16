@@ -17,8 +17,6 @@ import UserManagement from '../pages/userManagement/UserManagement';
 import UserForm from '../pages/userForm/UserForm';
 import UserAssign from '../pages/userAssign/UserAssign';
 import UserAssignListOfUserProgram from '../pages/userAssign/UserAssignListOfUserProgram';
-import ProtectedRoute from './ProtectedRouter';
-
 
 function AppRouter() {
   return (

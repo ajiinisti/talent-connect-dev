@@ -3,7 +3,6 @@ import Button from "../../components/button/Button"
 import SearchBar from "../../components/searchbar/Searchbar"
 import ProgramCard from "./ProgramCard"
 import { useEffect, useState } from "react"
-import { DefaultProfileIcon } from "../../assets"
 import {
     MDBModal,
     MDBModalDialog,

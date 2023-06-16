@@ -1,4 +1,4 @@
-import { BrowserRouter, HashRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import "./App.css";
 import AppRouter from "./routers/AppRouter";
 import { AuthProvider } from "./context/AuthContext";
