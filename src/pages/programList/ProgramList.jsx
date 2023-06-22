@@ -109,7 +109,7 @@ const ProgramList = () => {
                 </div>
                 {program?.admin ? 
                 <>
-                {program.admin.map((v, i)=>(<ProgramCard key={`admin${v.ID}`} title={v.Name} styling={cardStyle} programId={v.ID} isAdmin={true} toogleModalUpdate={()=>toggleShow(i)} participant={v.participants}/>))}
+                {program.admin.map((v, i)=>(<ProgramCard key={`admin${v.ID}`} title={v.Name} styling={cardStyle} programId={v.ID} isAdmin={true} participant={v} toogleModalUpdate={()=>toggleShow(i)} />))}
                 </>
                 : <></>}
                 {program?.panelist ? 
