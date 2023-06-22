@@ -3,9 +3,14 @@ import { useEffect } from "react"
 import ArrowButton from "../../components/button/ArrowButton"
 import useActivityDetail from "./useActivityDetail"
 import Participants from "../../components/participants/Participants"
+import { DefaultProfileIcon } from "../../assets"
+import { useAuth } from "../../hooks/useAuth"
 
 const ActivityDetail = () => {
     const params = useParams()
+    const {getCurrentRole} = useAuth()
+    const role = getCurrentRole()
+    const isMentee = role.includes("participant")
     const {activity, getDetailActivity, getDetailMonitoring, getPrograms, participants, programName} = useActivityDetail()
 
     useEffect(()=>{
@@ -14,6 +19,9 @@ const ActivityDetail = () => {
         }
         if (params.isMentoring === "true") {
             getDetailMonitoring(params.id)
+            if (isMentee){
+                // Get feedback monitoring
+            }
         } else{
             getDetailActivity(params.id)
         }
@@ -26,6 +34,7 @@ const ActivityDetail = () => {
             <div className="row">
                 <div className="col-md-9 mr-3">      
                     <h4 className="mt-4 mb-4"><ArrowButton/>   {activity?.Name}</h4>
+                    <h4>Details</h4>
                     <div className="mt-4 px-4 py-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}}>
                         <div className="mb-4" style={{ display: 'flex', flexDirection: 'column'}}>
                             <label style={{ display: 'inline-block'}}>Link</label>
@@ -52,6 +61,29 @@ const ActivityDetail = () => {
                             <b><span>{activity?.Description}</span></b>
                         </div>
                     </div>
+
+                    {
+                        params.isMentoring==="true" ?
+                        <>
+                            <h4 className="mt-4">Feedback</h4>
+                            <div className="mt-4 px-4 py-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}}>
+                                <div class="container mb-3" style={{
+                                        display: 'flex',
+                                        alignItems: 'flex-start'
+                                    }}>
+                                    <img src={DefaultProfileIcon} alt="Profile Icon" class="image" style={{width: '7%', marginRight:'1rem'}}/>
+                                    <div class="content">
+                                        <div class="name">Aji Inisti</div>
+                                        <span style={{fontSize: '13px', color: 'gray'}}>12 June 2023</span>
+                                    </div>
+                                </div>
+                                <div className="mb-4" style={{ display: 'flex', flexDirection: 'column'}}>
+                                    <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia magni voluptatum quam sed pariatur labore alias dolores quod natus perspiciatis iure nobis doloribus quasi magnam et culpa est, animi voluptatibus.</span>
+                                </div>
+                            </div>
+                        </>:
+                        <></>
+                    }
                 </div>
                 <Participants participants={participants}/>
             </div>
