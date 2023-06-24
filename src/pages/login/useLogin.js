@@ -42,7 +42,7 @@ const useLogin = () => {
             }
           } catch (err) {
             if(err.response){    
-                toast.error(error.response.data.status.description)
+                toast.error(err.response.data.status.description)
             } else
             toast(err.message);
           }
