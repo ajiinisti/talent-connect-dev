@@ -96,12 +96,13 @@ const Navbar = () => {
                                 Evaluation
                             </button>
                         }
-                        {/* <button 
+                        <button 
                             className='btn'
-                            style={activeNavLink.includes('/settings') ? activeNavbar: notActiveNavbar}
+                            style={activeNavLink.includes('/password') ? activeNavbar: notActiveNavbar}
+                            onClick={() => navigate('/password')}
                         >
-                            Change Password
-                        </button> */}
+                            Password
+                        </button>
                         <button 
                             className="btn" 
                             style={{

@@ -17,6 +17,7 @@ import UserManagement from '../pages/userManagement/UserManagement';
 import UserForm from '../pages/userForm/UserForm';
 import UserAssign from '../pages/userAssign/UserAssign';
 import UserAssignListOfUserProgram from '../pages/userAssign/UserAssignListOfUserProgram';
+import PasswordSettings from '../pages/passwordSettings/PasswordSettings';
 
 function AppRouter() {
   return (
@@ -45,7 +46,7 @@ function AppRouter() {
             <Route path='evaluation-scoring/evaluation-category-form/:id' element={<EvaluationCategoryForm/>}/>
             <Route path='evaluation-scoring/evaluation-aspect-form' element={<EvaluationAspectForm/>}/>
             <Route path='evaluation-scoring/evaluation-aspect-form/:id' element={<EvaluationAspectForm/>}/>
-            <Route path='settings' element={<ProgramList/>}/>
+            <Route path='password' element={<PasswordSettings/>}/>
         </Route>
         <Route path='login' element={<Login/>}/>
     </Routes>

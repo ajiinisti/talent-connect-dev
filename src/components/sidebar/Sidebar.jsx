@@ -5,8 +5,8 @@ import {
     EvaluationScoringIconActive,
     EvaluationScoringIconNonActive,
     LogoutIcon,
-    // ProfileSettingsIconActive,
-    // ProfileSettingsIconNonActive,
+    PasswordActive,
+    PasswordNonActive,
     ProgramIconActive, 
     ProgramIconNonActive, 
     TalentConnectLogo, 
@@ -70,14 +70,14 @@ const Sidebar = () => {
                     </div> 
                 </NavLink>
                 }
-                {/* <NavLink to="/settings" activeclassname="active">
+                <NavLink to="/password" activeclassname="active">
                     <div className="mt-1 navbar-div-item" >
                         <li>
-                            <img src={activeNavLink.includes('/settings') ? ProfileSettingsIconActive : ProfileSettingsIconNonActive}
+                            <img src={activeNavLink.includes('/password') ? PasswordActive : PasswordNonActive}
                             className="img-fluid" alt="Settings Icon" />
                         </li>
                     </div>
-                </NavLink> */}
+                </NavLink>
             </ul>
             <hr />
             <div className="pb-4">
