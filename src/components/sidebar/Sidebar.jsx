@@ -50,7 +50,7 @@ const Sidebar = () => {
                     </div>
                 </NavLink>
                 }
-                {role && role.includes("admin") &&
+                {role?.includes("admin") &&
                 <NavLink to="/evaluation-scoring" activeclassname="active">
                     <div className="mt-1 navbar-div-item" >
                         <li>
@@ -60,7 +60,7 @@ const Sidebar = () => {
                     </div> 
                 </NavLink>
                 }
-                {role && role.includes("participant") &&
+                {role?.includes("participant") &&
                 <NavLink to={`/evaluations/${getCurrentUser().ID}`} activeclassname="active">
                     <div className="mt-1 navbar-div-item" >
                         <li>
