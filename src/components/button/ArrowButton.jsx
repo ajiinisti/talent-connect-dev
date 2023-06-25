@@ -12,8 +12,7 @@ const ArrowButton = () => {
         color: 'black',
         border: '0.5px solid white',
         outline: 'gray',
-        marginLeft: '1rem',
-        marginBottom: '1rem'
+        marginLeft: '1rem'
     }
 
     return(

@@ -252,3 +252,12 @@ a {
   justify-content: space-between;
   margin-left: 10px;
 }
+
+.list-group-item.active {
+  background-color: #f4f1f1;
+  color: black;
+}
+
+a.nav-link{
+  color: black;
+}

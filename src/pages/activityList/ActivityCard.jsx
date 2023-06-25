@@ -120,14 +120,7 @@ const ActivityCard = ({title, styling, activity, programId, isMentoring}) => {
                             {
                                 isMentoring && isMentor ?
                                 <div>
-                                    <Button title={"Write Feedback"} styling={{ marginRight: '0' }} />
-                                </div>:
-                                <></>
-                            }
-                            {
-                                isMentoring && isMentee ?
-                                <div>
-                                    <Button title={"See Mentor's Feedback"} styling={feedbackButton} navigate={()=> navigate('/program/mentor-feedback/idd')}/>
+                                    <Button title={"Write Feedback"} styling={{ marginRight: '0' }} navigate={()=> navigate('/program/mentor-feedback/idd')}/>
                                 </div>:
                                 <></>
                             }
