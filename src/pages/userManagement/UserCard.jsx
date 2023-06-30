@@ -74,7 +74,7 @@ const UserCard = ({id, name, email, role}) => {
                                 <></>
                             }
                             {
-                                role === "panelist" ?
+                                role === "judges" ?
                                 <button className="dropdown-item" onClick={() => handleItemClick("judgeMentee")}>
                                     Assign Mentee to Judge
                                 </button>:

@@ -1,11 +1,13 @@
 import { useNavigate, useParams } from "react-router-dom"
 import Button from "../../components/button/Button"
 import ActivityCard from "./ActivityCard"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import useActivityList from "./useActivityList"
 import { useAuth } from "../../hooks/useAuth"
 import ArrowButton from "../../components/button/ArrowButton"
 import Participants from "../../components/participants/Participants"
+import AsyncSelect from 'react-select/async';
+import useProgram from "../programList/useProgram"
 
 // TODO : ActivityList Group By Date
 const ActivityList = () => {
@@ -19,8 +21,22 @@ const ActivityList = () => {
         mentoring
     } = useActivityList()
     const {getCurrentRole, getCurrentUser} = useAuth()
+    const {getMenteeCandidate} = useProgram()
     const role = getCurrentRole()
     const params = useParams()
+    const [selectShow, setSelectShow] = useState(false)    
+    const [allSelectedParticipants, setAllSelectedParticipants] = useState([])
+    const [defaultSelect, setDefaultSelect] = useState([])
+
+    useEffect(() => {
+        const getDefault = async () => {
+            const data = await getMenteeCandidate(params.programId,"")
+            setDefaultSelect(data.map((v)=> ({value: v.ID, label: `${v.FirstName} ${v.LastName}`})))
+        }
+        if(selectShow)
+            getDefault()
+    }, [selectShow])
+    
 
     // group activity based on start Date
     useEffect(()=>{
@@ -32,6 +48,15 @@ const ActivityList = () => {
             getMentoringActivityByMenteeId(getCurrentUser().ID)
         }
     }, [])
+
+    const searchParticipant = async (inputValue) => {
+        try {
+            const data = await  getMenteeCandidate(params.programId, inputValue)
+            return data.map((v)=> ({value: v.ID, label: `${v.FirstName} ${v.LastName}`}))
+        } catch (error) {
+            
+        }
+    }
 
     const cardStyle = {
         top : '1.5rem',
@@ -72,7 +97,18 @@ const ActivityList = () => {
                         ))}
                     </div>
                 </div>
-                <Participants participants={programs?.participants}/>
+                <Participants participants={programs?.participants}>
+                       <Button title={selectShow?"Cancel" : "+ Add Participant"} navigate={() => setSelectShow(!selectShow)}/>
+                        {selectShow && 
+                        <div style={{marginTop: "1.5rem"}}>
+                            <AsyncSelect 
+                            isMulti
+                                defaultOptions={defaultSelect}
+                                loadOptions={searchParticipant}
+                                onChange={setAllSelectedParticipants}/>
+                        </div>
+                        }
+                </Participants>
             </div>
         </div>
     )

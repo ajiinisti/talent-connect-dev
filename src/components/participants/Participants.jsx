@@ -1,6 +1,6 @@
 import { DefaultProfileIcon } from "../../assets"
 
-const Participants = ({participants}) => {
+const Participants = ({participants, children}) => {
     return(
         <div className="col-md-3">
             <h5 className="mt-4 mb-4">Participants ({participants ? participants.length : 0})</h5>
@@ -9,6 +9,7 @@ const Participants = ({participants}) => {
                     <img src={DefaultProfileIcon} alt="Profile Icon" /> <span>{v.User.FirstName} {v.User.LastName}</span>
                 </div>
             ))}
+            {children}
         </div>
     )
 }
