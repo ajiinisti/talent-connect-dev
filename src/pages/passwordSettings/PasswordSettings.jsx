@@ -21,8 +21,10 @@ const PasswordSettings = () => {
     };
 
     useEffect(() => {
-        handleCheckPassword();
-      }, [passwordData.newPassword, passwordData.confirmPassword]);
+        if (passwordData.newPassword !== "" || passwordData.confirmPassword !== "") {
+            handleCheckPassword();
+        }
+    }, [passwordData.newPassword, passwordData.confirmPassword]);
 
     const handleCheckPassword = () => {
         const uppercaseRegex = /[A-Z]/;
