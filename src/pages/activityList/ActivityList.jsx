@@ -4,15 +4,12 @@ import ActivityCard from "./ActivityCard"
 import { useEffect } from "react"
 import useActivityList from "./useActivityList"
 import { useAuth } from "../../hooks/useAuth"
-import ArrowButton from "../../components/button/ArrowButton"
-import Participants from "../../components/participants/Participants"
 
 // TODO : ActivityList Group By Date
 const ActivityList = () => {
     const navigate = useNavigate()
     const {
         getPrograms,
-        programs,
         activities,
         getMentoringActivityByMentorId,
         getMentoringActivityByMenteeId,
@@ -39,11 +36,9 @@ const ActivityList = () => {
     }
 
     return(
-        <div className="container py-5 px-5 mb-5">
-            <h2 className="mt-2"><ArrowButton/><b>{programs?.Name}</b></h2>
-            <hr/>
+        <>
             <div className="row">
-                <div className="col-md-9">      
+                <div className="col">      
                     <div className="mt-4">
                         <Button title={"+ Add Activity"} navigate={() => navigate(`/program/${params.programId}/activity-form`)}/>
                     </div>
@@ -72,9 +67,8 @@ const ActivityList = () => {
                         ))}
                     </div>
                 </div>
-                <Participants participants={programs?.participants}/>
             </div>
-        </div>
+        </>
     )
 }
 

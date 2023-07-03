@@ -2,7 +2,6 @@ import { Route, Routes } from 'react-router-dom';
 import Login from '../pages/login/Login';
 import ProgramList from '../pages/programList/ProgramList';
 import ProgramForm from '../pages/programForm/ProgramForm';
-import ActivityList from '../pages/activityList/ActivityList';
 import Layout from '../components/layout/Layout';
 import ActivityForm from '../pages/activityForm/ActivityForm';
 import ActivityDetail from '../pages/activityDetail/ActivityDetail';
@@ -18,6 +17,7 @@ import UserForm from '../pages/userForm/UserForm';
 import UserAssign from '../pages/userAssign/UserAssign';
 import UserAssignListOfUserProgram from '../pages/userAssign/UserAssignListOfUserProgram';
 import PasswordSettings from '../pages/passwordSettings/PasswordSettings';
+import ActivityComponent from '../pages/activityList/ActivityComponent';
 
 function AppRouter() {
   return (
@@ -25,7 +25,7 @@ function AppRouter() {
         <Route path='/' index element={<Login/>}/>
         <Route path='/' element={<Layout/>}>
             <Route path='program' element={<ProgramList />}/>
-            <Route path='program/:programId' element={<ActivityList />} />
+            <Route path='program/:programId' element={<ActivityComponent />} />
             <Route path='program/program-form' element={<ProgramForm />} />
             <Route path='program/program-form/:id' element={<ProgramForm />} />
             <Route path='program/mentor-feedback/:id' element={<MentorFeedback />} />
