@@ -15,8 +15,6 @@ const ArrowButton = ({isTwoSection}) => {
         marginLeft: '1rem'
     }
 
-    console.log(!isTwoSection)
-
     return(
         <Button title={<h2><BsArrowLeft/></h2>} styling={ !isTwoSection ? {...buttonCancelStyle, marginBottom: '1rem'}: buttonCancelStyle} navigate={()=>navigate(-1)}/>
     )

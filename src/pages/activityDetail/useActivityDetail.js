@@ -1,12 +1,16 @@
 import { useState } from "react"
 import axiosInstance from "../../services/axios-client"
 import { toast } from "react-toastify"
+import { useAuth } from "../../hooks/useAuth"
+import { format, parseISO } from "date-fns"
+import { DefaultProfileIcon } from "../../assets"
 
 const useActivityDetail = () => {
-
+    const {getCurrentUser} = useAuth()
     const [activity, setActivity] = useState({})
     const [participants, setParticipants] = useState([])
     const [programName, setProgramName] = useState("")
+    const [feedback, setFeedback] = useState({})
     
     const getDetailActivity = async (id) => {
         try {
@@ -38,6 +42,23 @@ const useActivityDetail = () => {
                     Description: data.Description
                 })
             }
+
+            console.log(data)
+            for (const comment of data.MentorMenteeSchedules) {
+                for (const mentorMentee of data.mentorMentees) {
+                    if ((mentorMentee.ParticipantID === getCurrentUser().ID || mentorMentee.MentorID === getCurrentUser().ID) && comment.MentorMenteeID === mentorMentee.ID) {
+                        const date = parseISO(comment.Date);
+                        const formattedDate = format(date, 'dd MMMM yyyy')
+                        setFeedback({
+                            Mentor: `${mentorMentee.Mentor.FirstName} ${mentorMentee.Mentor.LastName}`,
+                            Feedback: comment.Comment,
+                            Date: formattedDate,
+                            Image: DefaultProfileIcon
+                        })
+                    }        
+                }
+            }
+            // console.log(data)
             return data
         } catch (error) {
             toast.error(error.response.data.status.description)
@@ -61,7 +82,8 @@ const useActivityDetail = () => {
         getDetailMonitoring,
         getPrograms,
         participants,
-        programName
+        programName,
+        feedback
     }
 }
 

@@ -5,13 +5,24 @@ import useActivityDetail from "./useActivityDetail"
 import Participants from "../../components/participants/Participants"
 import { DefaultProfileIcon } from "../../assets"
 import { useAuth } from "../../hooks/useAuth"
+import Feedback from "../activityMentorFeedback/Feedback"
 
 const ActivityDetail = () => {
     const params = useParams()
     const {getCurrentRole} = useAuth()
     const role = getCurrentRole()
     const isMentee = role.includes("participant")
-    const {activity, getDetailActivity, getDetailMonitoring, getPrograms, participants, programName} = useActivityDetail()
+    const {
+        activity, 
+        getDetailActivity, 
+        getDetailMonitoring, 
+        getPrograms, 
+        participants, 
+        programName,
+        feedback
+    } = useActivityDetail()
+
+    console.log(feedback)
 
     useEffect(()=>{
         if(params.programId){
@@ -63,24 +74,20 @@ const ActivityDetail = () => {
                     </div>
 
                     {
-                        params.isMentoring==="true" ?
+                        params.isMentoring==="true" && 
+                        isMentee && 
+                        feedback.Mentor &&
+                        feedback.Feedback &&
+                        feedback.Date &&
+                        feedback.Image ?
                         <>
-                            <h4 className="mt-4">Feedback</h4>
-                            <div className="mt-4 px-4 py-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}}>
-                                <div class="container mb-3" style={{
-                                        display: 'flex',
-                                        alignItems: 'flex-start'
-                                    }}>
-                                    <img src={DefaultProfileIcon} alt="Profile Icon" class="image" style={{width: '7%', marginRight:'1rem'}}/>
-                                    <div class="content">
-                                        <div class="name">Aji Inisti</div>
-                                        <span style={{fontSize: '13px', color: 'gray'}}>12 June 2023</span>
-                                    </div>
-                                </div>
-                                <div className="mb-4" style={{ display: 'flex', flexDirection: 'column'}}>
-                                    <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia magni voluptatum quam sed pariatur labore alias dolores quod natus perspiciatis iure nobis doloribus quasi magnam et culpa est, animi voluptatibus.</span>
-                                </div>
-                            </div>
+                            <h5 className="mt-4 mb-4">Feedback</h5>
+                            <Feedback
+                                mentor={feedback.Mentor}
+                                feedback={feedback.Feedback}
+                                date={feedback.Date}
+                                image={feedback.Image}
+                            />
                         </>:
                         <></>
                     }
