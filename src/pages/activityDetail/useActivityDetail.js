@@ -38,6 +38,7 @@ const useActivityDetail = () => {
                     Description: data.Description
                 })
             }
+            return data
         } catch (error) {
             toast.error(error.response.data.status.description)
         }

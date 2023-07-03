@@ -207,6 +207,7 @@ const useActivityForm = () => {
         participants,
         setParticipants,
         handleSelectParticipant,
+        getMentee,
         fetchMentorMentee,
         fetchActivityProgram,
         fetchActivityMentoring,

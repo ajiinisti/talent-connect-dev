@@ -7,7 +7,7 @@ const Feedback = ({name, mentor, feedback, date, image}) => {
                         display: 'flex',
                         alignItems: 'flex-start'
                     }}>
-                    <img src={image} alt="Profile Icon" class="image" style={{width: '10%', marginRight:'1rem'}}/>
+                    <img src={image} alt="Profile Icon" class="image" style={{width: '40px', marginRight:'1rem'}}/>
                     <div class="content">
                         <div class="name">{mentor}</div>
                         <span style={{fontSize: '13px', color: 'gray'}}>{date}</span>
