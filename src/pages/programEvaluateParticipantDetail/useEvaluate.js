@@ -31,9 +31,20 @@ const useEvaluate = () => {
         }
     }
 
+    const getEval = async (evalId) => {
+        try {
+            let res = await axiosInstance.get("/evaluation/"+evalId)
+            // set nama dan program
+            console.log(res)
+        } catch (error) {
+            
+        }
+    }
+
     const getQuestions = async (programId, evalId) => {
         try {
             let res = await axiosInstance.get(`/programs/questions/${programId}`)
+            // get the answer, if answer != "" setSubmit as false
             setQuestions(res.data.data)
             let data = Object.assign({}, payload)
             data.QuestionCategories = []
@@ -59,7 +70,8 @@ const useEvaluate = () => {
         payload,
         onInputChange,
         onSubmit,
-        getQuestions
+        getQuestions,
+        getEval
     }
 
 }

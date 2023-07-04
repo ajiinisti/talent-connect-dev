@@ -44,6 +44,7 @@ const ProgramEvaluateParticipantDetail = () => {
     const createOption = (question, num, v, i, j) => {
         const rows = []
         for (let index = 0; index < num; index++) {
+            // if checked then disabled
             rows.push(<CFormCheck key={index} inline type="radio" name={`qes-${v.ID}-${question.ID}`} id={`qes-${v.ID}-${question.ID}-${index}`} value={index+1} label={index+1} onChange={
                 (e) => {
                    onInputChange(e, i, j)
@@ -76,6 +77,7 @@ const ProgramEvaluateParticipantDetail = () => {
                                     {createOption(question, question.Option, v, i, j)}
                                 </div>
                                 ) : (
+                                    // if answered then disabled
                                     <textarea rows="5" name={`qes-${v.CategoryID}-${question.ID}`} className="form-control" onChange={(e)=>onInputChange(e,i,j)}></textarea>
                                 )}
                                 
