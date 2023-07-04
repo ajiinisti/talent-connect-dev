@@ -9,7 +9,7 @@ const Participants = ({program}) => {
     })
     return(
         <div className="col-md-3">
-            <h5 className="mt-4 mb-4">Mentor ({mentor ? mentor.length : 0})</h5>
+            <h5 className="mt-4 mb-4">Mentors ({mentor ? mentor.length : 0})</h5>
             {mentor && mentor.map((v)=>(
                 <div className="mt-3">
                     <img src={DefaultProfileIcon} alt="Profile Icon" /> <span>{v.Name}</span>

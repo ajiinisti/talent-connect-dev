@@ -22,14 +22,9 @@ const ActivityCard = ({title, styling, activity, programId, isMentoring}) => {
     const {getCurrentRole} = useAuth()
     const role = getCurrentRole()
     const isMentor = role.includes("mentor")
-    const isMentee = role.includes("participant")
+    const isAdmin = role.includes("admin")
     // const isMentor = false
     // const isMentee = true
-
-    const feedbackButton = {
-        color: '#A684F2',
-        backgroundColor: 'white'
-    }
 
     const handleItemClick = (type) => {
         if (type === "update") {
@@ -68,55 +63,61 @@ const ActivityCard = ({title, styling, activity, programId, isMentoring}) => {
             <div className="card d-flex flex-column gap-4 mt-3" style={{borderRadius: '10px', paddingBottom:styling.bot, paddingTop:styling.top }}>
                 <ul className="list-group list-group-flush">
                     <div
-                    className="container d-flex align-items-center justify-content-between px-4 py-5"
-                    style={{ height: '10vh'}}
+                        className="container d-flex align-items-center justify-content-between activity-card"
+                        style={{ minHeight: '10vh'}}
                     >
-                        <div className="d-flex flex-column">
-                        <Link to={`/program/activity-detail/${isMentoring}/${activity.ID}/${programId}`}>
-                            <h5 style={{ marginBottom: 'auto' }}>{title}</h5>
-                        </Link>
-                        <span style={{marginTop: '0.2rem', width: '20rem'}}>{activity.StartDate.slice(11,16)}</span>
-                        <div style={{ marginTop: '0.5rem' }}>
-                            <div className="mirror-icon">
-                            <BsPeople style={{ marginLeft: '0.5rem', marginBottom:'0.2rem'}} />
-                            </div>
-                            {
-                                isMentoring ? (
-                                    <span>
-                                    {activity.mentorMentees.map((mentee, index) => (
-                                        <React.Fragment key={mentee.Participant.id}>
-                                            {mentee.Participant.FirstName} {mentee.Participant.LastName}{", "}
-                                        </React.Fragment>
-                                    ))}
-                                    {activity.mentorMentees[0].Mentor.FirstName} {activity.mentorMentees[0].Mentor.LastName}
-                                    </span>
-                                ) : (
-                                    <span>All</span>
-                                )
-                            }
-                        </div>
-                        </div>
-                            <div className="container" style={{ 
-                                display: 'grid',
-                                gridTemplateColumns: '1fr',
-                                justifyItems: 'end',
-                                alignItems: 'start'
-                            }}>
-                            <div className="dropdown" ref={dropdownRef} style={{ position: 'relative'}}>
-                                <label htmlFor="dropdown-toggle" className="dropdown-icon" onClick={toggleDropdown}>
-                                <FaEllipsisH style={{ marginBottom: '0.2rem' }} />
-                                </label>
-                                {isDropdownOpen && (
-                                <div className="dropdown-menu">
-                                    <button className="dropdown-item" onClick={() => handleItemClick("update")}>
-                                    Update Activity
-                                    </button>
-                                    <button className="dropdown-item" onClick={() => handleItemClick("delete")}>
-                                    Delete Activity
-                                    </button>
+                        <div className="d-flex flex-column activity-card-section-1" style={{justifyContent: "center"}}>
+                            <Link to={`/program/activity-detail/${isMentoring}/${activity.ID}/${programId}`}>
+                                <h5 style={{ marginBottom: 'auto', width:"10wh%" }}>{title}</h5>
+                            </Link>
+                            <span style={{marginTop: '0.2rem'}}>{activity.StartDate.slice(11,16)}</span>
+                            <div style={{ marginTop: '0.5rem' }}>
+                                <div className="mirror-icon">
+                                <BsPeople style={{ marginLeft: '0.5rem', marginBottom:'0.2rem'}} />
                                 </div>
-                                )}
+                                {
+                                    isMentoring ? (
+                                        <span>
+                                        {activity.mentorMentees.map((mentee, index) => (
+                                            <React.Fragment key={mentee.Participant.id}>
+                                                {mentee.Participant.FirstName} {mentee.Participant.LastName}{", "}
+                                            </React.Fragment>
+                                        ))}
+                                        {activity.mentorMentees[0].Mentor.FirstName} {activity.mentorMentees[0].Mentor.LastName}
+                                        </span>
+                                    ) : (
+                                        <span>All</span>
+                                    )
+                                }
                             </div>
+                        </div>
+                        <div style={{ 
+                            display: 'grid',
+                            gridTemplateColumns: '1fr',
+                            justifyItems: 'end',
+                            alignItems: 'start'
+                        }}>
+                            {
+                                isAdmin || isMentoring ?
+                                <div className="dropdown" ref={dropdownRef} style={{ position: 'relative'}}>
+                                    <label htmlFor="dropdown-toggle" className="dropdown-icon" onClick={toggleDropdown}>
+                                    <FaEllipsisH style={{ marginBottom: '0.2rem' }} />
+                                    </label>
+                                    {
+                                        isDropdownOpen && (
+                                        <div className="dropdown-menu">
+                                            <button className="dropdown-item" onClick={() => handleItemClick("update")}>
+                                            Update Activity
+                                            </button>
+                                            <button className="dropdown-item" onClick={() => handleItemClick("delete")}>
+                                            Delete Activity
+                                            </button>
+                                        </div>
+                                        )
+                                    }
+                                </div>
+                                :<></>
+                            }
                             {
                                 isMentoring && isMentor ?
                                 <div>

@@ -98,7 +98,7 @@ const ProgramList = () => {
         setAllSelectedParticipants(initialParticipant);
     }, [participants]);
 
-
+    console.log(program)
     return(
         <>
             <div className="container py-5 px-5 mb-5">
@@ -109,7 +109,7 @@ const ProgramList = () => {
                 </div>
                 {program?.admin ? 
                 <>
-                {program.admin.map((v, i)=>(<ProgramCard key={`admin${v.ID}`} title={v.Name} styling={cardStyle} programId={v.ID} isAdmin={true} participant={v} toogleModalUpdate={()=>toggleShow(i)} />))}
+                {program.admin.map((v, i)=>(<ProgramCard key={`admin${v.ID}`} title={v.Name} styling={cardStyle} programId={v.ID} isAdmin={true} participant={v.participants} toogleModalUpdate={()=>toggleShow(i)} />))}
                 </>
                 : <></>}
                 {program?.panelist ? 
