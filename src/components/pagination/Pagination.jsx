@@ -91,7 +91,7 @@ const Pagination = ({content, programId}) => {
                         </h2>
                         <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                             <div class="accordion-body">
-                                <div className="d-flex justify-content-between">
+                                <div className="d-flex justify-content-between mt-3">
                                     <h5><b>{upcomingActivities[currentPageUpcoming - 1]?.date}</b></h5>
                                     <div style={{ 
                                         justifyItems: 'end',
@@ -147,7 +147,7 @@ const Pagination = ({content, programId}) => {
                         </h2>
                         <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
                             <div class="accordion-body">
-                                <div className="d-flex justify-content-between">
+                                <div className="d-flex justify-content-between mt-3">
                                     <h5><b>{pastActivities[currentPagePast - 1]?.date}</b></h5>
                                     <div style={{ 
                                         justifyItems: 'end',

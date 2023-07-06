@@ -149,6 +149,7 @@ const useActivityForm = () => {
             let res = await axiosInstance.post("/mentoring-schedules", newData)
             if(res.status === 200) {
                 navigate(-1)
+                toast.success("Successfully create activity")
             }
             
         } catch (error) {
@@ -166,6 +167,7 @@ const useActivityForm = () => {
             console.log(res)
             if(res.status === 200) {
                 navigate(-1)
+                toast.success("Successfully create activity")
             }
             
         } catch (error) {
@@ -179,6 +181,7 @@ const useActivityForm = () => {
             let res = await axiosInstance.put("/mentoring-schedules", newData)
             if(res.status === 200) {
                 navigate(-1)
+                toast.success("Successfully update activity")
             }
         } catch (error) {
             toast.error(error.response.data.status.description)
@@ -194,6 +197,7 @@ const useActivityForm = () => {
             })
             if(res.status === 200) {
                 navigate(-1)
+                toast.success("Successfully update activity")
             }
         } catch (error) {
             toast.error(error.response.data.status.description)

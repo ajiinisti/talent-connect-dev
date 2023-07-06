@@ -24,6 +24,7 @@ const useProgramForm = () => {
             let res = await axiosInstance.post("/programs",newData)
             if(res.status === 200) {
                 navigate('/program')
+                toast.success("Successfully create program")
             }
         } catch (error) {
             toast.error(error.response.data.status.description)
@@ -42,6 +43,7 @@ const useProgramForm = () => {
             let res = await axiosInstance.put("/programs",newData)
             if(res.status === 200) {
                 navigate('/program')
+                toast.success("Successfully update program")
             }
         } catch (error) {
             toast.error(error.response.data.status.description)

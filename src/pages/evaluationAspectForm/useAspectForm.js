@@ -64,11 +64,13 @@ const useAspectForm = () => {
                 let res = await axiosInstance.post("/questions",formPayload)
                 if (res.status === 200){
                     navigate(-1)
+                    toast.success("Successfully create aspect")
                 }
             else {
                 let res = await axiosInstance.put("/questions",formPayload)
                 if (res.status === 200){
                     navigate(-1)
+                    toast.success("Successfully update aspect")
                 }
 
             }

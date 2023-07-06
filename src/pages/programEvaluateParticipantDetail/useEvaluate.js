@@ -26,7 +26,10 @@ const useEvaluate = () => {
 
     const onSubmit = async () => {
         try {
-            await axiosInstance.post(`/answer`, payload)  
+            let res = await axiosInstance.post(`/answer`, payload)  
+            if (res.status === 200) {
+                toast.success("Successfully evaluate participant")
+            }
         } catch (error) {
             toast.error(error.response.data.status.description)
         }

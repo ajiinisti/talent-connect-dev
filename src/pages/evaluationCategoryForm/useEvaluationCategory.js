@@ -62,11 +62,13 @@ const useEvaluationCategory = () =>{
                 let res = await axiosInstance.put("category/questions", formData)
                 if (res.status === 200) {
                     navigate(-1)
+                    toast.success("Successfully update category")
                 }
             } else {
                 let res = await axiosInstance.post("category/questions", formData)
                 if (res.status === 200) {
                     navigate(-1)
+                    toast.success("Successfully create category")
                 }
             }
         } catch (error) {

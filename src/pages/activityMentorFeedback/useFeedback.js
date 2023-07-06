@@ -4,8 +4,10 @@ import { DefaultProfileIcon } from "../../assets"
 import axiosInstance from "../../services/axios-client"
 import { toast } from "react-toastify"
 import { format, parseISO } from 'date-fns';
+import { useNavigate } from "react-router-dom"
 
 const useFeedback = () => {
+    const navigate = useNavigate()
     const [feedbackData, setFeedbackData] = useState([])
     const [feedback, setCountFeedback] = useState({
         given: 0,
