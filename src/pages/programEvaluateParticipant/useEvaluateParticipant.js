@@ -4,6 +4,18 @@ import axiosInstance from "../../services/axios-client"
 const useEvaluateParticipant = () => {
     
     const [data, setData] = useState({})
+    const [program, setProgram] = useState("")
+
+    const getProgram = async (programId) => {
+        try {
+            let res = await axiosInstance.get("/programs/"+programId)
+            const data = res.data.data
+            setProgram(data.Program.Name)
+        } catch (error) {
+            
+        }
+    }
+
     const getEvaluation = async (id) => {
         try {
             let res = await axiosInstance.get("/auth/evaluation/program/"+id)
@@ -16,7 +28,9 @@ const useEvaluateParticipant = () => {
     }
     return {
         getEvaluation, 
-        data
+        getProgram,
+        data,
+        program
     }
 }
 

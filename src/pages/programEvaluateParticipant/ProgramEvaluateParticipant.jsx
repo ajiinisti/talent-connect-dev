@@ -7,7 +7,7 @@ import useEvaluateParticipant from "./useEvaluateParticipant"
 const ProgramEvaluateParticipant = () => {
     const navigate = useNavigate()
     const params = useParams()
-    const {getEvaluation, data} = useEvaluateParticipant()
+    const {getEvaluation, data, getProgram, program} = useEvaluateParticipant()
     const [active,setActive] = useState("Mid")
     const buttonStyling = {
         float: 'right'
@@ -32,11 +32,12 @@ const ProgramEvaluateParticipant = () => {
 
     useEffect(() => {
         getEvaluation(params.id)
+        getProgram(params.id)
     }, [params.id])
 
     return(
         <div className="container py-5 px-5 mb-5">
-            <h2 className="mt-5"><b>SMM ITDP Batch 3</b></h2>
+            <h2 className="mt-5"><b>{program}</b></h2>
             <div className="row mt-5">
                 <div className="col-2">
                     <Button navigate={()=>{
@@ -71,7 +72,7 @@ const ProgramEvaluateParticipant = () => {
                     v.IsEvaluated && <>
                     <div key={v.ID} className="mt-4">
                         <img src={DefaultProfileIcon} style={{ width: '5%' }} alt="Profile Icon" /> <span>{v.Participant.User.FirstName} {v.Participant.User.LastName}</span>
-                        {/* <Button title={"Evaluate"} styling={buttonStyling} navigate={() => navigate("id")}/> */}
+                        <Button title={"Evaluate"} styling={buttonStyling} navigate={() => navigate(v.ID)}/>
                     </div>
                     <hr/>
                     </>
