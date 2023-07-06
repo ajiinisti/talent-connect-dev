@@ -24,12 +24,33 @@ const useLogin = () => {
             }
         } catch (error) {
             toast.error(error.response.data.status.description)
-        }
-            
+        }       
+    }
+
+    const loginGoogleHandler = async (code) => {
+
+        const options = {
+            code: code,
+          };
+
+          const qs = new URLSearchParams(options);
+          try {
+            const res = await axiosInstance
+            .get(`/sessions/oauth?${qs.toString()}`)
+            if (res.status===200){
+                login(res.data.data.AccessToken, JSON.stringify(res.data.data.TokenModel)) 
+            }
+          } catch (err) {
+            if(err.response){    
+                toast.error(err.response.data.status.description)
+            } else
+            toast(err.message);
+          }
     }
     return {
         payload,
         loginHandler,
+        loginGoogleHandler,
         onChangeHandler
     }
 }
