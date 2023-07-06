@@ -3,7 +3,7 @@ import Button from "../../components/button/Button"
 import { useEffect } from "react"
 import useActivityList from "./useActivityList"
 import { useAuth } from "../../hooks/useAuth"
-import Pagination from "../../components/pagination/Pagination"
+import Pagination from "./Pagination"
 
 // TODO : ActivityList Group By Date
 const ActivityList = () => {

@@ -8,7 +8,7 @@ import useActivityList from './useActivityList';
 import { useAuth } from '../../hooks/useAuth';
 import Button from '../../components/button/Button';
 
-const ActivityCard = ({title, styling, activity, programId, isMentoring}) => {
+const ActivityCard = ({title, styling, activity, programId, isMentoring, isPassed}) => {
     const navigate = useNavigate()
     const dropdownRef = useRef(null);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -98,7 +98,7 @@ const ActivityCard = ({title, styling, activity, programId, isMentoring}) => {
                             alignItems: 'start'
                         }}>
                             {
-                                isAdmin || isMentoring ?
+                                (isAdmin || isMentoring) && isPassed ?
                                 <div className="dropdown" ref={dropdownRef} style={{ position: 'relative'}}>
                                     <label htmlFor="dropdown-toggle" className="dropdown-icon" onClick={toggleDropdown}>
                                     <FaEllipsisH style={{ marginBottom: '0.2rem' }} />

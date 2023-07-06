@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai'
-import ActivityCard from "../../pages/activityList/ActivityCard"
+import ActivityCard from "./ActivityCard"
 
 const Pagination = ({content, programId}) => {
     const [currentPageUpcoming, setCurrentPageUpcoming] = useState(1)
@@ -121,14 +121,14 @@ const Pagination = ({content, programId}) => {
                                             {
                                                 v.Activities?.map((a) => (
                                                     <div style={{ marginTop: "1.5rem" }}>
-                                                    <ActivityCard title={a.Name} styling={cardStyle} activity={a} programId={programId} isMentoring={false} />
+                                                    <ActivityCard title={a.Name} styling={cardStyle} activity={a} programId={programId} isMentoring={false} isPassed={false}/>
                                                     </div>
                                                 ))
                                             }
                                             {
                                                 v.MentoringSchedules?.map((a) => (
                                                     <div style={{ marginTop: "1.5rem" }}>
-                                                    <ActivityCard title={a.Name} styling={cardStyle} activity={a} programId={programId} isMentoring={true} />
+                                                    <ActivityCard title={a.Name} styling={cardStyle} activity={a} programId={programId} isMentoring={true} isPassed={true}/>
                                                     </div>
                                                 ))
                                             }
