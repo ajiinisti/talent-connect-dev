@@ -9,8 +9,10 @@ import useEvaluate from "./useEvaluate"
 
 const ProgramEvaluateParticipantDetail = () => {
     const params = useParams()
-    const {questions, payload, onInputChange, onSubmit, getQuestions} = useEvaluate()
-    const [isDetail, setDetail] = useState(false)
+    const {questions, payload, onInputChange, onSubmit, getQuestions, getEval, mentee, period, getProgram, program} = useEvaluate()
+
+    const programId = params.programId
+    const evalId = params.evalIid
 
     const evaluationPeriod = [
         { value: 'mid', label: 'Mid Evaluation' },
@@ -32,37 +34,38 @@ const ProgramEvaluateParticipantDetail = () => {
     //     marginLeft: '1rem'
     // }
     useEffect(()=> {
-        if(params.id) {
-            setDetail(true)
+        if(evalId) {
+            getEval(evalId)
+            getProgram(programId)
         }
-    },[params.id])
+    },[evalId])
 
     useEffect(()=> {
-        getQuestions(params.programId, params.evalId)
-    }, [params.programId, params.evalId])
+        getQuestions(programId, evalId)
+    }, [programId, evalId])
 
     const createOption = (question, num, v, i, j) => {
         const rows = []
         for (let index = 0; index < num; index++) {
-            rows.push(<CFormCheck key={index} inline type="radio" name={`qes-${i}-${j}`} id={`qes-${i}-${j}-${index}`} value={index+1} label={index+1} onChange={
+            // if checked then disabled
+            rows.push(<CFormCheck key={index} inline type="radio" name={`qes-${v.ID}-${question.ID}`} id={`qes-${v.ID}-${question.ID}-${index}`} value={index+1} label={index+1} onChange={
                 (e) => {
                    onInputChange(e, i, j)
-            }} checked={payload.QuestionCategories[i].QuestionList[j].Answer === (index+1).toString()}/>)     
+            }} checked={payload.QuestionCategories[i].QuestionList[j].Answer == index+1} disabled={payload.detail}/>)     
         }
         return (rows)
     }
 
     return(
         <div className="container py-5 px-5 mb-5">
-            { isDetail }
-            <h2 className="mt-2"><b></b></h2>
+            <h2 className="mt-2"><b>{program}</b></h2>
             <hr/>
             <div className="row mt-4 px-3">
-                <h4><ArrowButton/> </h4>
+                <h4><ArrowButton/> {mentee.name} </h4>
                 <form className="mt-4 px-4 py-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}}>
                     <div className="mb-4">
                         <label htmlFor="evaluationPeriod" className="form-label">Evaluation Period</label>
-                        <Select options={evaluationPeriod} id="evaluationPeriod"/>
+                        <Select options={evaluationPeriod} isDisabled value={period} id="evaluationPeriod"/>
                     </div>
                     {questions.map((v, i)=>(
                         <div key={v.ID}>
@@ -76,7 +79,8 @@ const ProgramEvaluateParticipantDetail = () => {
                                     {createOption(question, question.Option, v, i, j)}
                                 </div>
                                 ) : (
-                                    <textarea rows="5" name={`qes-${v.CategoryID}-${question.ID}`} className="form-control" onChange={(e)=>onInputChange(e,i,j)}></textarea>
+                                    // if answered then disabled
+                                    <textarea disabled={payload.detail} rows="5" name={`qes-${v.CategoryID}-${question.ID}`} className="form-control" onChange={(e)=>onInputChange(e,i,j)}></textarea>
                                 )}
                                 
                             </div>  
@@ -88,13 +92,15 @@ const ProgramEvaluateParticipantDetail = () => {
 
                     ))}
                     <div className="mb-4">
-                        <label htmlFor="evaluationResult" className="form-label">Evaluation Period</label>
-                        <Select options={evaluationResult} id="evaluationResult"/>
+                        {/* <label htmlFor="evaluationResult" className="form-label">Evaluation Result</label> */}
+                        {/* <Select options={evaluationResult} id="evaluationResult"/> */}
                     </div> 
-                    <Button title={"Add Evaluation"} navigate={(e) => {
-                        e.preventDefault()
-                        onSubmit()
-                        }}/>
+                    <Button title={"Add Evaluation"} 
+                        navigate={(e) => {
+                            e.preventDefault()
+                            onSubmit(programId, evalId)
+                            }}
+                        disabled={payload.detail}/>
                         <CancelButton/>
                 </form>
             </div>
