@@ -1,6 +1,6 @@
 import { 
     // GoogleLoginLogo, 
-    LoginLogo 
+    LoginLogo, TalentConnectLogo 
 } from "../../assets";
 import useLogin from "./useLogin";
 
@@ -13,7 +13,10 @@ const Login = () => {
     return (
         <div className="container-fluid" style={{ height: "100vh" }}>
             <div className="row h-100">
-                <div className="col-6 d-flex flex-column justify-content-center align-items-center">
+                <div className="col-6 d-flex flex-column justify-content-center align-items-center left-login">
+                    <div className="logo-login mb-5">
+                        <img src={TalentConnectLogo} alt="Logo" className="img-fluid"/>
+                    </div>
                     <div>
                         <h1><b>Sign In</b></h1>
                     </div>

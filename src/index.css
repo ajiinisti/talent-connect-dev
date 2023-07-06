@@ -295,3 +295,21 @@ a.nav-link{
 .navbar-toggler .icon-bar {
   border-color: #A684F2 !important;
 }
+
+.logo-login {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .right-login {
+    display: none !important;
+  }
+
+  .left-login {
+    width: 100%;
+  }
+
+  .logo-login {
+    display: flex;
+  }
+}
