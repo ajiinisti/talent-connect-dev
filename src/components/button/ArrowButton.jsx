@@ -2,7 +2,7 @@ import Button from "./Button"
 import { useNavigate } from 'react-router-dom'
 import { BsArrowLeft } from "react-icons/bs"
 
-const ArrowButton = () => {
+const ArrowButton = ({isTwoSection}) => {
     const navigate = useNavigate()
     
     const buttonCancelStyle = {
@@ -12,12 +12,11 @@ const ArrowButton = () => {
         color: 'black',
         border: '0.5px solid white',
         outline: 'gray',
-        marginLeft: '1rem',
-        marginBottom: '1rem'
+        marginLeft: '1rem'
     }
 
     return(
-        <Button title={<h2><BsArrowLeft/></h2>} styling={buttonCancelStyle} navigate={()=>navigate(-1)}/>
+        <Button title={<h2><BsArrowLeft/></h2>} styling={ !isTwoSection ? {...buttonCancelStyle, marginBottom: '1rem'}: buttonCancelStyle} navigate={()=>navigate(-1)}/>
     )
 }
 

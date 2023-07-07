@@ -5,8 +5,8 @@ import {
     EvaluationScoringIconActive,
     EvaluationScoringIconNonActive,
     LogoutIcon,
-    // ProfileSettingsIconActive,
-    // ProfileSettingsIconNonActive,
+    PasswordActive,
+    PasswordNonActive,
     ProgramIconActive, 
     ProgramIconNonActive, 
     TalentConnectLogo, 
@@ -21,6 +21,7 @@ const Sidebar = () => {
     const [activeNavLink, setActiveNavLink] = useState('');
     const {logout, getCurrentRole, getCurrentUser} = useAuth()
     const role = getCurrentRole()
+    console.log(role)
     
     useEffect(() => {
         setActiveNavLink(location.pathname);
@@ -50,7 +51,7 @@ const Sidebar = () => {
                     </div>
                 </NavLink>
                 }
-                {role && role.includes("admin") &&
+                {role?.includes("admin") &&
                 <NavLink to="/evaluation-scoring" activeclassname="active">
                     <div className="mt-1 navbar-div-item" >
                         <li>
@@ -60,7 +61,7 @@ const Sidebar = () => {
                     </div> 
                 </NavLink>
                 }
-                {role && role.includes("participant") &&
+                {role?.includes("participant") &&
                 <NavLink to={`/evaluations/${getCurrentUser().ID}`} activeclassname="active">
                     <div className="mt-1 navbar-div-item" >
                         <li>
@@ -70,14 +71,14 @@ const Sidebar = () => {
                     </div> 
                 </NavLink>
                 }
-                {/* <NavLink to="/settings" activeclassname="active">
+                <NavLink to="/password" activeclassname="active">
                     <div className="mt-1 navbar-div-item" >
                         <li>
-                            <img src={activeNavLink.includes('/settings') ? ProfileSettingsIconActive : ProfileSettingsIconNonActive}
+                            <img src={activeNavLink.includes('/password') ? PasswordActive : PasswordNonActive}
                             className="img-fluid" alt="Settings Icon" />
                         </li>
                     </div>
-                </NavLink> */}
+                </NavLink>
             </ul>
             <hr />
             <div className="pb-4">

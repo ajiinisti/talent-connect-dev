@@ -60,11 +60,13 @@ const useUser = () => {
                 let res = await axiosInstance.put("/users", formData)
                 if (res.status === 200) {
                     navigate("/user-management/")
+                    toast.success("Successfully update user")
                 }
             } else {
                 let res = await axiosInstance.post("/users", formData)
                 if (res.status === 200) {
                     navigate("/user-management/")
+                    toast.success("Successfully create user")
                 }
             }
         } catch (error) {

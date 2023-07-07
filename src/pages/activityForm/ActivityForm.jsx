@@ -30,6 +30,7 @@ const ActivityForm = () => {
         putMentoringSchedule,
         putActivity,
     } = useActivityForm()
+    console.log(activity)
 
     const buttonPost = isMentor ? postMentoringSchedule: postActivity
     const buttonSave = isMentor ? putMentoringSchedule : putActivity
@@ -73,7 +74,17 @@ const ActivityForm = () => {
                     isUpdate ? " Edit Activity": " Add Activity"
                 }
                 </h4>
-                <form className="mt-4 px-4 py-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}}>
+                <form className="mt-4 px-4 py-4" 
+                    style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}}
+                    onSubmit={(e) => {
+                        if (isUpdate) {
+                            e.preventDefault();
+                            buttonSave(activity, params.programId);
+                        } else {
+                            e.preventDefault();
+                            buttonPost(activity, params.programId);
+                        }
+                    }}>
                     <div className="mb-4">
                         <label htmlFor="activityTitle" className="form-label">Title</label>
                         <input 
@@ -91,7 +102,7 @@ const ActivityForm = () => {
                         <label htmlFor="link" className="form-label">Link</label>
                         <input 
                             required
-                            type="link" 
+                            type="text" 
                             name="link" 
                             className="form-control" 
                             id="link" 
@@ -151,21 +162,11 @@ const ActivityForm = () => {
                     {
                     isUpdate ? 
                     <>
-                        <Button title={"Save Changes"} navigate={(e) => 
-                            {
-                                e.preventDefault();
-                                buttonSave(activity, params.programId);
-                            }
-                        }/>
+                        <Button title={"Save Changes"}/>
                         <CancelButton/>
                     </>: 
                     <>
-                        <Button title={"Add Activity"} navigate={(e) => 
-                            {
-                                e.preventDefault();
-                                buttonPost(activity, params.programId);
-                            }
-                        }/>
+                        <Button title={"Add Activity"}/>
                         <CancelButton/>
                     </>
                 }

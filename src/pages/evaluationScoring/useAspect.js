@@ -47,6 +47,7 @@ const useAspect = () => {
             let res = await axiosInstance.post("/category/evaluation", payload)
             if (res.status === 200) {
                 setIsModalOut(false)
+                toast.success("Successfully create evaluation category")
             }
         } catch (error) {
             toast.error(error.response.data.status.description)

@@ -48,7 +48,17 @@ const ProgramForm = () => {
                     isUpdate ? " Edit Program": " Add Program"
                 }
             </b></h2>
-            <form className="mt-4 px-4 py-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}}>
+            <form className="mt-4 px-4 py-4" 
+                style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}}
+                onSubmit={(e) => {
+                    if (isUpdate) {
+                        e.preventDefault()
+                        putProgramForm(data)
+                    } else {
+                        e.preventDefault();
+                        postProgramForm(data)
+                    }
+                }}>
                 <div className="mb-4">
                     <label htmlFor="programTitle" className="form-label">Title</label>
                     <input 
@@ -89,19 +99,11 @@ const ProgramForm = () => {
                     isUpdate ? 
                     <>
                         <Button title={"Save Changes"} 
-                            navigate={(e) => {
-                                e.preventDefault()
-                                putProgramForm(data)
-                            }} 
                             styling={buttonStyle}/>
                         <CancelButton/>
                     </>: 
                     <>
                         <Button title={"Add Program"} 
-                            navigate={(e) => {
-                                e.preventDefault();
-                                postProgramForm(data)}
-                            } 
                             styling={buttonStyle}/>
                         <CancelButton/>
                     </>

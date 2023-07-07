@@ -2,10 +2,18 @@ import { useState } from "react"
 import axiosInstance from "../../services/axios-client"
 import { toast } from "react-toastify"
 
+
+const evaluationPeriod = [
+    { value: 'mid', label: 'Mid Evaluation' },
+    { value: 'final', label: 'Final Evaluation' }
+]
 const useEvaluate = () => {
     
     const [questions, setQuestions] = useState([])
     const [payload, setPayload] = useState({})
+    const [mentee, setMentee] = useState({name: ""})
+    const [period, setPeriod] = useState(evaluationPeriod[0])
+    const [program, setProgram] = useState("")
 
     const onInputChange = ((event, i, j)=>{
         let newState = JSON.parse(JSON.stringify(payload))
@@ -24,19 +32,50 @@ const useEvaluate = () => {
     })
     
 
-    const onSubmit = async () => {
+    const onSubmit = async (programId, evalId) => {
         try {
-            await axiosInstance.post(`/answer`, payload)  
+            if (payload.detail) {
+                throw new Error("Answer already submitted")
+            }
+            const data = await axiosInstance.post(`/answer`, payload)  
+            if (data.status === 200) {
+                await getQuestions(programId, evalId)
+                toast.success("Successfully evaluate participant")
+            }
         } catch (error) {
-            toast.error(error.response.data.status.description)
+            toast.error(error)
+        }
+    }
+
+    const getProgram = async (programId) => {
+        try {
+            let res = await axiosInstance.get("/programs/"+programId)
+            const data = res.data.data
+            setProgram(data.Program.Name)
+        } catch (error) {
+            
+        }
+    }
+
+    const getEval = async (evalId) => {
+        try {
+            let res = await axiosInstance.get("/evaluation/"+evalId)
+            const data = res.data.data
+            setMentee({name: data.Participant.User.FirstName + " " + data.Participant.User.LastName})
+            setPeriod(data.Stage === 'mid' ? evaluationPeriod[0] : evaluationPeriod[1])
+        } catch (error) {
+            
         }
     }
 
     const getQuestions = async (programId, evalId) => {
         try {
             let res = await axiosInstance.get(`/programs/questions/${programId}`)
+            let answerRes = await axiosInstance.get(`/auth/answers/${evalId}`)
+            let answers = answerRes.data.data
             setQuestions(res.data.data)
             let data = Object.assign({}, payload)
+            if(answers.length > 0) data.detail = true; else data.detail = false;
             data.QuestionCategories = []
             data.EvaluationID = evalId
             data.ProgramID = programId
@@ -45,7 +84,8 @@ const useEvaluate = () => {
                 data.QuestionCategories.push(temp)
                 data.QuestionCategories[i].QuestionList = []
                 v.QuestionCategory.questions.forEach((question, j)=>{
-                    temp = {QuestionID: question.ID, Answer : ""}
+                    const answer = answers.find((v)=>v.QuestionID===question.ID)
+                    temp = {QuestionID: question.ID, Answer : answer? answer.Answer.Answer || "" : ""}
                     data.QuestionCategories[i].QuestionList.push(temp)
                 })
             })
@@ -60,7 +100,12 @@ const useEvaluate = () => {
         payload,
         onInputChange,
         onSubmit,
-        getQuestions
+        getQuestions,
+        getEval,
+        getProgram,
+        mentee,
+        period,
+        program
     }
 
 }

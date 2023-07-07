@@ -12,8 +12,9 @@ code {
 
 /* Layout - Sidebar*/
 
-.custom-navbar {
-  background-color: #F1FAFB;
+.custom-sidebar {
+  background-color: #f1fafb;
+  flex: 0 0 auto;
 }
 
 a {
@@ -251,4 +252,64 @@ a {
   flex-direction: column;
   justify-content: space-between;
   margin-left: 10px;
+}
+
+.list-group-item.active {
+  background-color: #f4f1f1;
+  color: black;
+}
+
+a.nav-link{
+  color: black;
+}
+
+/* Navbar */
+
+.custom-navbar{
+  background-color: #F1FAFB;
+  position: sticky;
+  top: 0;
+}
+
+@media (max-width: 768px) {
+  .custom-sidebar {
+      display: none;
+  }
+
+  .px-5 {
+    padding-left: 1rem!important;
+    padding-right: 1rem!important;
+  }
+}
+
+@media (min-width: 769px) {
+  .custom-navbar {
+    display: none;
+  }
+}
+
+.custom-content {
+  flex: 1 1 auto;
+}
+
+.navbar-toggler .icon-bar {
+  border-color: #A684F2 !important;
+}
+
+.logo-login {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .right-login {
+    display: none !important;
+  }
+
+  .left-login {
+    width: 100%;
+  }
+
+  .logo-login {
+    display: flex;
+  }
 }

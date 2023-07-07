@@ -2,11 +2,25 @@ import { useParams } from "react-router-dom"
 import { useEffect } from "react"
 import ArrowButton from "../../components/button/ArrowButton"
 import useActivityDetail from "./useActivityDetail"
-import Participants from "../../components/participants/Participants"
+import { useAuth } from "../../hooks/useAuth"
+import Feedback from "../activityMentorFeedback/Feedback"
 
 const ActivityDetail = () => {
     const params = useParams()
-    const {activity, getDetailActivity, getDetailMonitoring, getPrograms, participants, programName} = useActivityDetail()
+    const {getCurrentRole} = useAuth()
+    const role = getCurrentRole()
+    const isMentee = role.includes("participant")
+    const {
+        activity, 
+        getDetailActivity, 
+        getDetailMonitoring, 
+        getPrograms, 
+        participants, 
+        programName,
+        feedback
+    } = useActivityDetail()
+
+    console.log(feedback)
 
     useEffect(()=>{
         if(params.programId){
@@ -24,8 +38,9 @@ const ActivityDetail = () => {
             <h2 className="mt-2"><b>{activity.program?.Name ? activity.program?.Name : programName}</b></h2>
             <hr/>
             <div className="row">
-                <div className="col-md-9 mr-3">      
+                <div className="col">      
                     <h4 className="mt-4 mb-4"><ArrowButton/>   {activity?.Name}</h4>
+                    <h4>Details</h4>
                     <div className="mt-4 px-4 py-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}}>
                         <div className="mb-4" style={{ display: 'flex', flexDirection: 'column'}}>
                             <label style={{ display: 'inline-block'}}>Link</label>
@@ -52,8 +67,26 @@ const ActivityDetail = () => {
                             <b><span>{activity?.Description}</span></b>
                         </div>
                     </div>
+
+                    {
+                        params.isMentoring==="true" && 
+                        isMentee && 
+                        feedback.Mentor &&
+                        feedback.Feedback &&
+                        feedback.Date &&
+                        feedback.Image ?
+                        <>
+                            <h5 className="mt-4 mb-4">Feedback</h5>
+                            <Feedback
+                                mentor={feedback.Mentor}
+                                feedback={feedback.Feedback}
+                                date={feedback.Date}
+                                image={feedback.Image}
+                            />
+                        </>:
+                        <></>
+                    }
                 </div>
-                <Participants participants={participants}/>
             </div>
         </div>
     )
