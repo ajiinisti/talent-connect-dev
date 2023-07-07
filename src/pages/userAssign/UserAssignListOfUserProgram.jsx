@@ -12,25 +12,31 @@ import { useEffect, useState } from "react"
 import ArrowButton from "../../components/button/ArrowButton"
 import { useParams } from "react-router-dom"
 import useAssignList from "./useAssignList"
+import AsyncSelect from 'react-select/async';
+import axiosInstance from "../../services/axios-client"
 
 const UserAssignListOfUserProgram = () => {
     const [isModalOut, setIsModalOut] = useState(false)
     const params = useParams()
     const {participants, getParticipants, getMentee, assigned, 
         allSelectedParticipants, setAllSelectedParticipants, postMentee, program, getEvaluatee, postPanelist} = useAssignList()
+    const [defaultSelect, setDefaultSelect] = useState([])
+
     
     const isMentor = params.role === "mentor"
-    const isPanelist = params.role === "panelist"
-
-    const handleCheckboxChange = (index) => {
-        const updatedParticipants = [...allSelectedParticipants];
-        updatedParticipants[index].selected = !updatedParticipants[index].selected;
-        setAllSelectedParticipants(updatedParticipants);
-    };
-
+    const isPanelist = params.role === "judges"
+    
+    const searchParticipant = async (inputValue) => {
+        if (isPanelist){
+            const data = await getEvaluatee(params.id, params.programId, inputValue)
+            return data.map((v)=> ({value: v.ID, label: `${v.FirstName} ${v.LastName}`}))
+        }
+        if(isMentor){  
+            const data = await getMentee(params.id, params.programId, inputValue)
+            return data.map((v)=> ({value: v.ID, label: `${v.FirstName} ${v.LastName}`}))
+        }
+    }
     const toggleShow = (e) => {
-        if(e)
-            e.preventDefault()
         setIsModalOut(!isModalOut)
     }
 
@@ -46,13 +52,30 @@ const UserAssignListOfUserProgram = () => {
 
     const assignMenteetoUser = (e) => {
         if (isMentor) {
-            postMentee(params.id, params.programId, allSelectedParticipants.filter((v)=>v.selected), toggleShow)
+            postMentee(params.id, params.programId, allSelectedParticipants, toggleShow)
         }
         if (isPanelist) {
-            postPanelist(params.id, allSelectedParticipants.filter((v)=>v.selected), toggleShow)
+            postPanelist(params.id, allSelectedParticipants, toggleShow)
         }
         e.preventDefault()
     }
+
+    useEffect(()=>{
+        const getData = async () => {
+            if(isPanelist){  
+                const data = await getEvaluatee(params.id, params.programId, "")
+                setDefaultSelect( data.map((v)=> ({value: v.ID, label: `${v.FirstName} ${v.LastName}`})) )
+            }
+            if(isMentor){  
+                const data = await getMentee(params.id, params.programId, "")
+                setDefaultSelect( data.map((v)=> ({value: v.ID, label: `${v.FirstName} ${v.LastName}`})) )
+            }
+
+        }
+        if(isModalOut){
+            getData()
+        }
+    }, [isModalOut])
 
     useEffect(()=>{
         getParticipants(params.programId)
@@ -69,14 +92,14 @@ const UserAssignListOfUserProgram = () => {
             <div className="container py-5 px-5 mb-5">
                 <h2><ArrowButton/><b>{program.Name}</b></h2>
                 <div className="mt-4 px-4 py-4" style={{ border: '0.5px solid #d3d3d3', borderRadius:'10px'}}>
-                    {assigned.map((v)=>(
-                        <div style={{ display: 'flex', alignItems: 'center', marginBottom:'1rem' }}>
+                    {assigned.map((v, i)=>(
+                        <div key={`user${i}`} style={{ display: 'flex', alignItems: 'center', marginBottom:'1rem' }}>
                             <img src={DefaultProfileIcon} alt="Profile Icon" style={{width:"5%", marginRight:"2rem"}}/> 
                             <span style={{ fontSize: '20px'}}>{v.name}</span>
                             <button className="btn" style={{ marginLeft: 'auto', marginBottom: '0.5rem' }}><BsTrash3/> </button>
                         </div>
                     ))}
-                    <Button title={isMentor ? "+ Add Mentee" : "+ Add Panelist"} navigate={(e) => toggleShow(e)}/>
+                    <Button title={isMentor ? "+ Add Mentee" : "+ Add Panelist"} navigate={toggleShow}/>
                 </div>
             </div>
         
@@ -87,22 +110,13 @@ const UserAssignListOfUserProgram = () => {
                         <div className="container" style={{ alignContent: 'flex-start'}}>
                             <div style={{ display: 'flex', flexDirection: 'column' }}>
                                 <h4 style={{ marginBottom: '1.5rem' }}>Add Participant</h4>
-                                {
-                                    allSelectedParticipants && participants.map((participant, index)=> (
-                                        <div style={{ display: 'flex', alignItems: 'center' }}>
-                                            <label style={{ marginRight: '10px' }}>
-                                                <input
-                                                type="checkbox"
-                                                checked={allSelectedParticipants[index]?.selected || false}
-                                                onChange={() => handleCheckboxChange(index)}
-                                                style={{marginRight:'10px'}}
-                                                />
-                                                <img src={participant.profilePicture} alt="Profile Icon" /> <span>{participant.name}</span>
-                                            </label>
-                                            <hr/>
-                                        </div>
-                                    ))
-                                }
+                                
+                                <AsyncSelect
+                                            isMulti
+                                            defaultOptions={defaultSelect}
+                                            loadOptions={searchParticipant}
+                                            onChange={setAllSelectedParticipants}
+                                        />
                             </div>
                         </div>
                     </MDBModalHeader>

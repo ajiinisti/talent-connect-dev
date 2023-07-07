@@ -20,7 +20,7 @@ const ActivityList = () => {
     const {getCurrentRole, getCurrentUser} = useAuth()
     const role = getCurrentRole()
     const params = useParams()
-
+    
     // group activity based on start Date
     useEffect(()=>{
         getPrograms(params.programId)

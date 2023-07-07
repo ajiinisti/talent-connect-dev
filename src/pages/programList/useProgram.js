@@ -5,6 +5,16 @@ import { toast } from "react-toastify"
 const useProgram = () => {
     const [program, setProgram] = useState([])
     const [participantId, setParticipantId] = useState([])
+
+    const getMenteeCandidate = async (id, name) => {
+        try {
+            const qs = new URLSearchParams({name : name});
+            let res = await axiosInstance.get("users/mentee/"+id+"?"+qs)
+            return res.data.data
+        } catch (error) {
+            toast.error(error.response.data.status.description )
+        }
+    }
     
     const getPrograms = async () => {
         try {
@@ -38,7 +48,8 @@ const useProgram = () => {
         program,
         getPrograms,
         deleteProgram,
-        participantId
+        participantId,
+        getMenteeCandidate  
     }
 }
 

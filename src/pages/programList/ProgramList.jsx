@@ -12,56 +12,58 @@ import {
 } from 'mdb-react-ui-kit'
 import { useAuth } from "../../hooks/useAuth"
 import useProgram from "./useProgram"
-import useParticipant from "../../services/useParticipant"
 import axiosInstance from "../../services/axios-client"
 import { toast } from "react-toastify"
 
+import AsyncSelect from 'react-select/async';
+
 const ProgramList = () => {
     const navigate = useNavigate()
-    const {program, getPrograms, participantId} = useProgram()
-    const {getParticipantList, participants} = useParticipant()
+    const {program, getPrograms, getMenteeCandidate} = useProgram()
     const [name, setName] = useState("")
     const {getCurrentUser} = useAuth()
     const [isModalOut, setIsModalOut] = useState(false)
     const [allSelectedParticipants, setAllSelectedParticipants] = useState([]);
-    const [index, setIndex] = useState(0)
+    const [defaultSelect, setdefaultSelect] = useState([])
+    const [programId, setProgramId] = useState('')
 
-    const toggleShow = (i) => {
+    const toggleShow = async (id) => {
         setIsModalOut(!isModalOut)
-        setIndex(i)
-        
-        const initialParticipant = participants.filter((participant) => 
-            !participantId[i]?.includes(participant.id)
-        );
-          setAllSelectedParticipants(initialParticipant)
+        setProgramId(id)
     }
 
     const assignParticipantToProgram = async (e) => {
         e.preventDefault()
-        let selected = allSelectedParticipants.filter((v)=>v.selected)
-        for (const select of selected) {
+        for (const select of allSelectedParticipants) {
             try {
                 let payload = {
-                    ProgramId: program.admin[index].ID,
-                    UserId : select.id
+                    ProgramId: programId,
+                    UserId : select.value
                 }
                 let res = await axiosInstance.post("participants", payload)
                 if (res.status === 200){
-                    toast(`${select.name} successfully added to ${program.admin[index].Name}`)
+                    toast(`${select.label} successfully added to ${program.admin.find((v)=> v.ID === programId).Name}`)
                 }
             } catch (error) {
                 toast.error(error.response.data.status.description)
             }
         }
-        toggleShow(0)
+        setProgramId("")
+        setAllSelectedParticipants([])
         await getPrograms()
+        setIsModalOut(false)
     }
 
-    const handleCheckboxChange = (index) => {
-        const updatedParticipants = [...allSelectedParticipants];
-        updatedParticipants[index].selected = !updatedParticipants[index].selected;
-        setAllSelectedParticipants(updatedParticipants);
-    };
+
+    const searchParticipant = async (inputValue) => {
+        if (programId)
+            try {
+                const data = await  getMenteeCandidate(programId, inputValue)
+                return data.map((v)=> ({value: v.ID, label: `${v.FirstName} ${v.LastName}`}))
+            } catch (error) {
+                
+            }
+    }
 
     const buttonCancelStyle = {
         borderRadius : '5px',
@@ -82,21 +84,22 @@ const ProgramList = () => {
           getPrograms()
     }, [])
 
+    useEffect(()=>{
+        const getDefault = async () => {
+            const data = await searchParticipant("")
+            setdefaultSelect(data)
+        }
+        if(programId)
+            getDefault()
+    }, [programId])
+
     useEffect(()=>{  
         setName(getCurrentUser().FirstName)
     }, [getCurrentUser])
 
-    useEffect(() => { 
-        getParticipantList("participant")
-    }, [])
-
-    useEffect(() => {
-        const initialParticipant = participants.map((participant) => ({
-          ...participant,
-          selected: false,
-        }));
-        setAllSelectedParticipants(initialParticipant);
-    }, [participants]);
+    useEffect(()=>{
+        console.log(allSelectedParticipants)
+    },[allSelectedParticipants])
 
     console.log(program)
     return(
@@ -109,19 +112,19 @@ const ProgramList = () => {
                 </div>
                 {program?.admin ? 
                 <>
-                {program.admin.map((v, i)=>(<ProgramCard key={`admin${v.ID}`} title={v.Name} styling={cardStyle} programId={v.ID} isAdmin={true} participant={v.participants} toogleModalUpdate={()=>toggleShow(i)} />))}
+                {program.admin.map((v)=>(<ProgramCard key={`admin${v.ID}`} title={v.Name} styling={cardStyle} programId={v.ID} isAdmin={true} participant={v.participants} toogleModalUpdate={()=>toggleShow(v.ID)} />))}
                 </>
                 : <></>}
                 {program?.panelist ? 
                 <>
                 <h3 style={{ marginTop: "2rem"}}>Panelist</h3>
-                {program.panelist.map((v)=>(<ProgramCard key={`panelist${v.ID}`} title={v.Name} styling={cardStyle} isJudge={true} programId={v.ID} participant={v.participants} toogleModalUpdate={toggleShow}/>))}
+                {program.panelist.map((v)=>(<ProgramCard key={`panelist${v.ID}`} title={v.Name} styling={cardStyle} isJudge={true} programId={v.ID} participant={v.participants} />))}
                 </>
                 : <></>}
                 {program?.mentor ? 
                 <>
                 <h3 style={{ marginTop: "2rem"}}>Mentor</h3>
-                {program.mentor.map((v)=>(<ProgramCard key={`mentor${v.ID}`} title={v.Name} styling={cardStyle} programId={v.ID} participant={v.participants} toogleModalUpdate={toggleShow}/>))}
+                {program.mentor.map((v)=>(<ProgramCard key={`mentor${v.ID}`} title={v.Name} styling={cardStyle} programId={v.ID} participant={v.participants} />))}
                 </>
                 : <></>}
                 {program?.participant ? 
@@ -139,27 +142,17 @@ const ProgramList = () => {
                             <div className="container" style={{ alignContent: 'flex-start'}}>
                                 <div style={{ display: 'flex', flexDirection: 'column' }}>
                                     <h4 style={{ marginBottom: '1.5rem' }}>Add Participant</h4>
-                                    {
-                                        allSelectedParticipants && allSelectedParticipants.map((participant, index)=> (
-                                            <div style={{ display: 'flex', alignItems: 'center' }}>
-                                                <label style={{ marginRight: '10px' }}>
-                                                    <input
-                                                    type="checkbox"
-                                                    checked={allSelectedParticipants[index]?.selected || false}
-                                                    onChange={() => handleCheckboxChange(index)}
-                                                    style={{marginRight:'10px'}}
-                                                    />
-                                                    <img src={participant.profilePicture} alt="Profile Icon" /> <span>{participant.name}</span>
-                                                </label>
-                                                <hr/>
-                                            </div>
-                                        ))
-                                    }
+                                        <AsyncSelect
+                                            isMulti
+                                            defaultOptions={defaultSelect}
+                                            loadOptions={searchParticipant}
+                                            onChange={setAllSelectedParticipants}
+                                        />
                                 </div>
                             </div>
                         </MDBModalHeader>
                         <MDBModalFooter>
-                            <Button title={"Cancel"} navigate={(e)=> toggleShow(e)} styling={buttonCancelStyle}/>
+                            <Button title={"Cancel"} navigate={(e)=> toggleShow("")} styling={buttonCancelStyle}/>
                             <Button title={"Confirm"} navigate={(e)=> assignParticipantToProgram(e)}/>
                         </MDBModalFooter>
                     </MDBModalContent>

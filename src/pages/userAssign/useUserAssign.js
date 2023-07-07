@@ -4,6 +4,18 @@ import { toast } from "react-toastify"
 
 const useUserAssign = () => {
     const [programs, setProgram] = useState([])
+    const [user, setUser] = useState({})
+
+    const getUser = async (id) => {
+        try {
+            let res = await axiosInstance.get(`users/${id}`)
+            if (res.status === 200) {
+                setUser(res.data.data)
+            }
+        } catch (error) {
+            toast.error(error.response.data.status.description)
+        }
+    }
 
     const getPrograms = async () => {
         try {
@@ -18,7 +30,9 @@ const useUserAssign = () => {
 
     return {
         programs,
-        getPrograms
+        user,
+        getPrograms,
+        getUser
     }
 }
 
