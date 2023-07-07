@@ -117,7 +117,7 @@ const ProgramList = () => {
                 : <></>}
                 {program?.panelist ? 
                 <>
-                <h3 style={{ marginTop: "2rem"}}>Panelist</h3>
+                <h3 style={{ marginTop: "2rem"}}>Judge</h3>
                 {program.panelist.map((v)=>(<ProgramCard key={`panelist${v.ID}`} title={v.Name} styling={cardStyle} isJudge={true} programId={v.ID} participant={v.participants} />))}
                 </>
                 : <></>}

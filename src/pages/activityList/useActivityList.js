@@ -59,6 +59,8 @@ const useActivityList = () => {
 
     const combineData = () => {
         const mergedData = [];
+        console.log(mentoring)
+        console.log(activities)
         mentoring?.forEach(item1 => {
             const matchingDate = activities.find(item2 => item2.Date === item1.Date);
             if (matchingDate) {
@@ -93,6 +95,7 @@ const useActivityList = () => {
                 mergedData.push(mergedItem);
             }
         });
+        console.log(mergedData)
         setAllActivities(groupByMonth(mergedData))
     }
 

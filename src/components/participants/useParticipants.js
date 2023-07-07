@@ -18,8 +18,6 @@ const useParticipants = () => {
                         }
                     }
                 }
-                console.log("data:",data)
-                console.log(allProgramParticipant)
             }
             return 
         } catch (error) {

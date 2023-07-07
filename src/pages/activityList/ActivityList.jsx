@@ -19,6 +19,7 @@ const ActivityList = () => {
     } = useActivityList()
     const {getCurrentRole, getCurrentUser} = useAuth()
     const role = getCurrentRole()
+    console.log(role)
     const params = useParams()
     
     // group activity based on start Date
@@ -40,7 +41,10 @@ const ActivityList = () => {
         <div className="row">
             <div className="col">      
                 <div className="mt-4">
-                    <Button title={"+ Add Activity"} navigate={() => navigate(`/program/${params.programId}/activity-form`)}/>
+                    {
+                        (role.includes("mentor") || role.includes("admin")) &&
+                        <Button title={"+ Add Activity"} navigate={() => navigate(`/program/${params.programId}/activity-form`)}/>
+                    }
                 </div>
                 { allActivities && <Pagination content={allActivities} programId={params.programId}/> }
             </div>

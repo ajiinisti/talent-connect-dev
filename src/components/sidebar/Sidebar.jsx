@@ -21,6 +21,7 @@ const Sidebar = () => {
     const [activeNavLink, setActiveNavLink] = useState('');
     const {logout, getCurrentRole, getCurrentUser} = useAuth()
     const role = getCurrentRole()
+    console.log(role)
     
     useEffect(() => {
         setActiveNavLink(location.pathname);
