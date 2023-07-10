@@ -1,27 +1,25 @@
 import { AiOutlineSearch } from 'react-icons/ai';
-import { useState } from 'react';
+import debounce from 'lodash.debounce';
 
-const SearchBar = () => {
-  const [searchValue, setSearchValue] = useState('');
+const SearchBar = ({onSubmit, placeholder, onChange}) => {
 
-  const handleInputChange = (event) => {
-    setSearchValue(event.target.value);
-  };
+  const handleInputChange = debounce(event => {
+      onChange(event.target.value);
+  }, 500);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(searchValue);
+    onSubmit()
   };
 
   return (
-    <div className="d-flex flex-column gap-4 mt-4">
+    <div className="d-flex flex-column">
       <form className="input-group" onSubmit={handleSubmit}>
         <input
           className="form-control border-end-0 border"
           type="search"
-          value={searchValue}
           onChange={handleInputChange}
-          placeholder="Search Program"
+          placeholder={placeholder || "Search Program"}
           style={{ borderRadius: "5px 0 0 5px" }}
         />
         <span className="input-group-append">

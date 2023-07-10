@@ -4,10 +4,17 @@ import { toast } from "react-toastify"
 
 const useUserManagement = () => {
     const [users, setUsers] = useState([])
+    const [role, setRole] = useState(null)
+    const [name, setName] = useState('')
 
     const getUser = async () => {
         try {
-            let res = await axiosInstance.get("users")
+            const options = {
+                name: name,
+                role: role || ''
+            }
+            const qs = new URLSearchParams(options)
+            let res = await axiosInstance.get(`users?${qs.toString()}`)
             if(res.status === 200){
                 let data = res.data.data
                 setUsers(data)
@@ -18,7 +25,11 @@ const useUserManagement = () => {
     }
     return {
         users,
-        getUser
+        getUser,
+        setRole,
+        setName,
+        name,
+        role
     }
 }
 
