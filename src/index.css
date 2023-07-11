@@ -271,6 +271,19 @@ a.nav-link{
   top: 0;
 }
 
+/* Antd overwrite */
+.ant-tabs-ink-bar {
+  background-color: transparent !important;
+}
+
+.ant-tabs-nav .ant-tabs-tab-active {
+  border-bottom: 2px solid #AA81F3 !important;
+}
+
+.ant-tabs-tab-active .ant-tabs-tab-btn{
+  color: black !important;
+}
+
 @media (max-width: 768px) {
   .custom-sidebar {
       display: none;

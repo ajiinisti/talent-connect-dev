@@ -86,7 +86,7 @@ const useEvaluate = () => {
                 data.QuestionCategories[i].QuestionList = []
                 v.QuestionCategory.questions.forEach((question, j)=>{
                     const answer = answers.find((v)=>v.QuestionID===question.ID)
-                    temp = {QuestionID: question.ID, Answer : answer? answer.Answer.Answer || "" : ""}
+                    temp = {QuestionID: question.ID, Answer : answer? answer.Answer || "" : ""}
                     data.QuestionCategories[i].QuestionList.push(temp)
                 })
             })
