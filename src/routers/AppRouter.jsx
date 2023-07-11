@@ -18,6 +18,8 @@ import UserAssign from '../pages/userAssign/UserAssign';
 import UserAssignListOfUserProgram from '../pages/userAssign/UserAssignListOfUserProgram';
 import PasswordSettings from '../pages/passwordSettings/PasswordSettings';
 import ActivityComponent from '../pages/activityList/ActivityComponent';
+import ProgramEvaluateScore from '../pages/programEvaluateScore/ProgramEvaluateScore';
+
 
 function AppRouter() {
   return (
@@ -34,6 +36,7 @@ function AppRouter() {
             <Route path='program/activity-detail/:isMentoring/:id/:programId' element={<ActivityDetail/>} />
             <Route path='program/evaluate-participant/:id' element={<ProgramEvaluateParticipant/>} />
             <Route path='program/evaluate-participant/:programId/:evalIid' element={<ProgramEvaluateParticipantDetail/>} />
+            <Route path='program/evaluate-score/:programId/:evalIid' element={<ProgramEvaluateScore/>} />
             <Route path='management' element={<ProgramList/>}/>
             <Route path='user-management' element={<UserManagement/>}/>
             <Route path='user-management/user-form' element={<UserForm/>}/>
