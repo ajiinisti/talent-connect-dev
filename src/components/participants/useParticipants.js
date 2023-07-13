@@ -13,6 +13,7 @@ const useParticipants = () => {
                     for (const mentee of allProgramParticipant) {
                         for (const mentorMentee of data) {
                             if (mentorMentee.ParticipantID === mentee.UserID) {
+                                if(data.Mentor)
                                 setMentor([...mentor, {Name:`${data?.Mentor.FirstName} ${data?.Mentor.LastName}`}])
                             }
                         }
@@ -21,7 +22,9 @@ const useParticipants = () => {
             }
             return 
         } catch (error) {
+            if(error.response)
             toast.error(error.response.data.status.description)
+            else toast.error(error.message)
         }
     }
 

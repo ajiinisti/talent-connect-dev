@@ -33,7 +33,7 @@ const Participants = ({program}) => {
 
     useEffect(() => {
         getAllMentorMentee(program?.participants)
-    })
+    },[])
 
     let buttonStyle = {
         height: "6vh",

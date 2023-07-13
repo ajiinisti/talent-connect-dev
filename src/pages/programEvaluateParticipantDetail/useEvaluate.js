@@ -1,6 +1,7 @@
 import { useState } from "react"
 import axiosInstance from "../../services/axios-client"
 import { toast } from "react-toastify"
+import { useNavigate } from "react-router-dom"
 
 
 const evaluationPeriod = [
@@ -85,7 +86,7 @@ const useEvaluate = () => {
                 data.QuestionCategories[i].QuestionList = []
                 v.QuestionCategory.questions.forEach((question, j)=>{
                     const answer = answers.find((v)=>v.QuestionID===question.ID)
-                    temp = {QuestionID: question.ID, Answer : answer? answer.Answer.Answer || "" : ""}
+                    temp = {QuestionID: question.ID, Answer : answer? answer.Answer || "" : ""}
                     data.QuestionCategories[i].QuestionList.push(temp)
                 })
             })

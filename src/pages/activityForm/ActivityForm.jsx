@@ -44,7 +44,7 @@ const ActivityForm = () => {
             ...activity,
             [name]: value
         });
-        console.log(activity)
+        // console.log(activity)
     }
 
     useEffect(()=> {

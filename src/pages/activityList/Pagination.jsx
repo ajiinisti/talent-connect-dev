@@ -172,7 +172,7 @@ const Pagination = ({content, programId}) => {
                                 <div className="mb-3">
                                     {
                                         pastActivities[currentPagePast - 1]?.data?.map((v) => (
-                                            <div key={v.Date}>
+                                            <div key={`past-${v.Date}`}>
                                             <h5 className="mt-4">{new Date(v.Date).toLocaleString('en-US', { weekday: 'long' })}, {v.Date}</h5>
                                             {
                                                 v.Activities?.map((a) => (

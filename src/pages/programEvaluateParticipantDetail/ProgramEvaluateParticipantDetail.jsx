@@ -47,7 +47,6 @@ const ProgramEvaluateParticipantDetail = () => {
     const createOption = (question, num, v, i, j) => {
         const rows = []
         for (let index = 0; index < num; index++) {
-            // if checked then disabled
             rows.push(<CFormCheck key={index} inline type="radio" name={`qes-${v.ID}-${question.ID}`} id={`qes-${v.ID}-${question.ID}-${index}`} value={index+1} label={index+1} onChange={
                 (e) => {
                    onInputChange(e, i, j)
@@ -67,6 +66,7 @@ const ProgramEvaluateParticipantDetail = () => {
                         <label htmlFor="evaluationPeriod" className="form-label">Evaluation Period</label>
                         <Select options={evaluationPeriod} isDisabled value={period} id="evaluationPeriod"/>
                     </div>
+
                     {questions.map((v, i)=>(
                         <div key={v.ID}>
                             <h2>{v.QuestionCategory.Name}</h2>

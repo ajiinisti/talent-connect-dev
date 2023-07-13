@@ -4,6 +4,7 @@ import useActivityList from "./useActivityList";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import Participants from "../../components/participants/Participants";
+import EvaluationScore from "./EvaluationScore";
 
 const ActivityComponent = () => {
     const {
@@ -26,7 +27,7 @@ const ActivityComponent = () => {
         {
           key: '3',
           label: `Evaluation`,
-          children: `Content of Evaluation`,
+          children: <EvaluationScore/>,
         },
       ];
 

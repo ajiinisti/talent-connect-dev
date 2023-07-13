@@ -3,7 +3,11 @@ import axiosInstance from "../../services/axios-client"
 import { toast } from "react-toastify"
 
 const useProgram = () => {
-    const [program, setProgram] = useState([])
+    const [program, setProgram] = useState({
+        admin: [],
+        panelist: [],
+        mentor: [],
+        participant: []})
     const [participantId, setParticipantId] = useState([])
 
     const getMenteeCandidate = async (id, name) => {

@@ -72,7 +72,7 @@ const ProgramEvaluateParticipant = () => {
                     v.IsEvaluated && <>
                     <div key={v.ID} className="mt-4">
                         <img src={DefaultProfileIcon} style={{ width: '5%' }} alt="Profile Icon" /> <span>{v.Participant.User.FirstName} {v.Participant.User.LastName}</span>
-                        <Button title={"Evaluate"} styling={buttonStyling} navigate={() => navigate(v.ID)}/>
+                        <Button title={"Evaluate"} styling={buttonStyling} navigate={() => navigate(`/program/evaluate-score/${params.id}/${v.ID}`)}/>
                     </div>
                     <hr/>
                     </>

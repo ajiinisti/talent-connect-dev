@@ -23,9 +23,6 @@ const EvaluationScoring = () => {
     CategoryWeight: 0.0
   });
 
-  console.log(aspect)
-  console.log(category)
-
   const changeCategoryName = (id) => {
       setAssignCategoryToProgram({
           ...assignCategoryToProgram,

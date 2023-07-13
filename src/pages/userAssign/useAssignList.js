@@ -22,10 +22,11 @@ const useAssignList = () => {
             let res = await axiosInstance.get("programs/"+id)
             if (res.status === 200) {
                 let data = res.data.data
-                let parti = data.Program?.participants?.map((v)=>({id : v.User.ID, name: v.User.FirstName + " " + v.User.LastName, profilePicture: DefaultProfileIcon, selected: false}))
+                let parti = data.Program?.participants?.map((v)=>({participantId:v.ID, id : v.User.ID, name: v.User.FirstName + " " + v.User.LastName, profilePicture: DefaultProfileIcon, selected: false}))
                 setParticipants(parti)
                 setProgram(data.Program)
                 setAllSelectedParticipants(parti)
+                return parti
             }
         } catch (error) {
             toast(error.response.data.status.description)
@@ -60,7 +61,7 @@ const useAssignList = () => {
 
     const postMentee = async (mentorId, programId, users, toggleShow) => {
         for (const user of users) {
-            if(assigned.find((v)=>v.id=user.id)) {
+            if(assigned.find((v)=>v.id===user.id)) {
                 toast(`${user.name} Already added`)
                 continue
             }
@@ -76,18 +77,19 @@ const useAssignList = () => {
                 } 
                 
             } catch (error) {
-                toast.error(`Add ${user.name} Failed`)
+                toast.error(`Add ${user.name} Failed, ${error.response.data.status.description}`)
             }
         }
+        await getMentee(participants, mentorId, programId)
         toggleShow()
         setAllSelectedParticipants([])
     }
 
     
 
-    const postPanelist = async (panelistId, users, toggleShow) => {
+    const postPanelist = async (programId, panelistId, users, toggleShow) => {
         for (const user of users) {
-            if(assigned.find((v)=>v.id=user.id)) {
+            if(assigned.find((v)=>v.id===user.id)) {
                 toast(`${user.name} Already added`)
                 continue
             }
@@ -102,7 +104,7 @@ const useAssignList = () => {
                 } 
                 
             } catch (error) {
-                toast.error(`Add ${user.name} Failed`)
+                toast.error(`Add ${user.name} Failed,\n ${error.response.data.status.description}`)
             }
         }
         setAllSelectedParticipants([])
@@ -118,7 +120,7 @@ const useAssignList = () => {
         postMentee,
         program,
         getEvaluatee,
-        postPanelist
+        postPanelist,
     }
 }
 
